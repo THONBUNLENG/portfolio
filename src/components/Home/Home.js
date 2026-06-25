@@ -4,15 +4,12 @@ import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
-import Techstack from "../About/Techstack";
-import Github from "../About/Github";
 import {
   AiFillGithub,
-  AiOutlineTwitter,
   AiFillInstagram,
   AiOutlineFacebook,
 } from "react-icons/ai";
-import { FaLinkedinIn, FaTelegram } from "react-icons/fa";
+import { FaTelegram } from "react-icons/fa";
 import { SiTiktok } from "react-icons/si";
 function Home() {
   return (
