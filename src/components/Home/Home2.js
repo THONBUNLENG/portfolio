@@ -1,29 +1,32 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import myImg from "../../Assets/avatar.svg";
 import Tilt from "react-parallax-tilt";
+import myImg from "../../Assets/me.jpg";
 
 function Home2() {
   return (
     <Container fluid className="home-about-section" id="about">
       <Container>
-        <Row>
+        <Row className="align-items-center">
+          {/* Text Section */}
           <Col md={8} className="home-about-description">
             <h1 style={{ fontSize: "2.6em" }}>
-              LET ME <span className="purple"> INTRODUCE </span> MYSELF
+              LET ME <span className="purple">INTRODUCE</span> MYSELF
             </h1>
+
             <p className="home-about-body">
-              I’m a Software Engineer who loves transforming ideas into
-              reliable, scalable products. Over time, I’ve explored several
+              I&apos;m a Software Engineer who loves transforming ideas into
+              reliable, scalable products. Over time, I&apos;ve explored several
               technologies and found my passion in building high-performance
               systems and intuitive user experiences.
               <br />
               <br />
-              I’m proficient in
+              I&apos;m proficient in
               <i>
                 <b className="purple">
                   {" "}
-                  Flutter, React Native, Swift, Kotlin, JavaScript, C++, Rust, Node.js, Laravel , Python and Java{" "}
+                  Flutter, React Native, Swift, Kotlin, JavaScript, C++, C#,
+                  Rust, Node.js, Laravel, Python and Java
                 </b>
               </i>
               — and I enjoy working across both backend and frontend stacks.
@@ -33,7 +36,8 @@ function Home2() {
               <i>
                 <b className="purple">
                   {" "}
-                  Mobile Applications and Web Applications, Blockchain Solutions,{" "}
+                  Mobile Applications and Web Applications, Blockchain
+                  Solutions
                 </b>
               </i>
               and exploring new ways to bridge on-chain and off-chain systems.
@@ -42,13 +46,43 @@ function Home2() {
               Whenever possible, I love building projects with{" "}
               <b className="purple">Flutter</b> and modern frameworks like{" "}
               <i>
-                <b className="purple">React.js</b> and <b className="purple">Next.js</b>.
+                <b className="purple">React.js</b> and{" "}
+                <b className="purple">Next.js</b>.
               </i>
             </p>
           </Col>
-          <Col md={4} className="myAvtar">
-            <Tilt>
-              <img src={myImg} className="img-fluid" alt="avatar" />
+
+          {/* Image Section */}
+          <Col
+            md={4}
+            className="myAvtar"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              paddingTop: "20px",
+            }}
+          >
+            <Tilt
+              tiltMaxAngleX={10}
+              tiltMaxAngleY={10}
+              perspective={1000}
+              transitionSpeed={1500}
+              scale={1.02}
+            >
+              <img
+                src={myImg}
+                alt="avatar"
+                className="img-fluid"
+                style={{
+                  width: "100%",
+                  maxWidth: "350px",
+                  height: "auto",
+                  objectFit: "cover",
+                  borderRadius: "20px",
+                  display: "block",  
+                }}
+              />
             </Tilt>
           </Col>
         </Row>
@@ -56,4 +90,5 @@ function Home2() {
     </Container>
   );
 }
+
 export default Home2;
