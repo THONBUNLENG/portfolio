@@ -4,6 +4,7 @@ import macOs from "../../Assets/TechIcons/Apple MacOSX.svg";
 import chrome from "../../Assets/TechIcons/Google Chrome.svg";
 import vsCode from "../../Assets/TechIcons/vscode.svg";
 import intelliJ from "../../Assets/TechIcons/intellij-idea.svg";
+import androidStudio from "../../Assets/TechIcons/android-studio.png";
 
 function Toolstack() {
   return (
@@ -21,7 +22,7 @@ function Toolstack() {
         <div className="tech-icons-text">Vs Code</div>
       </Col>
    <Col xs={4} md={2} className="tech-icons ">
-        <img src={vsCode} alt="vsCode" className="tech-icon-images" />
+        <img src={androidStudio} alt="Android Studio" className="tech-icon-images" />
         <div className="tech-icons-text">Android Studio</div>
       </Col>
       <Col xs={4} md={2} className="tech-icons ">

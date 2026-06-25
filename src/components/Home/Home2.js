@@ -23,7 +23,7 @@ function Home2() {
               <i>
                 <b className="purple">
                   {" "}
-                  Flutter, React Native, JavaScript, C++, Rust, Node.js, Laravel , Python and Java{" "}
+                  Flutter, React Native, Swift, Kotlin, JavaScript, C++, Rust, Node.js, Laravel , Python and Java{" "}
                 </b>
               </i>
               — and I enjoy working across both backend and frontend stacks.
