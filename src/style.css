@@ -84,7 +84,7 @@ button:focus {
   background-color: #1b1a2ea9 !important;
   transition: all 0.3s ease-out 0s !important;
   box-shadow: 0px 10px 10px 0px rgba(9, 5, 29, 0.171) !important;
-  backdrop-filter: blur(15px) !important;
+  /* backdrop-filter: blur(15px) !important; */
 }
 
 .navbar {
@@ -160,8 +160,10 @@ button:focus {
 }
 
 .logo {
-  height: 1.4em !important;
-  width: 2.5em !important;
+  height: 0px !important;
+  width: auto !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
 }
 
 .navbar-nav .nav-link {
@@ -316,7 +318,21 @@ button:focus {
 }
 
 @media (max-width: 767px) {
-  .myAvtar {
+.home-img {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.home-img img {
+  max-width: 100%;
+  max-height: 500px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.myAvtar {
     padding-top: 2em !important;
     padding-bottom: 2em !important;
   }
@@ -609,6 +625,20 @@ button:focus {
   list-style: none !important;
   text-align: left !important;
   padding-left: 1px !important;
+}
+
+.about-img {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.about-img img {
+  max-width: 90%;
+  max-height: 350px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 767px) {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Tilt from "react-parallax-tilt";
-import myImg from "../../Assets/me.jpg";
+import homeLogo from "../../Assets/home-main.svg";
 
 function Home2() {
   return (
@@ -71,12 +71,12 @@ function Home2() {
               scale={1.02}
             >
               <img
-                src={myImg}
+                src={homeLogo}
                 alt="avatar"
                 className="img-fluid"
                 style={{
                   width: "100%",
-                  maxWidth: "350px",
+                  maxWidth: "450px",
                   height: "auto",
                   objectFit: "cover",
                   borderRadius: "20px",
