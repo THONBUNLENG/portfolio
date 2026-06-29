@@ -6,8 +6,10 @@ import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/me.jpg";
 import Toolstack from "./Toolstack";
+import { useLanguage } from "../../context/LanguageContext";
 
 function About() {
+  const { t } = useLanguage();
   return (
     <>
       {" "}
@@ -23,8 +25,8 @@ function About() {
                 paddingBottom: "50px",
               }}
             >
-              <h1 style={{ fontSize: "2.1em", paddingBottom: "20px" }}>
-                Know Who <strong className="purple">I'M</strong>
+              <h1 style={{ fontSize: "2.1em", paddingBottom: "20px", textAlign: "center" }}>
+                {t("aboutTitlePrefix")} <strong className="purple">{t("aboutTitleHighlight")}</strong> {t("aboutTitleSuffix")}
               </h1>
               <Aboutcard />
             </Col>
@@ -37,13 +39,15 @@ function About() {
             </Col>
           </Row>
           <h1 className="project-heading">
-            Professional <strong className="purple">Skillset </strong>
+            {t("professionalSkills").split(" ").map((word, i) => 
+              word === "Skillset" ? <strong key={i} className="purple">{word}</strong> : <span key={i}>{word} </span>
+            )}
           </h1>
 
           <Techstack />
 
           <h1 className="project-heading">
-            <strong className="purple">Tools</strong> I use
+            <strong className="purple">{t("toolsTitle").split(" ")[0]}</strong> {t("toolsTitle").split(" ").slice(1).join(" ")}
           </h1>
           <Toolstack />
 

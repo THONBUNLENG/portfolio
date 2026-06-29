@@ -1,8 +1,10 @@
 import React from "react";
 import GitHubCalendar from "react-github-calendar";
 import { Row } from "react-bootstrap";
+import { useLanguage } from "../../context/LanguageContext";
 
 function Github() {
+  const { t, language } = useLanguage();
   return (
     <Row
       style={{
@@ -12,7 +14,11 @@ function Github() {
       }}
     >
       <h1 className="project-heading pb-4" style={{ paddingBottom: "20px" }}>
-        Days I <strong className="purple">Code</strong>
+        {language === "en" ? (
+          <>Days I <strong className="purple">Code</strong></>
+        ) : (
+          <>{t("codeDays")} <strong className="purple">{t("codeDaysHighlight")}</strong></>
+        )}
       </h1>
       <GitHubCalendar
         username="THONBUNLENG"

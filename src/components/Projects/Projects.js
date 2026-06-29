@@ -2,32 +2,31 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-// import leaf from "../../Assets/Projects/leaf.png";
-import emotion from "../../Assets/Projects/emotion.png";
-// import editor from "../../Assets/Projects/codeEditor.png";
-// import suicide from "../../Assets/Projects/suicide.png";
-// import bitsOfCode from "../../Assets/Projects/blog.png";
-///-------------------------------------------------------
-import chatify from "../../Assets/Projects/chatify.png";
-import ecommerce_app from "../../Assets/Projects/e-commerce.png";
-import pisschool from "../../Assets/Projects/app_pis.png";
-import school from "../../Assets/Projects/BIU.png";
-import loan from "../../Assets/Projects/loan.png";
-import pos_coffee from "../../Assets/Projects/pos_coffee.png"
+import emotion from "../../Assets/Projects/elements.png";
+import chatify from "../../Assets/Projects/dark_mode.png";
+import ecommerce_app from "../../Assets/Projects/pink_house.png";
+import biu from "../../Assets/Projects/BIU.png";
+import school from "../../Assets/Projects/school.png";
+import loan from "../../Assets/Projects/pos_loan.png";
+import pos_coffee from "../../Assets/Projects/coffee_pos.png"
 import ecommerce_web from "../../Assets/Projects/e-commerce_web.png";
 import admin from "../../Assets/Projects/admin.png";
-import club from "../../Assets/Projects/pontoon_club.png";
+import club from "../../Assets/Projects/pontoon.png";
+import mjq from "../../Assets/Projects/mjq.png";
+import pis from "../../Assets/Projects/pis.png";
+import { useLanguage } from "../../context/LanguageContext";
 
 function Projects() {
+  const { t, language } = useLanguage();
   return (
     <Container fluid className="project-section">
       <Particle />
       <Container>
         <h1 className="project-heading">
-          My Recent <strong className="purple">Works </strong>
+          {t("projectsTitlePrefix")} <strong className="purple">{t("projectsTitleHighlight")}</strong> {t("projectsTitleSuffix")}
         </h1>
-        <p style={{ color: "white" }}>
-          Here are a few projects I've worked on recently.
+        <p className="project-subheading">
+          {t("projectsSubtitle")}
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={4} className="project-card">
@@ -36,7 +35,7 @@ function Projects() {
               isBlog={false}
               title="Pink House E-commerce App"
               description="A-high-performance,scalable,and visually stunning Flutter mobile e-commerce application designed for online grocery mart businesses.Built with a robust Clean Architecture approach and enterprise-grade state management."
-              ghLink="https://github.com/THONBUNLENG/pink_houseE-Commerce_app"
+              ghLink="https://github.com/THONBUNLENG/pink_house-Ecommerce-App.git"
               demoLink="https://play.google.com/store/apps/details?id=com.wintech.pinkhouse"
             />
           </Col>
@@ -49,11 +48,30 @@ function Projects() {
               ghLink="https://github.com/THONBUNLENG/pontoon-club_app.git"
               demoLink="https://play.google.com/store/apps/details?id=com.eliteclub&hl=en"
             />
+          </Col>​
+            <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={mjq}
+              isBlog={false}
+              title="MJQ AIS and AII school App"
+              description=" A Flutter-based mobile application designed for MJQ AIS and AII School, providing students, parents, and teachers with a centralized platform to access academic information, manage school activities, and enhance communication within the school community."
+              ghLink="https://github.com/THONBUNLENG/MJQ-AII-and-AIS-school-App.git"
+              demoLink="https://play.google.com/store/apps/details?id=kh.edu.mjqeducation.sms&hl=en"
+            />
           </Col>
-
+  <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={biu}
+              isBlog={false}
+              title="Beltei University App"
+              description="The BIU University Mobile App is designed to improve communication and accessibility within the university community. The application centralizes important university services and information, allowing users to stay informed and connected anytime, anywhere."
+              ghLink="https://github.com/THONBUNLENG/-BIU_university.git"
+              demoLink="https://play.google.com/store/apps/details?id=com.rnbis&hl=en"
+            />
+          </Col>
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={pisschool}
+              imgPath={pis}
               isBlog={false}
               title="PIS School App"
               description="A Flutter-based mobile application designed for PIS School, providing students, parents, and teachers with a centralized platform to access academic information, manage school activities, and enhance communication within the school community."
@@ -72,18 +90,6 @@ function Projects() {
               demoLink=""              
             />
           </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={school}
-              isBlog={false}
-              title="Beltei University App"
-              description="The BIU University Mobile App is designed to improve communication and accessibility within the university community. The application centralizes important university services and information, allowing users to stay informed and connected anytime, anywhere."
-              ghLink="https://github.com/THONBUNLENG/-BIU_university.git"
-              demoLink=""
-            />
-          </Col>
-
           <Col md={4} className="project-card">
             <ProjectCard
               imgPath={loan}

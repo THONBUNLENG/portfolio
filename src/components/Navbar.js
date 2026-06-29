@@ -13,12 +13,15 @@ import {
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
 } from "react-icons/ai";
-
 import { CgFileDocument } from "react-icons/cg";
+import { useLanguage } from "../context/LanguageContext";
+import cambodiaFlag from "../Assets/cambodia-flag.svg";
+import ukFlag from "../Assets/uk-flag.svg";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
+  const { language, toggleLanguage, t } = useLanguage();
 
   function scrollHandler() {
     if (window.scrollY >= 20) {
@@ -55,16 +58,17 @@ function NavBar() {
           <Nav className="ms-auto" defaultActiveKey="#home">
             <Nav.Item>
               <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
-                <AiOutlineHome style={{ marginBottom: "2px" }} /> Home
+                <AiOutlineHome style={{ marginBottom: "2px" }} /> {t("navbarHome")}
               </Nav.Link>
             </Nav.Item>
+
             <Nav.Item>
               <Nav.Link
                 as={Link}
                 to="/about"
                 onClick={() => updateExpanded(false)}
               >
-                <AiOutlineUser style={{ marginBottom: "2px" }} /> About
+                <AiOutlineUser style={{ marginBottom: "2px" }} /> {t("navbarAbout")}
               </Nav.Link>
             </Nav.Item>
 
@@ -74,10 +78,8 @@ function NavBar() {
                 to="/project"
                 onClick={() => updateExpanded(false)}
               >
-                <AiOutlineFundProjectionScreen
-                  style={{ marginBottom: "2px" }}
-                />{" "}
-                Projects
+                <AiOutlineFundProjectionScreen style={{ marginBottom: "2px" }} />{" "}
+                {t("navbarProjects")}
               </Nav.Link>
             </Nav.Item>
 
@@ -87,18 +89,58 @@ function NavBar() {
                 to="/resume"
                 onClick={() => updateExpanded(false)}
               >
-                <CgFileDocument style={{ marginBottom: "2px" }} /> Resume
+                <CgFileDocument style={{ marginBottom: "2px" }} /> {t("navbarResume")}
               </Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
               <Nav.Link
-                href=""
-                target="_blank"
-                rel="noreferrer"
+                as={Link}
+                to="/blogs"
+                onClick={() => updateExpanded(false)}
               >
-                <ImBlog style={{ marginBottom: "2px" }} /> Blogs
+                <ImBlog style={{ marginBottom: "2px" }} /> {t("navbarBlogs")}
               </Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Button
+                onClick={toggleLanguage}
+                className="lang-btn"
+                style={{
+                  marginTop: "6px",
+                  background: "transparent",
+                  border: "1px solid #c770f0",
+                  color: "#c770f0",
+                  fontSize: "0.85rem",
+                  padding: "4px 12px",
+                  borderRadius: "20px",
+                  cursor: "pointer",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
+                <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                  <img
+                    src={cambodiaFlag}
+                    alt="Khmer"
+                    style={{
+                      height: "1.1em",
+                      width: "1.1em",
+                    }}
+                  />
+                  <img
+                    src={ukFlag}
+                    alt="English"
+                    style={{
+                      height: "1.1em",
+                      width: "1.1em",
+                    }}
+                  />
+                </span>
+                <span style={{ marginLeft: "4px" }}>{language === "en" ? "EN/KM" : "EN/KM"}</span>
+              </Button>
             </Nav.Item>
 
             <Nav.Item className="fork-btn">

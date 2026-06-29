@@ -7,18 +7,20 @@ import {
 } from "react-icons/ai";
 import { FaTelegram } from "react-icons/fa";
 import { SiTiktok } from "react-icons/si";
+import { useLanguage } from "./../context/LanguageContext";
 
 function Footer() {
+  const { t } = useLanguage();
   let date = new Date();
   let year = date.getFullYear();
   return (
     <Container fluid className="footer">
       <Row>
         <Col md="4" className="footer-copywright">
-          <h3>Designed and Developed by Thon Bunleng</h3>
+          <h3>{t("footerDesigned")}</h3>
         </Col>
         <Col md="4" className="footer-copywright">
-          <h3>Copyright © {year} TB</h3>
+          <h3>{t("footerCopyright")} {year} {t("footerBy")}</h3>
         </Col>
         <Col md="4" className="footer-body">
           <ul className="footer-icons">

@@ -11,7 +11,9 @@ import {
 } from "react-icons/ai";
 import { FaTelegram } from "react-icons/fa";
 import { SiTiktok } from "react-icons/si";
+import { useLanguage } from "../../context/LanguageContext"
 function Home() {
+  const { t } = useLanguage();
   return (
     <section>
       <Container fluid className="home-section" id="home">
@@ -20,7 +22,7 @@ function Home() {
           <Row>
             <Col md={7} className="home-header">
               <h1 style={{ paddingBottom: 15 }} className="heading">
-                Hi There!{" "}
+                {t("homeGreeting")}{" "}
                 <span className="wave" role="img" aria-labelledby="wave">
                   👋🏻
                 </span>
@@ -51,10 +53,10 @@ function Home() {
       <Container>
         <Row style={{ paddingTop: "50px", paddingBottom: "80px" }}>
           <Col md={12} className="home-about-social">
-            <h1>Find Me On</h1>
-            <p>
-              Feel free to <span className="purple">connect </span>with me
-            </p>
+            <h1>{t("homeFindMe")}</h1>
+              <p>
+                {t("homeConnect")} <span className="purple">{t("homeConnectHighlight")}</span>
+              </p>
             <ul className="home-about-social-links">
               <li className="social-icons">
                 <a

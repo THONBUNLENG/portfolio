@@ -3,24 +3,23 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
+import { useLanguage } from "../../context/LanguageContext";
 
 function ProjectCards(props) {
+  const { t } = useLanguage();
   return (
     <Card className="project-card-view">
       <Card.Img variant="top" src={props.imgPath} alt="card-img" />
       <Card.Body>
-        <Card.Title>{props.title}</Card.Title>
-        <Card.Text style={{ textAlign: "justify" }}>
+        <Card.Title style={{ textAlign: "center" }}>{props.title}</Card.Title>
+        <Card.Text style={{ textAlign: "center" }}>
           {props.description}
         </Card.Text>
+        <div style={{ textAlign: "center" }}>
         <Button variant="primary" href={props.ghLink} target="_blank">
           <BsGithub /> &nbsp;
-          {props.isBlog ? "Blog" : "GitHub"}
+          {t("githubButton")}
         </Button>
-        {"\n"}
-        {"\n"}
-
-        {/* If the component contains Demo link and if it's not a Blog then, it will render the below component  */}
 
         {!props.isBlog && props.demoLink && (
           <Button
@@ -30,9 +29,10 @@ function ProjectCards(props) {
             style={{ marginLeft: "10px" }}
           >
             <CgWebsite /> &nbsp;
-            {"Demo"}
+            {t("demoButton")}
           </Button>
         )}
+        </div>
       </Card.Body>
     </Card>
   );

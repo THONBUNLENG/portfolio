@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Particle from "../Particle";
-import me2 from "../../Assets/me2.jpg";
+import me2 from "../../Assets/me3.png";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import {
   FaGraduationCap,
@@ -10,87 +10,10 @@ import {
 } from "react-icons/fa";
 import { ImPointRight } from "react-icons/im";
 import { CgFileDocument } from "react-icons/cg";
+import { useLanguage } from "../../context/LanguageContext";
 
 function ResumeNew() {
-  const [width, setWidth] = useState(1200);
-
-  useEffect(() => {
-    setWidth(window.innerWidth);
-  }, []);
-
-  const resumeItems = [
-    {
-      title: "Mobile App Developer (Flutter/Dart)",
-      company: "Wintech Software Development Cambodia Co. Ltd",
-      period: "2025 – 2026",
-      details: [
-        "Developed and maintained a complete Coffee Shop Management System (Wintech Software Development Cambodia Co. Ltd) as a production-ready mobile application.",
-        "Built core features including POS, inventory management, sales reporting, and user authentication using Flutter/Dart.",
-        "Collaborated with backend and QA teams to integrate APIs and ensure smooth deployment in a live business environment.",
-      ],
-    },
-    {
-      title: "Backend Developer Intern",
-      company: "VANNA (Siem Reap, Cambodia)",
-      period: "July 2024 – October 2024",
-      details: [
-        "Developed and maintained RESTful APIs using Node.js and Express, delivering reliable endpoints for mobile and web clients.",
-        "Integrated MongoDB and PostgreSQL into backend services, improving data access speed by up to 30%.",
-        "Collaborated with cross-functional teams to deliver features in sprints and participated in code reviews.",
-      ],
-    },
-    {
-      title: "Developer Freelancer & Open Source Contributor",
-      company: "Freelance & Open Source",
-      period: "2023 – Present",
-      details: [
-        "Built and deployed full-stack applications using Laravel, React, and Flutter for various clients.",
-        "Contributed to open-source projects and created technical content (blogs and tutorials) for the developer community.",
-        "Designed efficient SQL queries and REST APIs, reducing application response time by 25%.",
-      ],
-    },
-  ];
-
-  const education = [
-    {
-      title: "Bachelor of Science in Computer Science",
-      school: "Beltei International University (Phnom Penh, Cambodia)",
-      period: "2023 – 2026",
-      details: [
-        "Focused on software engineering, algorithms, databases, and web/mobile technologies.",
-        "Capstone project: Automated School Management System.",
-      ],
-    },
-    {
-      title: "High School Diploma – Science",
-      school: "Beltei International School",
-      period: "2019 – 2023",
-      details: [
-        "Graduated with a focus on science and mathematics, achieving top grades in computer science and physics.",
-      ],
-    },
-  ];
-
-  const skills = [
-    "Flutter / Dart",
-    "JavaScript / TypeScript",
-    "React.js / Next.js",
-    "Node.js / Express",
-    "Laravel / PHP",
-    "MongoDB / PostgreSQL",
-    "Docker / Git / CI-CD",
-    "Tailwind CSS / Bootstrap",
-  ];
-
-  const tools = [
-    "VS Code",
-    "Postman",
-    "IntelliJ IDEA",
-    "Android Studio",
-    "Figma",
-    "GitHub / GitLab",
-    "Linux",
-  ];
+  const { t, language } = useLanguage();
 
   return (
     <Container fluid className="resume-section">
@@ -115,7 +38,7 @@ function ResumeNew() {
               textAlign: "center",
             }}
           >
-            <h1
+             <h1
               style={{
                 fontSize: "2.4em",
                 fontWeight: 700,
@@ -123,10 +46,14 @@ function ResumeNew() {
                 margin: 0,
               }}
             >
-              My <span className="purple">Resume</span>
+              {language === "en" ? (
+                <>My <span className="purple">Resume</span></>
+              ) : (
+                <>{t("resumeTitlePrefix")} <span className="purple">{t("resumeTitleHighlight")}</span> {t("resumeTitleSuffix")}</>
+              )}
             </h1>
             <p style={{ color: "white", maxWidth: "800px", marginTop: "10px", marginBottom: 0 }}>
-              A summary of my professional journey, skills, and education.
+              {t("resumeSummary")}
             </p>
           </Col>
           <Col
@@ -142,11 +69,11 @@ function ResumeNew() {
               src={me2}
               alt="Profile"
               style={{
-                position: "relative",
-                zIndex: 10,
-                width: "150px",
-                height: "150px",
-                objectFit: "cover",
+                // position: "relative",
+                // zIndex: 10,
+                width: "250px",
+                height: "250px",
+                // objectFit: "cover",
               }}
             />
           </Col>
@@ -172,11 +99,11 @@ function ResumeNew() {
                   color: "#c770f0",
                 }}
               >
-                Experience
+                {t("experienceTitle")}
               </h3>
             </div>
 
-            {resumeItems.map((item, index) => (
+            {(t("resume.experience") || []).map((item, index) => (
               <div className="resume-item" key={index}>
                 <h6
                   style={{
@@ -230,11 +157,11 @@ function ResumeNew() {
                   color: "#c770f0",
                 }}
               >
-                Education
+                {t("educationTitle")}
               </h3>
             </div>
 
-            {education.map((item, index) => (
+            {(t("resume.education") || []).map((item, index) => (
               <div className="resume-item" key={index}>
                 <h6
                   style={{
@@ -285,11 +212,11 @@ function ResumeNew() {
                   color: "#c770f0",
                 }}
               >
-                Skills
+                {t("skillsTitle")}
               </h3>
             </div>
             <Row style={{ marginBottom: "20px" }}>
-              {skills.map((skill, index) => (
+              {(t("resume.skills") || []).map((skill, index) => (
                 <Col
                   xs={6}
                   md={6}
@@ -319,16 +246,20 @@ function ResumeNew() {
               <FaLaptopCode
                 style={{ color: "#c770f0", marginRight: "10px" }}
               />{" "}
-              Technical <span className="purple">Skills</span>
+              {language === "en" ? (
+                <>Technical <span className="purple">Skills</span></>
+              ) : (
+                <>{t("technicalSkillsTitle")} <span className="purple">{t("technicalSkillsHighlight")}</span></>
+              )}
             </h1>
             <p style={{ color: "white", marginBottom: "20px" }}>
-              Tools and technologies I work with on a daily basis.
+              {t("technicalSkillsSubtitle")}
             </p>
           </Col>
         </Row>
 
         <Row style={{ justifyContent: "center", paddingBottom: "30px" }}>
-          {tools.map((tool, index) => (
+          {(t("resume.tools") || []).map((tool, index) => (
             <Col
               key={index}
               xs={4}

@@ -2,54 +2,23 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Tilt from "react-parallax-tilt";
 import homeLogo from "../../Assets/home-main.svg";
+import { useLanguage } from "../../context/LanguageContext";
 
 function Home2() {
+  const { t, language } = useLanguage();
   return (
     <Container fluid className="home-about-section" id="about">
       <Container>
         <Row className="align-items-center">
           {/* Text Section */}
           <Col md={8} className="home-about-description">
-            <h1 style={{ fontSize: "2.6em" }}>
-              LET ME <span className="purple">INTRODUCE</span> MYSELF
-            </h1>
+              <h1 style={{ fontSize: "2.6em" }}>
+                {t("homeIntroPrefix")} <span className="purple">{t("homeIntroMiddle")}</span> {t("homeIntroSuffix")}
+              </h1>
 
-            <p className="home-about-body">
-              I&apos;m a Software Engineer who loves transforming ideas into
-              reliable, scalable products. Over time, I&apos;ve explored several
-              technologies and found my passion in building high-performance
-              systems and intuitive user experiences.
-              <br />
-              <br />
-              I&apos;m proficient in
-              <i>
-                <b className="purple">
-                  {" "}
-                  Flutter, React Native, Swift, Kotlin, JavaScript, C++, C#,
-                  Rust, Node.js, Laravel, Python and Java
-                </b>
-              </i>
-              — and I enjoy working across both backend and frontend stacks.
-              <br />
-              <br />
-              My key areas of interest include developing
-              <i>
-                <b className="purple">
-                  {" "}
-                  Mobile Applications and Web Applications, Blockchain
-                  Solutions
-                </b>
-              </i>
-              and exploring new ways to bridge on-chain and off-chain systems.
-              <br />
-              <br />
-              Whenever possible, I love building projects with{" "}
-              <b className="purple">Flutter</b> and modern frameworks like{" "}
-              <i>
-                <b className="purple">React.js</b> and{" "}
-                <b className="purple">Next.js</b>.
-              </i>
-            </p>
+              <p className="home-about-body">
+                {t("homeIntroParagraph")}
+              </p>
           </Col>
 
           {/* Image Section */}
