@@ -291,6 +291,14 @@ button:focus {
   color: #cd5ff8;
 }
 
+.name-translation {
+  font-size: 0.4em;
+  color: #888;
+  font-weight: normal;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
 .Typewriter__wrapper {
   font-size: 2.2em !important;
   color: #be6adf !important;

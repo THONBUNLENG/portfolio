@@ -4,6 +4,8 @@ import {
   AiFillGithub,
   AiOutlineFacebook,
   AiFillInstagram,
+  AiOutlinePhone,
+  AiFillPhone,
 } from "react-icons/ai";
 import { FaTelegram } from "react-icons/fa";
 import { SiTiktok } from "react-icons/si";
@@ -74,6 +76,14 @@ function Footer() {
                 <AiFillInstagram />
               </a>
             </li>
+              <li className="social-icons">
+                <a
+                  href="tel:+855011820595"
+                  style={{ color: "white" }}
+                >
+                  <AiFillPhone />
+                </a>
+              </li>
           </ul>
         </Col>
       </Row>

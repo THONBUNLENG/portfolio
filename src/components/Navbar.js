@@ -15,8 +15,8 @@ import {
 } from "react-icons/ai";
 import { CgFileDocument } from "react-icons/cg";
 import { useLanguage } from "../context/LanguageContext";
-import cambodiaFlag from "../Assets/cambodia-flag.svg";
-import ukFlag from "../Assets/uk-flag.svg";
+import cambodiaFlag from "../Assets/cambodia-flag.png";
+import ukFlag from "../Assets/uk-flag.png";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -102,47 +102,6 @@ function NavBar() {
                 <ImBlog style={{ marginBottom: "2px" }} /> {t("navbarBlogs")}
               </Nav.Link>
             </Nav.Item>
-
-            <Nav.Item>
-              <Button
-                onClick={toggleLanguage}
-                className="lang-btn"
-                style={{
-                  marginTop: "6px",
-                  background: "transparent",
-                  border: "1px solid #c770f0",
-                  color: "#c770f0",
-                  fontSize: "0.85rem",
-                  padding: "4px 12px",
-                  borderRadius: "20px",
-                  cursor: "pointer",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                }}
-              >
-                <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                  <img
-                    src={cambodiaFlag}
-                    alt="Khmer"
-                    style={{
-                      height: "1.1em",
-                      width: "1.1em",
-                    }}
-                  />
-                  <img
-                    src={ukFlag}
-                    alt="English"
-                    style={{
-                      height: "1.1em",
-                      width: "1.1em",
-                    }}
-                  />
-                </span>
-                <span style={{ marginLeft: "4px" }}>{language === "en" ? "EN/KM" : "EN/KM"}</span>
-              </Button>
-            </Nav.Item>
-
             <Nav.Item className="fork-btn">
               <Button
                 href="https://github.com/THONBUNLENG/portfolio.git"
@@ -151,6 +110,40 @@ function NavBar() {
               >
                 <CgGitFork style={{ fontSize: "1.2em" }} />{" "}
                 <AiFillStar style={{ fontSize: "1.1em" }} />
+              </Button>
+            </Nav.Item>
+              <Nav.Item>
+              <Button
+                onClick={toggleLanguage}
+                className="lang-btn"
+                style={{
+                  marginTop: "6px",
+                  background: "transparent",
+                  border: "1px solid #c770f0",
+                  color: "#fbfbfb",
+                  fontSize: "0.85rem",
+                  padding: "4px 12px",
+                  borderRadius: "20px",
+                  cursor: "pointer",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <img
+                  src={language === "en" ? ukFlag : cambodiaFlag}
+                  alt={language === "en" ? "English" : "Khmer"}
+                  style={{
+                    height: "1.2em",
+                    width: "1.2em",
+                    borderRadius: "50%", 
+                    objectFit: "cover"
+                  }}
+                />
+                <span style={{ fontWeight: "500", textTransform: "uppercase" }}>
+                  {language === "en" ? "EN" : "KM"}
+                </span>
               </Button>
             </Nav.Item>
           </Nav>

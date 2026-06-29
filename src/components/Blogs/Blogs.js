@@ -14,7 +14,7 @@ function Blogs() {
       <Container>
         {/* Header Section */}
         <h1 className="blog-heading">
-          <span style={{ fontFamily: "monospace", color: "#6200ea" }}>{"//"}</span> {t("blogTitle")}
+          <span style={{ fontFamily: "monospace", color: "#6200ea" }}></span> {t("blogTitle")}
         </h1>
         <p className="blog-subheading">
           {t("blogSubtitle")}

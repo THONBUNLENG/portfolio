@@ -7,6 +7,7 @@ import Type from "./Type";
 import {
   AiFillGithub,
   AiFillInstagram,
+  AiFillPhone,
   AiOutlineFacebook,
 } from "react-icons/ai";
 import { FaTelegram } from "react-icons/fa";
@@ -29,8 +30,8 @@ function Home() {
               </h1>
 
               <h1 className="heading-name">
-                I'M
-                <strong className="main-name"> THON BUNLENG</strong>
+               {t("homeim")} 
+                <strong className="main-name">{t("homeNameTranslation")}</strong>
               </h1>
 
               <div style={{ padding: 50, textAlign: "left" }}>
@@ -106,6 +107,16 @@ function Home() {
                   className="icon-colour home-social-icons"
                 >
                   <AiFillInstagram />
+                </a>
+              </li>
+                  <li className="social-icons">
+                <a
+                  href="tel:+855011820595"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="icon-colour home-social-icons"
+                >
+                  <AiFillPhone />
                 </a>
               </li>
             </ul>
