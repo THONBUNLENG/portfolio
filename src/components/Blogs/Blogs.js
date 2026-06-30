@@ -5,9 +5,14 @@ import Particle from "../Particle";
 
 import blog from "../../Assets/Projects/blog.png";
 import { useLanguage } from "../../context/LanguageContext";
-
+import blogPosts from "./blogData";
+import bloc from "../../Assets/bloc.png";
+import ui2 from "../../Assets/ui3.png";
+import app from "../../Assets/app.png";
+import bloc_cubit2 from "../../Assets/bloc_cubit2.png";
 function Blogs() {
-  const { t, language } = useLanguage();
+  const { language, t } = useLanguage();
+  
   return (
     <Container fluid className="blog-section">
       <Particle />
@@ -25,18 +30,19 @@ function Blogs() {
           
           {/* Blog 1: Flutter Architecture */}
           <Col md={4} className="blog-card">
-            <div className="blog-card-wrapper">
+            <div className="glass-card">
               <BlogCard
-                imgPath={blog}
-                title="Mastering State Management: Why I Choose Riverpod over BLoC"
-                description="An in-depth comparison of Riverpod and BLoC patterns in large-scale Flutter applications, focusing on reactivity, testability, and code structure."
-                ghLink="https://github.com/THONBUNLENG"
+                imgPath={bloc}
+                title={language === "km" && blogPosts.blog1.titleKm ? blogPosts.blog1.titleKm : blogPosts.blog1.title}
+                description={language === "km" && blogPosts.blog1.descriptionKm ? blogPosts.blog1.descriptionKm : blogPosts.blog1.description}
+                blogId="blog1"
               />
               <div className="blog-meta">
-                <span>June 2026 • 5 min read</span>
+                <span>{language === "km" && blogPosts.blog1.dateKm ? blogPosts.blog1.dateKm : blogPosts.blog1.date} • {language === "km" && blogPosts.blog1.readTimeKm ? blogPosts.blog1.readTimeKm : blogPosts.blog1.readTime}</span>
                 <div className="blog-tags">
-                  <span className="blog-tag">#Flutter</span>
-                  <span className="blog-tag">#Architecture</span>
+                  {(language === "km" && blogPosts.blog1.tagsKm ? blogPosts.blog1.tagsKm : blogPosts.blog1.tags).map((tag, index) => (
+                    <span key={index} className="blog-tag">#{tag}</span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -44,18 +50,19 @@ function Blogs() {
 
           {/* Blog 2: UI/UX Glassmorphism */}
           <Col md={4} className="blog-card">
-            <div className="blog-card-wrapper">
+            <div className="glass-card">
               <BlogCard
-                imgPath={blog}
-                title="Building Premium Glassmorphic Custom UI in Flutter"
-                description="How to implement complex, high-end visual designs like premium dashboards using BackdropFilter and CustomPainter without external packages."
-                ghLink="https://github.com/THONBUNLENG"
+                imgPath={ui2}
+                title={language === "km" && blogPosts.blog2.titleKm ? blogPosts.blog2.titleKm : blogPosts.blog2.title}
+                description={language === "km" && blogPosts.blog2.descriptionKm ? blogPosts.blog2.descriptionKm : blogPosts.blog2.description}
+                blogId="blog2"
               />
               <div className="blog-meta">
-                <span>May 2026 • 4 min read</span>
+                <span>{language === "km" && blogPosts.blog2.dateKm ? blogPosts.blog2.dateKm : blogPosts.blog2.date} • {language === "km" && blogPosts.blog2.readTimeKm ? blogPosts.blog2.readTimeKm : blogPosts.blog2.readTime}</span>
                 <div className="blog-tags">
-                  <span className="blog-tag">#UI/UX</span>
-                  <span className="blog-tag">#Design</span>
+                  {(language === "km" && blogPosts.blog2.tagsKm ? blogPosts.blog2.tagsKm : blogPosts.blog2.tags).map((tag, index) => (
+                    <span key={index} className="blog-tag">#{tag}</span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -63,18 +70,39 @@ function Blogs() {
 
           {/* Blog 3: Optimization */}
           <Col md={4} className="blog-card">
-            <div className="blog-card-wrapper">
+            <div className="glass-card">
               <BlogCard
-                imgPath={blog}
-                title="How I Optimized Mobile App Size by 40%"
-                description="A practical guide to resource shrinking, ProGuard rules, image optimization, and dynamic delivery to achieve lightweight installation files."
-                ghLink="https://github.com/THONBUNLENG"
+                imgPath={app}
+                title={language === "km" && blogPosts.blog3.titleKm ? blogPosts.blog3.titleKm : blogPosts.blog3.title}
+                description={language === "km" && blogPosts.blog3.descriptionKm ? blogPosts.blog3.descriptionKm : blogPosts.blog3.description}
+                blogId="blog3"
               />
               <div className="blog-meta">
-                <span>April 2026 • 6 min read</span>
+                <span>{language === "km" && blogPosts.blog3.dateKm ? blogPosts.blog3.dateKm : blogPosts.blog3.date} • {language === "km" && blogPosts.blog3.readTimeKm ? blogPosts.blog3.readTimeKm : blogPosts.blog3.readTime}</span>
                 <div className="blog-tags">
-                  <span className="blog-tag">#Optimization</span>
-                  <span className="blog-tag">#Android</span>
+                  {(language === "km" && blogPosts.blog3.tagsKm ? blogPosts.blog3.tagsKm : blogPosts.blog3.tags).map((tag, index) => (
+                    <span key={index} className="blog-tag">#{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Col>
+
+          {/* Blog 4: BLoC Pattern */}
+          <Col md={4} className="blog-card">
+            <div className="glass-card">
+              <BlogCard
+                imgPath={bloc_cubit2}
+                title={language === "km" && blogPosts.blog4.titleKm ? blogPosts.blog4.titleKm : blogPosts.blog4.title}
+                description={language === "km" && blogPosts.blog4.descriptionKm ? blogPosts.blog4.descriptionKm : blogPosts.blog4.description}
+                blogId="blog4"
+              />
+              <div className="blog-meta">
+                <span>{language === "km" && blogPosts.blog4.dateKm ? blogPosts.blog4.dateKm : blogPosts.blog4.date} • {language === "km" && blogPosts.blog4.readTimeKm ? blogPosts.blog4.readTimeKm : blogPosts.blog4.readTime}</span>
+                <div className="blog-tags">
+                  {(language === "km" && blogPosts.blog4.tagsKm ? blogPosts.blog4.tagsKm : blogPosts.blog4.tags).map((tag, index) => (
+                    <span key={index} className="blog-tag">#{tag}</span>
+                  ))}
                 </div>
               </div>
             </div>

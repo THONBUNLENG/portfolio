@@ -113,7 +113,7 @@ const translations = {
       ],
       tools: [
         "VS Code",
-        "Postman",
+        "Postman" ,
         "IntelliJ IDEA",
         "Android Studio",
         "Figma",
@@ -131,9 +131,11 @@ const translations = {
     demoButton: "Demo",
     blogButton: "Blog",
     readArticle: "Read Article",
+    backToBlogs: "Back to Blogs",
     blogTitle: "My Blogs",
     blogSubtitle:
       "Deep dives into mobile app architecture, UI/UX implementation, and clean code.",
+    blogNotFound: "Blog not found",
     codeDays: "Days I Code",
     codeDaysHighlight: "Code",
     footerDesigned: "Designed and Developed by Thon Bunleng",
@@ -277,9 +279,11 @@ const translations = {
     demoButton: "សាកល្បង",
     blogButton: "អត្ថបទ",
     readArticle: "អានអត្ថបទ",
+    backToBlogs: "ត្រឡប់ទៅអត្ថបទ",
     blogTitle: "អត្ថបទរបស់ខ្ញុំ",
     blogSubtitle:
       "ការស្វែងយល់ស៊ីជម្រៅអំពីស្ថាបត្យកម្មកម្មវិធីទូរស័ព្ទ ការអនុវត្ត UI/UX និងការសរសេរកូដស្អាត។",
+    blogNotFound: "រកមិនឃើញអត្ថបទ",
     codeDays: "ថ្ងៃដែលខ្ញុំសរសេរ",
     codeDaysHighlight: "កូដ",
     footerDesigned: "រចនានិងអភិវឌ្ឍដោយ ថុន ប៊ុនឡេង",

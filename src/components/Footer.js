@@ -4,7 +4,6 @@ import {
   AiFillGithub,
   AiOutlineFacebook,
   AiFillInstagram,
-  AiOutlinePhone,
   AiFillPhone,
 } from "react-icons/ai";
 import { FaTelegram } from "react-icons/fa";

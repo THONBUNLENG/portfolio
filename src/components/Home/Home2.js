@@ -5,6 +5,7 @@ import homeLogo from "../../Assets/home-main.svg";
 import { useLanguage } from "../../context/LanguageContext";
 
 function Home2() {
+  // eslint-disable-next-line no-unused-vars
   const { t, language } = useLanguage();
   return (
     <Container fluid className="home-about-section" id="about">

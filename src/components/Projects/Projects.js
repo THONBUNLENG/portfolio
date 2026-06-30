@@ -17,6 +17,7 @@ import pis from "../../Assets/Projects/pis.png";
 import { useLanguage } from "../../context/LanguageContext";
 
 function Projects() {
+  // eslint-disable-next-line no-unused-vars
   const { t, language } = useLanguage();
   return (
     <Container fluid className="project-section">

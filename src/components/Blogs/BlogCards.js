@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { useLanguage } from "../../context/LanguageContext";
+import { Link } from "react-router-dom";
 
 function BlogCards(props) {
   const { t } = useLanguage();
@@ -14,20 +15,28 @@ function BlogCards(props) {
         <Card.Text className="blog-card-text">
           {props.description}
         </Card.Text>
-        
-        {props.ghLink && (
-          <a
-            href={props.ghLink}
-            target="_blank"
-            rel="noreferrer"
-            className="blog-link"
-          >
-            <Button className="btn-view-blog">
-              {t("readArticle")} &rarr;
-            </Button>
-          </a>
-        )}
       </Card.Body>
+      {props.blogId ? (
+        <Link
+          to={`/blogs/${props.blogId}`}
+          className="blog-link"
+        >
+          <Button className="btn-view-blog">
+            {t("readArticle")} &rarr;
+          </Button>
+        </Link>
+      ) : props.ghLink && (
+        <a
+          href={props.ghLink}
+          target="_blank"
+          rel="noreferrer"
+          className="blog-link"
+        >
+          <Button className="btn-view-blog">
+            {t("readArticle")} &rarr;
+          </Button>
+        </a>
+      )}
     </Card>
   );
 }

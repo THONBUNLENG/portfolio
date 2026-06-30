@@ -201,7 +201,7 @@ button:focus {
   height: 5px;
   width: 0;
   border-radius: 16px;
-  background: #c95bf5;
+  background: #86499f9c;
   bottom: 1px;
   left: 0;
   z-index: -1;
@@ -255,6 +255,7 @@ button:focus {
   background-size: cover !important;
   width: 100%;
   height: 100%;
+  z-index: 0 !important;
 }
 
 .home-header {
@@ -520,9 +521,58 @@ button:focus {
 /* --------- */
 /* Blogs */
 /* --------- */
+.blog-article-text pre {
+  background: rgba(0, 0, 0, 0.4) !important; /* Deep dark layer behind code blocks */
+  border: 1px solid rgba(8, 181, 75, 0.1) !important;
+  border-radius: 12px !important;
+  padding: 18px !important;
+  margin: 20px 0 28px !important;
+  overflow-x: auto !important; /* Crucial: Allows horizontal swipe scrolling instead of stretching the card */
+  white-space: pre !important; /* Preserves developer formatting code indentation */
+}
 
+.blog-article-text code {
+  font-family: 'Fira Code', 'Courier New', Courier, monospace !important;
+  font-size: 0.9rem !important;
+  color: #e2e8f0 !important; /* Off-white code text color for high readability */
+}
+
+/* Enhances inner inline-code snippets like `ProviderContainer` outside of pre blocks */
+.blog-article-text p code {
+  background: rgba(139, 92, 246, 0.2) !important; 
+  color: #efefef !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-size: 0.85em !important;
+  white-space: normal !important;
+}
+
+/* --- Fixes for Back Button Placement --- */
+.btn-back-blog {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #e9d5ff !important;
+  padding: 10px 20px !important;
+  border-radius: 10px !important;
+  font-size: 0.95rem !important;
+  margin-bottom: 20px !important;
+  margin-left: 0 !important; /* Aligns button neatly with the left margin edge of the inner column */
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-back-blog:hover {
+  background: #8b5cf6 !important;
+  color: #ffffff !important;
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4) !important;
+  transform: translateX(-4px) !important; /* Smooth left visual push animations */
+}
 .blog-section {
   position: relative !important;
+  z-index: 1 !important;
   padding-top: 150px !important;
   padding-bottom: 30px !important;
   background-image: var(--section-background-color) !important;
@@ -571,24 +621,23 @@ button:focus {
   }
 }
 
-/* Blog Card Hover Effects */
-.blog-card-wrapper {
-  background: rgba(255, 255, 255, 0.03) !important;
-  backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 15px !important;
+/* Glass Card - matches Flutter GlassCard widget */
+.glass-card {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(15px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 20px !important;
   overflow: hidden !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15) !important;
   height: 100% !important;
   display: flex !important;
   flex-direction: column !important;
 }
 
-.blog-card-wrapper:hover {
-  transform: translateY(-7px) !important;
-  border: 1px solid rgba(139, 92, 246, 0.3) !important; 
-  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.15) !important; 
+.glass-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25) !important;
 }
 
 .btn-view-blog {
@@ -613,7 +662,7 @@ button:focus {
   box-shadow: 0 0 15px rgba(139, 92, 246, 0.4) !important;
 }
 
-.blog-card-wrapper:hover .blog-img {
+.glass-card:hover .blog-img {
   opacity: 1 !important;
   transform: scale(1.02) !important;
   transition: all 0.3s ease !important;
@@ -626,8 +675,8 @@ button:focus {
   height: 240px !important;
   width: 100% !important;
   object-fit: cover !important;
-  border-top-left-radius: 15px !important;
-  border-top-right-radius: 15px !important;
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
 }
 
 .blog-link {
@@ -639,7 +688,7 @@ button:focus {
 .blog-card-view {
   background-color: transparent !important;
   border: none !important;
-  border-radius: 0px !important;
+  border-radius: 20px !important;
   height: 100% !important;
   display: flex !important;
   flex-direction: column !important;
@@ -661,20 +710,155 @@ button:focus {
   font-size: 1.25rem !important;
   font-weight: 600 !important;
   line-height: 1.4 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
 }
 
 .blog-card-text {
-  color: #cccccc !important;
+  color: #e5e7eb !important;
   font-size: 0.95rem !important;
   line-height: 1.6 !important;
   margin-bottom: 20px !important;
   text-align: left !important;
 }
 
-/*  Blog Row with margin */
+/* Blog Row with margin */
 .blog-row {
   margin-bottom: 30px !important;
   align-items: stretch !important;
+}
+
+/* Blog Meta Info */
+.blog-meta {
+  padding: 0 25px 20px !important;
+  color: #8b5cf6 !important;
+  font-size: 0.85rem !important;
+  font-family: monospace !important;
+}
+
+.blog-tags {
+  margin-top: 10px !important;
+  display: flex !important;
+  gap: 8px !important;
+}
+
+.blog-tag {
+  color: #c084fc !important;
+  background: rgba(139, 92, 246, 0.15) !important;
+  padding: 3px 8px !important;
+  border-radius: 5px !important;
+}
+
+/* Blog Article Detail Page */
+.glass-card.blog-article {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(15px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 20px !important;
+  padding: 40px !important;
+  margin-top: 30px !important;
+  margin-bottom: 50px !important;
+}
+
+.blog-article-title {
+  color: #ffffff !important;
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 20px !important;
+  line-height: 1.3 !important;
+}
+
+.blog-article-meta {
+  color: #8b5cf6 !important;
+  font-size: 0.9rem !important;
+  font-family: monospace !important;
+  margin-bottom: 15px !important;
+  display: flex !important;
+  gap: 15px !important;
+}
+
+.blog-article-tags {
+  margin-bottom: 30px !important;
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+.blog-images-gallery {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  gap: 20px !important;
+  margin-bottom: 30px !important;
+}
+
+.blog-article-image {
+  width: 100% !important;
+  height: 200px !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  transition: transform 0.3s ease !important;
+}
+
+.blog-article-image:hover {
+  transform: scale(1.03) !important;
+}
+
+.blog-article-text h2 {
+  color: #c084fc !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  margin-top: 30px !important;
+  margin-bottom: 15px !important;
+}
+
+.blog-article-text p {
+  color: #cccccc !important;
+  font-size: 1.05rem !important;
+  line-height: 1.8 !important;
+  margin-bottom: 20px !important;
+  text-align: justify !important;
+}
+
+.btn-back-blog {
+  background: rgba(139, 92, 246, 0.1) !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+  color: #c084fc !important;
+  padding: 8px 20px !important;
+  border-radius: 8px !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 20px !important;
+  transition: all 0.3s ease !important;
+  z-index: 10 !important;
+  position: relative !important;
+}
+
+.btn-back-blog:hover {
+  background: #8b5cf6 !important;
+  color: #ffffff !important;
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4) !important;
+}
+
+@media (max-width: 767px) {
+  .glass-card.blog-article {
+    padding: 25px 20px !important;
+  }
+
+  .blog-article-title {
+    font-size: 1.6rem !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .blog-images-gallery {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+
+  .blog-article-image {
+    height: 180px !important;
+  }
+
 }
 
 /* --------- */
@@ -761,26 +945,6 @@ button:focus {
   .about-img {
     padding-top: 0 !important;
   }
-}
-
-/* Blog Meta Info */
-.blog-meta {
-  padding: 0 25px 20px !important;
-  color: #8b5cf6 !important;
-  font-size: 0.85rem !important;
-  font-family: monospace !important;
-}
-
-.blog-tags {
-  margin-top: 10px !important;
-  display: flex !important;
-  gap: 8px !important;
-}
-
-.blog-tag {
-  background: rgba(139, 92, 246, 0.15) !important;
-  padding: 3px 8px !important;
-  border-radius: 5px !important;
 }
 
 /* --------- */

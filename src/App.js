@@ -7,6 +7,7 @@ import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
 import Blogs from "./components/Blogs/Blogs";
+import BlogPage from "./components/Blogs/BlogPage";
 import {
   BrowserRouter as Router,
   Route,
@@ -43,6 +44,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/resume" element={<Resume />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blogs/:blogId" element={<BlogPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
