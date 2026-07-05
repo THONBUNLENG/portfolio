@@ -13,13 +13,13 @@ function Home2() {
         <Row className="align-items-center">
           {/* Text Section */}
           <Col md={8} className="home-about-description">
-              <h1 style={{ fontSize: "2.6em" }}>
-                {t("homeIntroPrefix")} <span className="purple">{t("homeIntroMiddle")}</span> {t("homeIntroSuffix")}
-              </h1>
+            <h1 style={{ fontSize: "2.6em" }}>
+              {t("homeIntroPrefix")} <span className="purple">{t("homeIntroMiddle")}</span> {t("homeIntroSuffix")}
+            </h1>
 
-              <p className="home-about-body">
-                {t("homeIntroParagraph")}
-              </p>
+            <p className="home-about-body">
+              {t("homeIntroParagraph")}
+            </p>
           </Col>
 
           {/* Image Section */}
@@ -43,14 +43,10 @@ function Home2() {
               <img
                 src={homeLogo}
                 alt="avatar"
-                className="img-fluid"
+                className="home-hero-img" /* Changed from img-fluid to match your CSS */
                 style={{
-                  width: "100%",
-                  maxWidth: "450px",
-                  height: "auto",
-                  objectFit: "cover",
-                  borderRadius: "20px",
-                  display: "block",  
+                  display: "block",
+                  margin: "0 auto", /* Keeps it perfectly centered */
                 }}
               />
             </Tilt>

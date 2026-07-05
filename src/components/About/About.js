@@ -4,7 +4,7 @@ import Particle from "../Particle";
 import Github from "./Github";
 import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
-import laptopImg from "../../Assets/me.jpg";
+import laptopImg from "../../Assets/me2.jpg";
 import Toolstack from "./Toolstack";
 import { useLanguage } from "../../context/LanguageContext";
 

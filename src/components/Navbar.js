@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-import logo from "../Assets/me_bg.png";
+import logo from "../Assets/logo.png";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
@@ -23,15 +23,16 @@ function NavBar() {
   const [navColour, updateNavbar] = useState(false);
   const { language, toggleLanguage, t } = useLanguage();
 
-  function scrollHandler() {
-    if (window.scrollY >= 20) {
-      updateNavbar(true);
-    } else {
-      updateNavbar(false);
+  useEffect(() => {
+    function scrollHandler() {
+      updateNavbar(window.scrollY >= 20);
     }
-  }
 
-  window.addEventListener("scroll", scrollHandler);
+    window.addEventListener("scroll", scrollHandler);
+    scrollHandler();
+
+    return () => window.removeEventListener("scroll", scrollHandler);
+  }, []);
 
   return (
     <Navbar
@@ -41,8 +42,9 @@ function NavBar() {
       className={navColour ? "sticky" : "navbar"}
     >
       <Container>
-        <Navbar.Brand href="/" className="d-flex">
+        <Navbar.Brand href="/" className="d-flex align-items-center">
           <img src={logo} className="img-fluid logo" alt="brand" />
+          <span className="brand-name">THON BUNLENG</span>
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
@@ -112,7 +114,7 @@ function NavBar() {
                 <AiFillStar style={{ fontSize: "1.1em" }} />
               </Button>
             </Nav.Item>
-              <Nav.Item>
+            <Nav.Item>
               <Button
                 onClick={toggleLanguage}
                 className="lang-btn"
@@ -138,7 +140,7 @@ function NavBar() {
                     height: "1.2em",
                     width: "1.2em",
                     borderRadius: "50%", 
-                    objectFit: "cover"
+                     objectFit: "contain"
                   }}
                 />
                 <span style={{ fontWeight: "500", textTransform: "uppercase" }}>
