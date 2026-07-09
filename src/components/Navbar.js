@@ -21,7 +21,7 @@ import ukFlag from "../Assets/uk-flag.png";
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
-  const { language, toggleLanguage, t } = useLanguage();
+  const { language, t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -113,8 +113,6 @@ function NavBar() {
           <img src={logo} className="img-fluid logo" alt="brand" />
           <span className="brand-name">THON BUNLENG</span>
         </Navbar.Brand>
-
-        {/* Language toggle — always visible on mobile, next to hamburger */}
         <div className="d-flex d-md-none align-items-center">
           <LanguageButton className="lang-btn lang-btn-mobile" />
         </div>
