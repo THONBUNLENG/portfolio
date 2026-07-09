@@ -11,7 +11,12 @@ function BlogPage() {
   const blog = blogPosts[blogId];
   
   if (!blog) {
-    return <div>{t("blogNotFound")}</div>;
+    return (
+      <div style={{ textAlign: "center", padding: "60px 20px", color: "#b0b8c7" }}>
+        <h2 style={{ color: "#ffffff", marginBottom: "10px" }}>{t("blogNotFound")}</h2>
+        <p style={{ color: "#888" }}>The blog post you're looking for doesn't exist.</p>
+      </div>
+    );
   }
   
   const displayBlog = {

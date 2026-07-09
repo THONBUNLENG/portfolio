@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Tilt from "react-parallax-tilt";
-import homeLogo from "../../Assets/home-main.svg";
+import homeLogo from "../../Assets/tenor.gif";
 import { useLanguage } from "../../context/LanguageContext";
 
 function Home2() {
@@ -11,28 +11,8 @@ function Home2() {
     <Container fluid className="home-about-section" id="about">
       <Container>
         <Row className="align-items-center">
-          {/* Text Section */}
-          <Col md={8} className="home-about-description">
-            <h1 style={{ fontSize: "2.6em" }}>
-              {t("homeIntroPrefix")} <span className="purple">{t("homeIntroMiddle")}</span> {t("homeIntroSuffix")}
-            </h1>
-
-            <p className="home-about-body">
-              {t("homeIntroParagraph")}
-            </p>
-          </Col>
-
           {/* Image Section */}
-          <Col
-            md={4}
-            className="myAvtar"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              paddingTop: "20px",
-            }}
-          >
+          <Col md={5} className="myAvtar">
             <Tilt
               tiltMaxAngleX={10}
               tiltMaxAngleY={10}
@@ -43,13 +23,27 @@ function Home2() {
               <img
                 src={homeLogo}
                 alt="avatar"
-                className="home-hero-img" /* Changed from img-fluid to match your CSS */
+                className="img-fluid home-about-avatar"
                 style={{
                   display: "block",
-                  margin: "0 auto", /* Keeps it perfectly centered */
+                  margin: "0 auto",
+                  width: "100%",
+                  maxWidth: "100%",
+                  maxHeight: "90vh",
+                  height: "auto",
+                  objectFit: "contain",
                 }}
               />
             </Tilt>
+          </Col>
+
+          {/* Text Section */}
+          <Col md={7} className="home-about-description">
+            <h1 className="home-intro-title">
+              {t("homeIntroPrefix")} <span className="purple">{t("homeIntroMiddle")}</span> {t("homeIntroSuffix")}
+            </h1>
+
+            <p className="home-about-body" dangerouslySetInnerHTML={{ __html: t("homeIntroParagraph") }} />
           </Col>
         </Row>
       </Container>

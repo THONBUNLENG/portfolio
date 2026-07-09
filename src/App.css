@@ -1,41 +1,40 @@
-.App {
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-/* App.css */
-
+/* Define the fadeIn animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Apply the animation to the page transition container */
+.page-transition-container {
+  animation: fadeIn 0.3s ease-in-out;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Mobile text base */
+@media (max-width: 767px) {
+  .page-transition-container {
+    font-size: 14px;
+  }
+}
+
+/* Keep section headings (About, Projects, Resume, Blogs) clear of the fixed navbar
+   when navigating via the single-page scroll nav links. */
+html {
+  scroll-padding-top: 90px;
+}
+
+.home-section,
+.about-section,
+.project-section,
+.resume-section,
+.blog-section {
+  scroll-margin-top: 90px;
 }

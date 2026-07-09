@@ -1,35 +1,39 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
 import macOs from "../../Assets/TechIcons/Apple MacOSX.svg";
 import chrome from "../../Assets/TechIcons/Google Chrome.svg";
 import vsCode from "../../Assets/TechIcons/vscode.svg";
 import intelliJ from "../../Assets/TechIcons/intellij-idea.svg";
 import androidStudio from "../../Assets/TechIcons/android-studio.png";
 
+const toolList = [
+  { icon: macOs, name: "Mac Os" },
+  { icon: chrome, name: "Google Chrome" },
+  { icon: vsCode, name: "Vs Code" },
+  { icon: androidStudio, name: "Android Studio" },
+  { icon: intelliJ, name: "IntelliJ" },
+];
+
+function ToolItem({ tool }) {
+  return (
+    <div className="tech-icons tech-marquee-item">
+      <img src={tool.icon} alt={tool.name} className="tech-icon-images" />
+      <div className="tech-icons-text">{tool.name}</div>
+    </div>
+  );
+}
+
 function Toolstack() {
   return (
-    <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-      <Col xs={4} md={2} className="tech-icons">
-        <img src={macOs} alt="macOs" className="tech-icon-images" />
-        <div className="tech-icons-text">Mac Os</div>
-      </Col>
-      <Col xs={4} md={2} className="tech-icons ">
-        <img src={chrome} alt="Chrome" className="tech-icon-images" />
-        <div className="tech-icons-text">Google Chrome</div>
-      </Col>
-      <Col xs={4} md={2} className="tech-icons ">
-        <img src={vsCode} alt="vsCode" className="tech-icon-images" />
-        <div className="tech-icons-text">Vs Code</div>
-      </Col>
-   <Col xs={4} md={2} className="tech-icons ">
-        <img src={androidStudio} alt="Android Studio" className="tech-icon-images" />
-        <div className="tech-icons-text">Android Studio</div>
-      </Col>
-      <Col xs={4} md={2} className="tech-icons ">
-        <img src={intelliJ} alt="intelliJ" className="tech-icon-images" />
-        <div className="tech-icons-text">IntelliJ</div>
-      </Col>
-    </Row>
+    <div className="tech-marquee-wrapper">
+      <div className="tech-marquee-track" style={{ animationDuration: "22s" }}>
+        {toolList.map((tool, idx) => (
+          <ToolItem tool={tool} key={`a-${idx}`} />
+        ))}
+        {toolList.map((tool, idx) => (
+          <ToolItem tool={tool} key={`b-${idx}`} />
+        ))}
+      </div>
+    </div>
   );
 }
 

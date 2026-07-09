@@ -30,7 +30,7 @@ export const blogPosts = {
     tagsKm: ["Flutter", "ស្ថាបត្យកម្ម"],
     images: [bloc, bloc2, bloc3, bloc4],
     description: "An in-depth comparison of Riverpod and BLoC patterns in large-scale Flutter applications, focusing on reactivity, testability, and code structure.",
-    descriptionKm: "ការប្រៀបប្ដីពីទំនោរ Riverpod និង BLoC ក្នុងកម្មវិធី Flutter កម្រិតធំ ផ្តល់ផាកល។ សកម្មភាព ភាពងាយស្រួលក្នុងការធ្វើតេស្ត និងរចនាសម្ព័ន្ធកូដ។",
+    descriptionKm: "ការប្រៀបប្ដីពីទំនោរ Riverpod និង BLoC ក្នុងកម្មវិធី Flutter កម្រិតធំ ដែលផ្តល់អានុភាពលើសកម្មភាព ភាពងាយស្រួលក្នុងការធ្វើតេស្ត និងរចនាសម្ព័ន្ធកូដ។",
     content: `
       <h2>Introduction</h2>
       <p>State management is one of the most debated topics in Flutter development. After shipping several large-scale apps using both BLoC and Riverpod, I've settled firmly on Riverpod — and in this article I'll explain exactly why.</p>
@@ -209,7 +209,7 @@ class LoginNotifier extends _$LoginNotifier {
     `,
     contentKm: `
       <h2>សេចក្តីណែនាំ</h2>
-      <p>Glassmorphism — សោភ័ណភាពកញ្ចក់霜ត ដែលមានប្រជាប្រិយភាពដោយ iOS និង macOS — បានក្លាយជាទំនោររចនា UI ដ៏ពេញនិយមមួយក្នុងចំណោមទំនោររចនាកម្មវិធីទូរស័ព្ទ។ ក្នុងអត្ថបទនេះ ខ្ញុំនឹងបង្ហាញអ្នករបៀបបង្កើត widget card glassmorphic ដែលអាចប្រើឡើងវិញ និងត្រៀមសម្រាប់ production ក្នុង Flutter ពីដំបូង។</p>
+      <p>Glassmorphism — សោភ័ណភាពកញ្ចក់ frost ដែលមានប្រជាប្រិយភាពដោយ iOS និង macOS — បានក្លាយជាទំនោររចនា UI ដ៏ពេញនិយមមួយក្នុងចំណោមទំនោររចនាកម្មវិធីទូរស័ព្ទ។ ក្នុងអត្ថបទនេះ ខ្ញុំនឹងបង្ហាញអ្នករបៀបបង្កើត widget card glassmorphic ដែលអាចប្រើឡើងវិញ និងត្រៀមសម្រាប់ production ក្នុង Flutter ពីដំបូង។</p>
 
       <h2>បច្ចេកទេសសំខាន់: BackdropFilter</h2>
       <p>គន្លឹះនៃ glassmorphism គឺ widget <code>BackdropFilter</code> របស់ Flutter រួមផ្សំជាមួយ <code>ImageFilter.blur</code>។ រុំវានៅក្នុង <code>ClipRRect</code> ដើម្បីកំណត់ blur ទៅលើព្រំដែន card បន្ទាប់មកដាក់ container ពណ៌ស semi-transparent នៅលើខាងលើ។</p>

@@ -2,7 +2,12 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import myImg from "../../Assets/me4.jpg";
 import Particle from "../Particle";
+import About from "../About/About";
 import Home2 from "./Home2";
+import Projects from "../Projects/Projects";
+import Resume from "../Resume/ResumeNew";
+import Blogs from "../Blogs/Blogs";
+import { useLanguage } from "../../context/LanguageContext";
 import {
   AiFillGithub,
   AiFillPhone,
@@ -12,41 +17,57 @@ import {
 import { FaTelegram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { SiTiktok, SiGitlab } from "react-icons/si";
 import nodeIcon from "../../Assets/TechIcons/Node.svg";
-import csharpIcon from "../../Assets/TechIcons/csharp.svg";
-import mongoIcon from "../../Assets/TechIcons/Mongo.svg";
+import flutterIcon from "../../Assets/TechIcons/flutter.svg";
+import swiftIcon from "../../Assets/TechIcons/swift-svgrepo.svg";
+import kotlinIcon from "../../Assets/TechIcons/kotlin-svgrepo.svg";
+import javaIcon from "../../Assets/TechIcons/Java.svg";
+import postmanIcon from "../../Assets/TechIcons/Postman.svg";
+import androidstudio from "../../Assets/TechIcons/android-studio.png";
+import figma from "../../Assets/TechIcons/figma.png";
+import laravel from "../../Assets/TechIcons/laravel.png";
+import apple from "../../Assets/TechIcons/apple.png";
+
 
 function Home() {
+  const { t } = useLanguage();
   const telegramUrl = "https://t.me/bunleng_dev";
   const telegramQrUrl =
     "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Ft.me%2Fbunleng_dev";
 
   const techBadges = [
-    { label: "MongoDB", icon: mongoIcon, color: "#13aa52" },
-    { label: "Angular", icon: null, color: "#dd0031" },
-    { label: ".NET", icon: csharpIcon, color: "#512bd4" },
-    { label: "Laravel", icon: null, color: "#ff2d20" },
+    { label: "Flutter", icon: flutterIcon, color: "#02569b" },
+    { label: "Swift", icon: swiftIcon, color: "#ffac45" },
+    { label: "Kotlin", icon: kotlinIcon, color: "#7f52ff" },
+    { label: "Java", icon: javaIcon, color: "#f89820" },
+    { label: "Postman", icon: postmanIcon, color: "#ff6c37" },
+    {label: "Figma", icon: figma, color: "#f24e1e"},
+    {label:"Apple", icon: apple, color:"#000000"},
+    { label: "Android Studio", icon: androidstudio, color: "#2994eb" },
+    { label: "Laravel", icon:laravel, color: "#ff2d20" },
     { label: "Node.js", icon: nodeIcon, color: "#339933" },
+
+
   ];
 
   const services = [
-    "Web Development",
-    "Mobile App Development",
-    "Custom Software Development",
-    "API Integration",
-    "Database Design",
-    "Bug Fixing & Maintenance",
-    "System Development for Businesses",
+    t("services.webDevelopment"),
+    t("services.mobileAppDevelopment"),
+    t("services.customSoftwareDevelopment"),
+    t("services.apiIntegration"),
+    t("services.databaseDesign"),
+    t("services.bugFixingMaintenance"),
+    t("services.systemDevelopment"),
   ];
 
   const heroSocialLinks = [
-    { icon: <AiFillGithub />, href: "https://github.com/THONBUNLENG", label: "GitHub" },
-    { icon: <SiGitlab />, href: "https://gitlab.com/", label: "GitLab" },
-    { icon: <FaLinkedin />, href: "https://www.linkedin.com/", label: "LinkedIn" },
-    { icon: <FaTelegram />, href: "https://t.me/bunleng_dev", label: "Telegram" },
-    { icon: <AiOutlineFacebook />, href: "https://www.facebook.com/wen.linji.i", label: "Facebook" },
-    { icon: <FaYoutube />, href: "https://www.youtube.com/", label: "YouTube" },
-    { icon: <SiTiktok />, href: "https://www.tiktok.com/@wen_lin1314", label: "TikTok" },
-    { icon: <AiFillPhone />, href: "tel:+855011820595", label: "Phone" },
+    { icon: <AiFillGithub />, href: "https://github.com/THONBUNLENG", label: t("socialLabels.github") },
+    { icon: <SiGitlab />, href: "https://gitlab.com/leng94570", label: t("socialLabels.gitlab") },
+    { icon: <FaLinkedin />, href: "https://www.linkedin.com/", label: t("socialLabels.linkedin") },
+    { icon: <FaTelegram />, href: "https://t.me/bunleng_dev", label: t("socialLabels.telegram") },
+    { icon: <AiOutlineFacebook />, href: "https://www.facebook.com/wen.linji.i", label: t("socialLabels.facebook") },
+    { icon: <FaYoutube />, href: "https://www.youtube.com/", label: t("socialLabels.youtube") },
+    { icon: <SiTiktok />, href: "https://www.tiktok.com/@wen_lin1314", label: t("socialLabels.tiktok") },
+    { icon: <AiFillPhone />, href: "tel:+855011820595", label: t("socialLabels.phone") },
   ];
 
   return (
@@ -114,17 +135,17 @@ function Home() {
 
               {/* Main Content */}
               <div className="hero-content">
-                <span className="freelance-badge">FREELANCE</span>
+                <span className="freelance-badge">{t("availableFreelance")}</span>
 
                 <h1 className="hero-title">
-                  SOFTWARE <span className="text-gold">ENGINEER</span>
+                  {t("homeHeroTitle")} <span className="text-gold">{t("homeHeroTitleHighlight")}</span>
                 </h1>
 
-                <p className="hero-tagline">Building Quality Software, Fast</p>
+                <p className="hero-tagline">{t("homeHeroTagline")}</p>
 
                 {/* Services Section */}
                 <div className="services-section">
-                  <h3 className="services-title">SERVICES</h3>
+                  <h3 className="services-title">{t("servicesTitle")}</h3>
                   <ul className="services-list">
                     {services.map((service, idx) => (
                       <li key={idx} className="service-item">
@@ -138,11 +159,11 @@ function Home() {
                 <div className="contact-info">
                   <p className="contact-phone">
                     <AiFillPhone style={{ marginRight: "8px" }} />
-                    011820595
+                    {t("contactPhone")}
                   </p>
                   <p className="contact-email">
                     <AiOutlineMail style={{ marginRight: "8px" }} />
-                    leng94570@gmail.com
+                    {t("contactEmail")}
                   </p>
                 </div>
 
@@ -167,79 +188,10 @@ function Home() {
         </Container>
       </Container>
       <Home2 />
-      {/* <Container>
-        <Row style={{ paddingTop: "50px", paddingBottom: "80px" }}>
-          <Col md={12} className="home-about-social">
-            <h1>{t("homeFindMe")}</h1>
-            <p>
-              {t("homeConnect")}{" "}
-              <span className="purple">{t("homeConnectHighlight")}</span>
-            </p>
-            <ul className="home-about-social-links">
-              <li className="social-icons">
-                <a
-                  href="https://github.com/THONBUNLENG"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="icon-colour  home-social-icons"
-                >
-                  <AiFillGithub />
-                </a>
-              </li>
-              <li className="social-icons">
-                <a
-                  href="https://www.tiktok.com/@wen_lin1314?is_from_webapp=1&sender_device=pc"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="icon-colour  home-social-icons"
-                >
-                  <SiTiktok />
-                </a>
-              </li>
-              <li className="social-icons">
-                <a
-                  href="https://www.facebook.com/wen.linji.i"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="icon-colour  home-social-icons"
-                >
-                  <AiOutlineFacebook />
-                </a>
-              </li>
-              <li className="social-icons">
-                <a
-                  href="https://t.me/bunleng_dev"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="icon-colour  home-social-icons"
-                >
-                  <FaTelegram />
-                </a>
-              </li>
-              <li className="social-icons">
-                <a
-                  href="https://www.instagram.com/wenlin08/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="icon-colour home-social-icons"
-                >
-                  <AiFillInstagram />
-                </a>
-              </li>
-              <li className="social-icons">
-                <a
-                  href="tel:+855011820595"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="icon-colour home-social-icons"
-                >
-                  <AiFillPhone />
-                </a>
-              </li>
-            </ul>
-          </Col>
-        </Row>
-      </Container> */}
+      <About />
+      <Projects />
+      <Resume />
+      <Blogs />
     </section>
   );
 }

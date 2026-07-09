@@ -20,13 +20,17 @@ function Github() {
           <>{t("codeDays")} <strong className="purple">{t("codeDaysHighlight")}</strong></>
         )}
       </h1>
-      <GitHubCalendar
-        username="THONBUNLENG"
-        blockSize={30}
-        blockMargin={10}
-        color="#c084f5"
-        fontSize={20}
-      />
+      
+  
+      <div className="github-calendar-wrapper" style={{ display: "flex", justifyContent: "center", width: "100%", padding: "0 10px" }}>
+        <GitHubCalendar
+          username="THONBUNLENG"
+          blockSize={15}    
+          blockMargin={5}      
+          color="#c084f5"
+          fontSize={14}      
+        />
+      </div>
     </Row>
   );
 }

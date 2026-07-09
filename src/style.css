@@ -18,6 +18,28 @@ html {
   color: var(--imp-text-color) !important;
 }
 
+.tech-flutter { color: #42A5F5 !important; font-weight: 600; }
+.tech-react-native { color: #61DAFB !important; font-weight: 600; }
+.tech-swift { color: #F05138 !important; font-weight: 600; }
+.tech-kotlin { color: #7F52FF !important; font-weight: 600; }
+.tech-javascript { color: #FFD700 !important; font-weight: 600; }
+.tech-cpp { color: #00BCD4 !important; font-weight: 600; }
+.tech-csharp { color: #9C27B0 !important; font-weight: 600; }
+.tech-rust { color: #DEA584 !important; font-weight: 600; }
+.tech-nodejs { color: #4CAF50 !important; font-weight: 600; }
+.tech-laravel { color: #FF5722 !important; font-weight: 600; }
+.tech-python { color: #2196F3 !important; font-weight: 600; }
+.tech-java { color: #E91E63 !important; font-weight: 600; }
+.tech-reactjs { color: #61DAFB !important; font-weight: 600; }
+.tech-nextjs { color: #ffffff !important; font-weight: 700; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+
+.tech-icons-text.tech-nextjs {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
 button:focus {
   box-shadow: none !important;
 }
@@ -45,6 +67,10 @@ button:focus {
 #no-scroll {
   overflow: hidden;
   height: 100vh;
+}
+
+.scroll {
+  overflow-y: auto;
 }
 
 /* --------- */
@@ -144,6 +170,14 @@ button:focus {
   }
   .navbar-nav .nav-item a::after {
     display: none !important;
+  }
+  .brand-name {
+    font-size: 0.85rem !important;
+  }
+  .lang-btn {
+    margin-top: 4px !important;
+    font-size: 0.8rem !important;
+    padding: 3px 10px !important;
   }
 }
 .navbar-brand {
@@ -268,12 +302,12 @@ button:focus {
 
 .home-section {
   position: relative;
-  z-index: -1;
+  z-index: 1;
   background: linear-gradient(135deg, #1e2a47 0%, #0f1419 100%);
   background-position: top center;
   background-repeat: no-repeat;
   padding-top: 80px !important;
-  padding-bottom: 0 !important;
+  padding-bottom: 0px !important;
   min-height: 100vh;
   overflow: visible;
 }
@@ -288,7 +322,7 @@ button:focus {
 .home-hero-row {
   --bs-gutter-x: 0;
   min-height: calc(100vh - 80px);
-  align-items: stretch !important;
+  align-items: center !important;
 }
 
 .home-header-right {
@@ -456,7 +490,17 @@ button:focus {
   font-size: 2.4em !important;
   color: #ffc107 !important;
 }
+.about-text-col {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
 
+@media (max-width: 767px) {
+  .about-text-col {
+    padding-top: 10px !important;
+    padding-bottom: 20px !important;
+  }
+}
 @media (max-width: 767px) {
   .Typewriter__wrapper {
     font-size: 1.4em !important;
@@ -469,8 +513,22 @@ button:focus {
 }
 
 .myAvtar {
+  display: flex !important;
   justify-content: center !important;
-  padding-top: 9em !important;
+  align-items: center !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.home-about-avatar {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  margin: 0 auto;
 }
 
 /* --------- */
@@ -584,33 +642,11 @@ button:focus {
   position: relative;
   display: flex !important;
   justify-content: center !important;
-  align-items: stretch !important;
-  min-height: calc(100vh - 80px);
+  align-items: center !important;
   padding: 0 !important;
-  border-right: 0;
-  background:
-    radial-gradient(circle at 55% 45%, rgba(255, 193, 7, 0.14), transparent 34%),
-    linear-gradient(135deg, rgba(30, 42, 71, 0.45), rgba(15, 20, 25, 0.96));
+  border: none;
+  border-right: none;
   overflow: visible;
-}
-
-.home-img-left::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: -6px;
-  width: 6px;
-  height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(232, 170, 53, 0.2),
-    #ffc107,
-    rgba(232, 170, 53, 0.2)
-  );
-  background-size: 100% 220%;
-  animation: dividerShine 3.8s linear infinite;
-  z-index: 4;
-  pointer-events: none;
 }
 
 @keyframes badgeFloat {
@@ -633,110 +669,66 @@ button:focus {
   }
 }
 
-@keyframes dividerShine {
-  0% {
-    background-position: 0 0;
+@media (max-width: 767px) {
+  .tech-badges-container {
+    position: absolute !important;
+    right: 50% !important;
+    top: auto !important;
+    bottom: -10px !important;
+    transform: translateX(50%) !important;
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    flex-direction: unset !important;
+    gap: 8px !important;
+    justify-items: center;
+    align-items: center;
+    width: 92% !important;
   }
-  100% {
-    background-position: 0 220%;
-  }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .home-img-left::after,
-  .tech-badge-item,
+  .tech-badge-item {
+    flex: unset !important;
+  }
+
   .badge-circle {
-    animation: none;
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 0.5em !important;
   }
 }
-
 .home-img-wrapper {
   position: relative;
   width: 100%;
   max-width: none;
-  min-height: calc(100vh - 80px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px 0;
+  padding: 20px 0;
   overflow: visible;
+  border: none;
 }
 
 .home-hero-img {
   width: 100%;
-  max-width: 600px;
   height: auto;
   max-height: none;
-  border-radius: 0;
   object-fit: contain;
   object-position: center center;
   filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.42));
-  border: 0;
+  border: none;
+  outline: none;
   display: block;
   position: relative;
   z-index: 1;
 }
 
-@media (max-width: 767px) {
-  .home-section {
-    padding-bottom: 40px !important;
-    padding-top: 40px !important;
-    min-height: auto;
-    overflow: visible;
-  }
-
-  .home-content-new {
-    padding: 2rem 0 !important;
-  }
-
-  .home-hero-row {
-    min-height: auto;
-  }
-
-  .home-img-left {
-    min-height: auto;
-    margin-bottom: 30px;
-    border-right: 0;
-    border-bottom: 3px solid #e8aa35;
-  }
-
-  .home-img-wrapper {
-    min-height: auto;
-    padding-top: 20px;
-  }
-
-  .home-img-wrapper::after {
-    background: linear-gradient(180deg, transparent 70%, rgba(15, 20, 25, 0.58));
-  }
-
-/* Update this rule in your main CSS */
-/* --- Desktop & Large Screens --- */
-.home-hero-img {
-  width: 100%;             /* Let max-width control the horizontal limit */
-  max-width: 450px;        /* Limits horizontal size on big screens */
-  height: 70vh;            /* Forces a definite height boundary */
-  max-height: 600px;       /* Keeps it from getting ridiculously tall */
-  object-fit: contain;     /* CRITICAL: Forces the whole image to scale down and fit without cropping */
-  object-position: center; /* Centers the image inside its box */
-  
-  /* Your original styling */
-  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.42));
-  border: 0;
-  display: block;
-  position: relative;
-  z-index: 1;
-}
-
-/* --- Mobile Screens (max-width: 767px) --- */
 @media (max-width: 767px) {
   .home-hero-img {
-    width: 90%;            /* Leave a little breathing room on the sides */
-    max-width: 360px;
-    height: 45vh;          /* Caps the height so it doesn't push content too far down mobile screens */
-    object-fit: contain;   /* Double-ensures no cropping happens on mobile */
+    max-width: 100%;
+    object-fit: contain;
     border-radius: 15px;
+    max-height: none;
   }
-}
+
   .telegram-qr-card {
     position: static;
     width: 118px;
@@ -817,8 +809,26 @@ button:focus {
   }
 
   .myAvtar {
-    padding-top: 2em !important;
-    padding-bottom: 2em !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .home-about-description {
+    text-align: center !important;
+    padding-top: 20px !important;
+  }
+
+  .home-intro-title {
+    font-size: 1.5em !important;
+    line-height: 1.3 !important;
+  }
+
+  .home-about-body {
+    font-size: 1em !important;
+    text-align: center !important;
   }
 }
 
@@ -896,20 +906,31 @@ button:focus {
   position: relative;
   padding-bottom: 70px !important;
   padding-top: 70px !important;
-  background: linear-gradient(135deg, #1e2a47 0%, #0f1419 100%);
+  background: linear-gradient(135deg, #1a2340 0%, #0b1018 100%);
+  border-top: 1px solid rgba(255, 193, 7, 0.15);
 }
 
 .home-about-description {
   color: white !important;
-  padding-top: 100px !important;
+  padding-top: 30px !important;
   padding-bottom: 20px !important;
-  text-align: center;
+  text-align: left;
 }
 
 .home-about-body {
-  padding-top: 50px;
+  padding-top: 20px;
   font-size: 1.2em !important;
   text-align: left;
+}
+
+.home-about-avatar {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  margin: 0 auto;
 }
 
 .home-about-social {
@@ -1168,7 +1189,7 @@ button:focus {
 /* Glass Card - matches Flutter GlassCard widget */
 .glass-card {
   background: rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(15px) !important;
+  /* backdrop-filter: blur(15px) !important; */
   border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
@@ -1296,7 +1317,7 @@ button:focus {
 /* Blog Article Detail Page */
 .glass-card.blog-article {
   background: rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(15px) !important;
+  /* backdrop-filter: blur(15px) !important; */
   border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
   border-radius: 20px !important;
   padding: 40px !important;
@@ -1384,18 +1405,378 @@ button:focus {
     height: 180px !important;
   }
 }
+/* --------- */
+/* Techstack Marquee — auto-scroll right to left, infinite loop */
+/* --------- */
+.tech-marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 30px;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
 
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 15px;
+  padding: 10px 0;
+  animation: tech-marquee-scroll 35s linear infinite;
+}
+
+.tech-marquee-wrapper:hover .tech-marquee-track,
+.tech-marquee-track:active {
+  animation-play-state: paused;
+}
+
+.tech-marquee-item {
+  flex-shrink: 0;
+}
+
+@keyframes tech-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 767px) {
+  .tech-marquee-track {
+    animation-duration: 22s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee-track {
+    animation: none;
+  }
+}
 /* --------- */
-/* About */
+/* Techstack Carousel — swipe left/right, 3 per slide */
 /* --------- */
+.tech-carousel-wrapper {
+  width: 100%;
+  padding-bottom: 30px;
+}
+
+.tech-carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 0;
+  padding-bottom: 10px;
+}
+
+.tech-carousel-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tech-carousel-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.tech-carousel-slide .tech-icons {
+  flex: 1 1 0;
+  max-width: 180px;
+}
+
+.tech-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.tech-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 767px) {
+  .tech-carousel-slide {
+    gap: 12px;
+    padding: 10px 15px;
+  }
+
+  .tech-carousel-slide .tech-icons {
+    max-width: none;
+  }
+}
+/* --------- */
+/* About Card — glass style redesign */
+/* --------- */
+.about-glass-card {
+  background: rgba(255, 255, 255, 0.12) !important;
+  /* backdrop-filter: blur(15px) !important; */
+  border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15) !important;
+  padding: 15px !important;
+}
+
+.about-card-text {
+  text-align: left !important;
+  line-height: 1.8 !important;
+  font-size: 1.05rem !important;
+  color: #e5e7eb !important;
+  margin-bottom: 20px !important;
+}
+
+.about-activities-intro {
+  color: #b0b8c7 !important;
+  font-size: 0.95rem !important;
+  margin-bottom: 16px !important;
+}
+
+.about-activity-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 24px 0 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+}
+
+.about-activity-pill {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(139, 92, 246, 0.12) !important;
+  border: 1px solid rgba(139, 92, 246, 0.35) !important;
+  color: #c084fc !important;
+  padding: 8px 16px !important;
+  border-radius: 25px !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+}
+
+.about-activity-pill:hover {
+  background: #8b5cf6 !important;
+  color: #ffffff !important;
+  border-color: #8b5cf6 !important;
+  transform: translateY(-2px) !important;
+}
+
+.about-activity-icon {
+  display: flex !important;
+  align-items: center !important;
+  font-size: 1.1em !important;
+}
+
+.about-card-quote {
+  color: rgb(155 126 172) !important;
+  line-height: 1.6 !important;
+  margin-top: 10px !important;
+}
+
+@media (max-width: 767px) {
+  .about-glass-card {
+    padding: 10px !important;
+  }
+
+  .about-card-text {
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    text-align: left !important;
+  }
+
+  .about-activity-list {
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+
+  .about-activity-pill {
+    font-size: 0.85rem !important;
+    padding: 7px 14px !important;
+  }
+}
 
 .about-section {
   position: relative !important;
+  background: linear-gradient(135deg, #1e2a47 0%, #0f1419 100%);
+  background-position: top center;
+  background-repeat: no-repeat;
   padding-top: 150px !important;
   padding-bottom: 30px !important;
+  overflow: visible;
   color: white !important;
+  /* min-height: 100vh; <-- REMOVED: causes big empty gaps when content is short */
 }
 
+/* --------- */
+/* Language Dropdown — purple pill + white panel */
+/* --------- */
+.lang-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #c770f0 0%, #8b3fd6 100%);
+  border: none;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(199, 112, 240, 0.35);
+  transition: all 0.25s ease;
+}
+
+.lang-dropdown-trigger:hover {
+  box-shadow: 0 6px 18px rgba(199, 112, 240, 0.5);
+  transform: translateY(-1px);
+}
+
+.lang-dropdown-globe {
+  font-size: 1.1em;
+}
+
+.lang-dropdown-label {
+  letter-spacing: 0.5px;
+}
+
+.lang-dropdown-arrow {
+  font-size: 0.7rem;
+  transition: transform 0.25s ease;
+}
+
+.lang-dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.lang-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  z-index: 1000;
+}
+
+.lang-dropdown-pointer {
+  position: absolute;
+  top: -7px;
+  right: 20px;
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  transform: rotate(45deg);
+  box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.lang-dropdown-menu {
+  position: relative;
+  min-width: 200px;
+  background: #ffffff;
+  border-radius: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+.lang-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #2d2d3a;
+  font-size: 0.95rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.lang-dropdown-item:hover {
+  background: #f4f0fa;
+}
+
+.lang-dropdown-item.active {
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.lang-dropdown-flag {
+  width: 24px;
+  height: 18px;
+  border-radius: 3px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .lang-dropdown-trigger {
+    padding: 6px 12px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .lang-dropdown-panel {
+    right: -10px;
+  }
+
+  .lang-dropdown-menu {
+    min-width: 170px;
+  }
+}
+/* --------- */
+/* About Image -
+/* --------- */
+.about-img-full {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important; 
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 500px; 
+  background: transparent !important; 
+  overflow: hidden !important;
+}
+
+.about-img-full img {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 550px !important; 
+  object-fit: contain !important; 
+}
+
+@media (max-width: 767px) {
+  .about-img-full {
+    min-height: 350px !important;
+    padding: 15px !important; 
+  }
+  .about-img-full img {
+    max-height: 350px !important;
+  }
+}
 .tech-icons {
   display: flex !important;
   align-self: center !important;
@@ -1416,7 +1797,27 @@ button:focus {
   transition: outline-color 0.3s, outline-width 0.3s, transform 0.3s;
   color: white;
 }
+/* --------- */
+/* GitHub Calendar UI Polish */
+/* --------- */
+.github-calendar-wrapper {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
 
+/* Forces the library text elements to use a unified look without line-breaks */
+.github-calendar-wrapper text {
+  font-family: monospace !important;
+  fill: #b0b8c7 !important; /* Soft premium gray color for the labels */
+}
+
+@media (max-width: 767px) {
+  .github-calendar-wrapper {
+    overflow-x: auto; /* Allows mobile users to swipe left/right smoothly instead of breaking the box layout */
+    justify-content: flex-start !important;
+    padding-bottom: 10px;
+  }
+}
 .tech-icons-text {
   display: flex;
   align-items: center;
@@ -1456,16 +1857,28 @@ button:focus {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 0 !important;
 }
 
 .about-img img {
   max-width: 90%;
-  max-height: none;
+  width: auto;
+  height: auto !important;
+  max-height: 500px;
+  object-fit: contain !important;
 }
 
 @media (max-width: 767px) {
   .about-img {
     padding-top: 0 !important;
+    height: auto !important;
+  }
+
+  .about-img img {
+    max-width: 100%;
+    max-height: 400px;
   }
 }
 

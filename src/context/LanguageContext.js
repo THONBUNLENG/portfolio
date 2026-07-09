@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 const LanguageContext = createContext();
 
@@ -15,11 +15,19 @@ const translations = {
     homeIntroPrefix: "LET ME",
     homeIntroMiddle: "INTRODUCE",
     homeIntroSuffix: "MYSELF",
+    availableFreelance: "Available for Freelance",
+    homeHeroTitle: "SOFTWARE",
+    homeHeroTitleHighlight: "ENGINEER",
+    homeHeroTagline: "Building Quality Software, Fast",
+    homeImPrefix: "I'M",
+    homeImName: "Thon Bunleng",
     homeIntroParagraph:
-      "I'm a Software Engineer who loves transforming ideas into reliable, scalable products. Over time, I've explored several technologies and found my passion in building high-performance systems and intuitive user experiences. I'm proficient in Flutter, React Native, Swift, Kotlin, JavaScript, C++, C#, Rust, Node.js, Laravel, Python and Java — and I enjoy working across both backend and frontend stacks. My key areas of interest include developing Mobile Applications and Web Applications, Blockchain Solutions and exploring new ways to bridge on-chain and off-chain systems. Whenever possible, I love building projects with Flutter and modern frameworks like React.js and Next.js.",
+      "I'm a Software Engineer who loves transforming ideas into reliable, scalable products. Over time, I've explored several technologies and found my passion in building high-performance systems and intuitive user experiences. I'm proficient in <span class=\"tech-flutter\">Flutter</span>, <span class=\"tech-react-native\">React Native</span>, <span class=\"tech-swift\">Swift</span>, <span class=\"tech-kotlin\">Kotlin</span>, <span class=\"tech-javascript\">JavaScript</span>, <span class=\"tech-cpp\">C++</span>, <span class=\"tech-csharp\">C#</span>, <span class=\"tech-rust\">Rust</span>, <span class=\"tech-nodejs\">Node.js</span>, <span class=\"tech-laravel\">Laravel</span>, <span class=\"tech-python\">Python</span> and <span class=\"tech-java\">Java</span> — and I enjoy working across both backend and frontend stacks. My key areas of interest include developing Mobile Applications and Web Applications, Blockchain Solutions and exploring new ways to bridge on-chain and off-chain systems. Whenever possible, I love building projects with Flutter and modern frameworks like <span class=\"tech-reactjs\">React.js</span> and <span class=\"tech-nextjs\">Next.js</span>.",
     homeFindMe: "Find Me On",
     homeConnect: "Feel free to connect with me",
     homeConnectHighlight: "connect",
+    contactPhone: "+855 011 820 595",
+    contactEmail: "leng94570@gmail.com",
     aboutTitlePrefix: "Know Who ",
     aboutTitleHighlight: "I'M",
     aboutTitleSuffix: "...!",
@@ -141,6 +149,11 @@ const translations = {
     footerDesigned: "Designed and Developed by Thon Bunleng",
     footerCopyright: "Copyright ©",
     footerBy: "Thon Bunleng",
+    languagePageTitle: "Choose Your Language",
+    languagePageSubtitle: "Select a language to continue",
+    languagePageEnglish: "English",
+    languagePageKhmer: "ខ្មែរ",
+    languagePageContinue: "Continue",
     typeOptions: {
       softwareDeveloper: "Software Developer",
       mobileAppDeveloper: "Mobile App Developer",
@@ -150,25 +163,51 @@ const translations = {
       mernStackDeveloper: "MERN Stack Developer",
       openSourceContributor: "Open Source Contributor",
     },
+    servicesTitle: "Services",
+    services: {
+      webDevelopment: "Web Development",
+      mobileAppDevelopment: "Mobile App Development",
+      customSoftwareDevelopment: "Custom Software Development",
+      apiIntegration: "API Integration",
+      databaseDesign: "Database Design",
+      bugFixingMaintenance: "Bug Fixing & Maintenance",
+      systemDevelopment: "System Development for Businesses",
+    },
+    socialLabels: {
+      github: "GitHub",
+      gitlab: "GitLab",
+      linkedin: "LinkedIn",
+      telegram: "Telegram",
+      facebook: "Facebook",
+      youtube: "YouTube",
+      tiktok: "TikTok",
+      phone: "Phone",
+    },
   },
   km: {
     navbarHome: "ទំព័រដើម",
-    navbarAbout: "អំពីខ្ញុំ",
-    navbarProjects: "គម្រោង",
-    navbarResume: "ប្រវត្តិរូប",
-    navbarBlogs: "អត្ថបទ",
+    navbarAbout: "បន្ដអំពីខ្ញុំ",
+    navbarProjects: "បន្ដគម្រោង",
+    navbarResume: "បន្ដប្រវត្តិរូប",
+    navbarBlogs: "បន្ដអត្ថបទ",
     homeGreeting: "សួស្តី!",
     homeNameTranslation: "ថុន ប៊ុនឡេង",
-    homeIntroPrefix: "សូមអនុញ្ញាត",
+    homeIntroPrefix: "បន្ដសូមអនុញ្ញាត",
     homeIntroMiddle: "ណែនាំ",
     homeIntroSuffix: "ខ្លួនឯង",
+    availableFreelance: "អាចទទួលការងារឯករាជ្យបាន",
+    homeHeroTitle: "អ្នកអភិវឌ្ឍ",
+    homeHeroTitleHighlight: "កម្មវិធី",
+    homeHeroTagline: "សាងសង់កម្មវិធីដែលមានគុណភាព យ៉ាងមានទំនុកចិត្តនឺងឆាប់រហ័ស",
     homeIntroParagraph:
-      "ខ្ញុំជាវិស្វករកម្មវិធីដែលស្រឡាញ់ការប្រែក្លាយគំនិតទៅជាផលិតផលដែលអាចជឿទុកចិត្តបាន និងស្រួលបន្ថែម។ តាមពេលវេលា ខ្ញុំបានសិក្សារស់ន័យបច្ចេកវិទ្យាជាច្រើន ហើយរកឃើញចំណង់ចំណូលចិត្តរបស់ខ្ញុំក្នុងការបង្កើតប្រព័ន្ធដែលមានប្រសិទ្ធភាពខ្ពស់ និងបទពិសោធន៍អ្នកប្រើប្រាស់ដ៏ងាយស្រួល។ ខ្ញុំស្ទាត់ជំនាញក្នុង Flutter, React Native, Swift, Kotlin, JavaScript, C++, C#, Rust, Node.js, Laravel, Python និង Java — ហើយខ្ញុំរីករាយក្នុងការធ្វើការទាំងផ្នែក Backend និង Frontend។ ចំណុចចាប់អារម្មណ៍សំខាន់របស់ខ្ញុំរួមមាន ការអភិវឌ្ឍកម្មវិធីទូរស័ព្ទ វេបសាយ ដំណោះស្រាយ Blockchain និងការស្វែងរកវិធីសាស្ត្រថ្មីៗដើម្បីភ្ជាប់ប្រព័ន្ធ on-chain និង off-chain។ នៅពេលណាដែលអាចធ្វើទៅបាន ខ្ញុំស្រឡាញ់ការសាងសង់គម្រោងជាមួយ Flutter និងគ្រោងការណ៍ទំនើបៗដូចជា React.js និង Next.js។",
+      "ខ្ញុំជាវិស្វករកម្មវិធីដែលស្រឡាញ់ការប្រែក្លាយគំនិតទៅជាផលិតផលដែលអាចជឿទុកចិត្តបាន និងស្រួលបន្ថែម។ តាមពេលវេលា ខ្ញុំបានសិក្សារស់ន័យបច្ចេកវិទ្យាជាច្រើន ហើយរកឃើញចំណង់ចំណូលចិត្តរបស់ខ្ញុំក្នុងការបង្កើតប្រព័ន្ធដែលមានប្រសិទ្ធភាពខ្ពស់ និងបទពិសោធន៍អ្នកប្រើប្រាស់ដ៏ងាយស្រួល។ ខ្ញុំស្ទាត់ជំនាញក្នុង <span class=\"tech-flutter\">Flutter</span>, <span class=\"tech-react-native\">React Native</span>, <span class=\"tech-swift\">Swift</span>, <span class=\"tech-kotlin\">Kotlin</span>, <span class=\"tech-javascript\">JavaScript</span>, <span class=\"tech-cpp\">C++</span>, <span class=\"tech-csharp\">C#</span>, <span class=\"tech-rust\">Rust</span>, <span class=\"tech-nodejs\">Node.js</span>, <span class=\"tech-laravel\">Laravel</span>, <span class=\"tech-python\">Python</span> និង <span class=\"tech-java\">Java</span> — ហើយខ្ញុំរីករាយក្នុងការធ្វើការទាំងផ្នែក Backend និង Frontend។ ចំណុចចាប់អារម្មណ៍សំខាន់របស់ខ្ញុំរួមមាន ការអភិវឌ្ឍកម្មវិធីទូរស័ព្ទ វេបសាយ ដំណោះស្រាយ Blockchain និងការស្វែងរកវិធីសាស្ត្រថ្មីៗដើម្បីភ្ជាប់ប្រព័ន្ធ on-chain និង off-chain។ នៅពេលណាដែលអាចធ្វើទៅបាន ខ្ញុំស្រឡាញ់ការសាងសង់គម្រោងជាមួយ Flutter និងគ្រោងការណ៍ទំនើបៗដូចជា <span class=\"tech-reactjs\">React.js</span> និង <span class=\"tech-nextjs\">Next.js</span>។",
     homeFindMe: "រកឃើញខ្ញុំនៅ",
     homeim:"ខ្ញុំបាទឈ្មោះ",
     homeConnect: "សូមទំនាក់ទំនងជាមួយខ្ញុំ",
     homeConnectHighlight: "ទំនាក់ទំនង",
-    aboutTitlePrefix: "ណែនាំខ្លះៗអំពី",
+    contactPhone: "+855 011 820 595",
+    contactEmail: "leng94570@gmail.com",
+    aboutTitlePrefix: "បន្ដណែនាំខ្លះៗអំពី",
     aboutTitleHighlight: "ខ្ញុំ",
     aboutTitleSuffix: "...!",
     aboutCardName: "ថុន ប៊ុនឡេង​ ",
@@ -189,11 +228,11 @@ const translations = {
     aboutCardFooter: "ថុន ប៊ុនឡេង",
     professionalSkills: "ជំនាញវិជ្ជាជីវៈ",
     toolsTitle: "ឧបករណ៍ដែលខ្ញុំប្រើ",
-    projectsTitlePrefix: "គម្រោង",
+    projectsTitlePrefix: "បន្ដគម្រោង",
     projectsTitleHighlight: "ថ្មីៗ",
     projectsTitleSuffix: "របស់ខ្ញុំ",
     projectsSubtitle: "នេះជាគម្រោងខ្លះដែលខ្ញុំបានធ្វើថ្មីៗនេះ។",
-    resumeTitlePrefix: "ប្រវត្តិរូប",
+    resumeTitlePrefix: "បន្ដប្រវត្តិរូប",
     resumeTitleHighlight: "សង្ខេប",
     resumeTitleSuffix: "របស់ខ្ញុំ",
     resumeSummary: "សេចក្តីសង្ខេបនៃដំណើរវិជ្ជាជីវៈ ជំនាញ និងការសិក្សារបស់ខ្ញុំ។",
@@ -280,7 +319,7 @@ const translations = {
     blogButton: "អត្ថបទ",
     readArticle: "អានអត្ថបទ",
     backToBlogs: "ត្រឡប់ទៅអត្ថបទ",
-    blogTitle: "អត្ថបទរបស់ខ្ញុំ",
+    blogTitle: "បន្ដអត្ថបទរបស់ខ្ញុំ",
     blogSubtitle:
       "ការស្វែងយល់ស៊ីជម្រៅអំពីស្ថាបត្យកម្មកម្មវិធីទូរស័ព្ទ ការអនុវត្ត UI/UX និងការសរសេរកូដស្អាត។",
     blogNotFound: "រកមិនឃើញអត្ថបទ",
@@ -289,6 +328,11 @@ const translations = {
     footerDesigned: "រចនានិងអភិវឌ្ឍដោយ ថុន ប៊ុនឡេង",
     footerCopyright: "រក្សាសិទ្ធ ©",
     footerBy: "ថុន ប៊ុនឡេង",
+    languagePageTitle: "ជ្រើសរើសភាសារបស់អ្នក",
+    languagePageSubtitle: "ជ្រើសរើសភាសាមួយដើម្បីបន្ត",
+    languagePageEnglish: "English",
+    languagePageKhmer: "ខ្មែរ",
+    languagePageContinue: "បន្ត",
     typeOptions: {
       softwareDeveloper: "អ្នកអភិវឌ្ឍន៍កម្មវិធី",
       mobileAppDeveloper: "អ្នកអភិវឌ្ឍន៍កម្មវិធីទូរស័ព្ទ",
@@ -298,11 +342,38 @@ const translations = {
       mernStackDeveloper: "អ្នកអភិវឌ្ឍន៍ MERN Stack",
       openSourceContributor: "អ្នករួមចំណែក Open Source",
     },
+    servicesTitle: "សេវាកម្ម",
+    services: {
+      webDevelopment: "អភិវឌ្ឍន៍វេបសាយ",
+      mobileAppDevelopment: "អភិវឌ្ឍន៍កម្មវិធីទូរស័ព្ទ",
+      customSoftwareDevelopment: "អភិវឌ្ឍន៍កម្មវិធីផ្ទាល់ខ្លួន",
+      apiIntegration: "ការរួមបញ្ចូល API",
+      databaseDesign: "ការរចនាមូលដ្ឋានទិន្នន័យ",
+      bugFixingMaintenance: "ការជួសជុល និង​​ ថែរក្សា",
+      systemDevelopment: "អភិវឌ្ឍន៍ប្រព័ន្ធសម្រាប់អាជីវកម្ម",
+    },
+    socialLabels: {
+      github: "GitHub",
+      gitlab: "GitLab",
+      linkedin: "LinkedIn",
+      telegram: "Telegram",
+      facebook: "Facebook",
+      youtube: "YouTube",
+      tiktok: "TikTok",
+      phone: "Phone",
+    },
   },
+  
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState(() => {
+    return typeof window !== "undefined" ? localStorage.getItem("language") || "en" : "en";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("language", language);
+  }, [language]);
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "km" : "en"));
@@ -320,7 +391,7 @@ export const LanguageProvider = ({ children }) => {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
