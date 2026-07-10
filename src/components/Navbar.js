@@ -216,9 +216,9 @@ function NavBar() {
             </Nav.Item>
 
             {/* Language toggle inside collapse — desktop only */}
-            <Nav.Item className="d-none d-md-block">
+            {/* <Nav.Item className="d-none d-md-block">
               <LanguageButton className="lang-btn" />
-            </Nav.Item>
+            </Nav.Item> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
