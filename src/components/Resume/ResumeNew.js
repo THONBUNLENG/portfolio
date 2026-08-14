@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import me2 from "../../Assets/me3.png";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import {
   FaGraduationCap,
@@ -76,28 +75,6 @@ function ResumeNew() {
             <p style={{ color: "white", maxWidth: "800px", marginTop: "10px", marginBottom: 0 }}>
               {t("resumeSummary")}
             </p>
-          </Col>
-          <Col
-            md={4}
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              paddingBottom: "20px",
-            }}
-            className="d-none d-md-block"
-          >
-             <img
-               src={me2}
-               alt="Profile"
-               style={{
-                 width: "220px",
-                 height: "220px",
-                 borderRadius: "50%",
-                 objectFit: "cover",
-                 border: "3px solid #c770f0",
-               }}
-             />
           </Col>
         </Row>
 

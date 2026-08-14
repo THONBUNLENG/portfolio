@@ -203,6 +203,8 @@ const translations = {
       "ខ្ញុំជាវិស្វករកម្មវិធីដែលស្រឡាញ់ការប្រែក្លាយគំនិតទៅជាផលិតផលដែលអាចជឿទុកចិត្តបាន និងស្រួលបន្ថែម។ តាមពេលវេលា ខ្ញុំបានសិក្សារស់ន័យបច្ចេកវិទ្យាជាច្រើន ហើយរកឃើញចំណង់ចំណូលចិត្តរបស់ខ្ញុំក្នុងការបង្កើតប្រព័ន្ធដែលមានប្រសិទ្ធភាពខ្ពស់ និងបទពិសោធន៍អ្នកប្រើប្រាស់ដ៏ងាយស្រួល។ ខ្ញុំស្ទាត់ជំនាញក្នុង <span class=\"tech-flutter\">Flutter</span>, <span class=\"tech-react-native\">React Native</span>, <span class=\"tech-swift\">Swift</span>, <span class=\"tech-kotlin\">Kotlin</span>, <span class=\"tech-javascript\">JavaScript</span>, <span class=\"tech-cpp\">C++</span>, <span class=\"tech-csharp\">C#</span>, <span class=\"tech-rust\">Rust</span>, <span class=\"tech-nodejs\">Node.js</span>, <span class=\"tech-laravel\">Laravel</span>, <span class=\"tech-python\">Python</span> និង <span class=\"tech-java\">Java</span> — ហើយខ្ញុំរីករាយក្នុងការធ្វើការទាំងផ្នែក Backend និង Frontend។ ចំណុចចាប់អារម្មណ៍សំខាន់របស់ខ្ញុំរួមមាន ការអភិវឌ្ឍកម្មវិធីទូរស័ព្ទ វេបសាយ ដំណោះស្រាយ Blockchain និងការស្វែងរកវិធីសាស្ត្រថ្មីៗដើម្បីភ្ជាប់ប្រព័ន្ធ on-chain និង off-chain។ នៅពេលណាដែលអាចធ្វើទៅបាន ខ្ញុំស្រឡាញ់ការសាងសង់គម្រោងជាមួយ Flutter និងគ្រោងការណ៍ទំនើបៗដូចជា <span class=\"tech-reactjs\">React.js</span> និង <span class=\"tech-nextjs\">Next.js</span>។",
     homeFindMe: "រកឃើញខ្ញុំនៅ",
     homeim:"ខ្ញុំបាទឈ្មោះ",
+    homeImPrefix: "ខ្ញុំបាទឈ្មោះ",
+    homeImName: "ថុន ប៊ុនឡេង",
     homeConnect: "សូមទំនាក់ទំនងជាមួយខ្ញុំ",
     homeConnectHighlight: "ទំនាក់ទំនង",
     contactPhone: "+855 011 820 595",
@@ -383,7 +385,7 @@ export const LanguageProvider = ({ children }) => {
         value = value[k];
       }
     }
-    return value || key;
+    return value !== undefined && value !== null ? value : key;
   };
 
   return (

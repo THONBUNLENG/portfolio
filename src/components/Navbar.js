@@ -117,6 +117,7 @@ function NavBar() {
           <LanguageButton className="lang-btn lang-btn-mobile" />
         </div>
 
+
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           onClick={() => {
@@ -214,11 +215,6 @@ function NavBar() {
                 <AiFillStar style={{ fontSize: "1.1em" }} />
               </Button>
             </Nav.Item>
-
-            {/* Language toggle inside collapse — desktop only */}
-            {/* <Nav.Item className="d-none d-md-block">
-              <LanguageButton className="lang-btn" />
-            </Nav.Item> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

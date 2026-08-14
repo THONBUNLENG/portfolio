@@ -62,7 +62,7 @@ function Home() {
   const heroSocialLinks = [
     { icon: <AiFillGithub />, href: "https://github.com/THONBUNLENG", label: t("socialLabels.github") },
     { icon: <SiGitlab />, href: "https://gitlab.com/leng94570", label: t("socialLabels.gitlab") },
-    { icon: <FaLinkedin />, href: "https://www.linkedin.com/", label: t("socialLabels.linkedin") },
+    { icon: <FaLinkedin />, href: "https://kh.linkedin.com/in/thon-bunleng-dev", label: t("socialLabels.linkedin") },
     { icon: <FaTelegram />, href: "https://t.me/bunleng_dev", label: t("socialLabels.telegram") },
     { icon: <AiOutlineFacebook />, href: "https://www.facebook.com/wen.linji.i", label: t("socialLabels.facebook") },
     { icon: <FaYoutube />, href: "https://www.youtube.com/", label: t("socialLabels.youtube") },
