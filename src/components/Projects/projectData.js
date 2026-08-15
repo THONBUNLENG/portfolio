@@ -10,6 +10,9 @@ import ecommerce_web from "../../Assets/Projects/e-commerce_web.png";
 import admin from "../../Assets/Projects/admin.png";
 import chatify from "../../Assets/Projects/dark_mode.png";
 import emotion from "../../Assets/Projects/elements.png";
+import pos_system from "../../Assets/Projects/pos_system.png";
+import looma from "../../Assets/Projects/looma.png";
+import dark_mode from "../../Assets/Projects/dark_mode.png";
 
 export const projects = {
   project1: {
@@ -105,8 +108,7 @@ export const projects = {
   project11: {
     title: "Light Dark Theme in App",
     titleKm: "ប្រូរាង Light Dark ក្នុងកម្មវិធី",
-    imgPath: chatify,
-    themeDemo: true,
+    imgPath: dark_mode,
     description: "A clean and reusable Flutter theme management system that supports both Light Mode and Dark Mode using Flutter's ThemeData. This project demonstrates how to create and organize custom themes for different UI components while maintaining a consistent design throughout your application.",
     descriptionKm: "ប្រព័ន្ធគ្រប់គ្រងរូបភាព Flutter ស្អាត និងអាចប្ដកប្រើប្រាស់ឡើងវិញ ដែលគាំទ្រ Light Mode និង Dark Mode ប្រើ ThemeData របស់ Flutter។ គម្រោងនេះបង្ហាញវិធីបង្កើត និងរចនារូបភាពផ្ទាល់ខ្លួនសម្រាប់សមាសភាព UI ផ្សេងផ្ស់ រួមជាមួយការរក្សារូបភាពស្តងឡគ្នានៅក្នុងកម្មវិធី។",
     ghLink: "https://github.com/THONBUNLENG/light_dark_theme.git",
@@ -119,6 +121,24 @@ export const projects = {
     description: " A Python-based AI-powered Selenium automation project that utilizes machine learning algorithms to enhance web testing and interaction. It leverages AI techniques to intelligently navigate web pages, identify elements, and perform automated actions, improving the efficiency and accuracy of web testing processes.",
     descriptionKm: "គម្រោងស្វាគមការស្វាគម AI-powered Selenium ដោយប្រើ Python ដែលប្រើបច្ចេកទេសយ learning ការ�strengthen និងការសកម្មភាពនៅលើវេបសាយ។ វាប្រើប្រាស់បច្ចេកទេស AI ការដ្ឋានីនិយម រកឃើញទំព័រវេបសាយ ការសម្រួរគ្រឿងផ្សំ និងការធ្វើសកម្មភាពដោយស្វង់រឿង បង្កើតភាពស្រឡាញ់ និងមានតម្លៃនៃការស្វាគមវេបសាយ។",
     ghLink: "https://github.com/THONBUNLENG/ai_selenium.git",
+    demoLink: "",
+  },
+    project13: {
+    title: "POS System",
+    titleKm: "POS System",
+    imgPath: pos_system,
+    description: "A full-featured Point of Sale (POS) application designed to manage transactions, track inventory, and generate real-time sales reports.",
+    descriptionKm: "កម្មវិធីគ្រប់គ្រងការលក់ (POS) ដែលមានមុខងារពេញលេញ សម្រាប់គ្រប់គ្រងប្រតិបត្តិការទូទាត់ប្រាក់ តាមដានស្តុកទំនិញ និងបង្កើតរបាយការណ៍លក់ភ្លាមៗ។",
+    ghLink: "https://github.com/THONBUNLENG/pos-system.git",
+    demoLink: "",
+  },
+      project14: {
+    title: "LOOMA Ecommerce",
+    titleKm: "កម្មវិធីទិញទំនិញតាមអនឡាញ LOOMA",
+    imgPath: looma,
+    description: "A premium cross-platform e-commerce mobile application featuring dynamic product catalogs, seamless navigation, interactive rating systems, and personal wishlists.",
+    descriptionKm: "កម្មវិធីទិញទំនិញតាមអនឡាញលើទូរស័ព្ទដៃ ដែលមានមុខងាររៀបចំបញ្ជីទំនិញ ស្វែងរកយ៉ាងងាយស្រួល ប្រព័ន្ធវាយតម្លៃ និងការរក្សាទុកទំនិញពេញចិត្ត។",
+    ghLink: "https://github.com/THONBUNLENG/looma_ecommerce.git",
     demoLink: "",
   },
 };

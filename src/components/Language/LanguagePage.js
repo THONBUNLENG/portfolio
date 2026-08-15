@@ -6,7 +6,7 @@ import ukFlag from "../../Assets/uk-flag.png";
 import "./LanguagePage.css";
 
 const LANGUAGES = [
-  { code: "en", label: "English", flag: ukFlag },
+  { code: "en", label: "English", flag: ukFlag }, 
   { code: "km", label: "ខ្មែរ", flag: cambodiaFlag },
 ];
 
