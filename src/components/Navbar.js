@@ -17,6 +17,7 @@ import { CgFileDocument } from "react-icons/cg";
 import { useLanguage } from "../context/LanguageContext";
 import cambodiaFlag from "../Assets/cambodia-flag.png";
 import ukFlag from "../Assets/uk-flag.png";
+const chinaFlag = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23DE2910'/%3E%3Cpolygon points='5,3 5.5,5 7.5,5 6,6.2 6.5,8.2 5,7 3.5,8.2 4,6.2 2.5,5 4.5,5' fill='%23FFDE00'/%3E%3C/svg%3E";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -79,8 +80,20 @@ function NavBar() {
       }}
     >
       <img
-        src={language === "en" ? ukFlag : cambodiaFlag}
-        alt={language === "en" ? "English" : "Khmer"}
+        src={
+          language === "en"
+            ? ukFlag
+            : language === "zh"
+            ? chinaFlag
+            : cambodiaFlag
+        }
+        alt={
+          language === "en"
+            ? "English"
+            : language === "zh"
+            ? "中文"
+            : "ខ្មែរ"
+        }
         style={{
           height: "1.2em",
           width: "1.2em",
@@ -89,7 +102,7 @@ function NavBar() {
         }}
       />
       <span style={{ fontWeight: "500", textTransform: "uppercase" }}>
-        {language === "en" ? "EN" : "KM"}
+        {language === "en" ? "EN" : language === "zh" ? "ZH" : "KM"}
       </span>
     </Button>
   );
@@ -201,7 +214,7 @@ function NavBar() {
                   navigate("/language");
                 }}
               >
-                🌐 {language === "en" ? "Language" : "ភាសា"}
+                🌐 {language === "en" ? "Language" : language === "zh" ? "语言" : "ភាសា"}
               </Nav.Link>
             </Nav.Item>
 

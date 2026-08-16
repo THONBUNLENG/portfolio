@@ -9,12 +9,16 @@ function Projects() {
 
   const getProjectTitle = (projectId) => {
     const project = projects[projectId];
-    return language === "km" && project?.titleKm ? project.titleKm : project?.title;
+    if (language === "km" && project?.titleKm) return project.titleKm;
+    if (language === "zh" && project?.titleZh) return project.titleZh;
+    return project?.title;
   };
 
   const getProjectDescription = (projectId) => {
     const project = projects[projectId];
-    return language === "km" && project?.descriptionKm ? project.descriptionKm : project?.description;
+    if (language === "km" && project?.descriptionKm) return project.descriptionKm;
+    if (language === "zh" && project?.descriptionZh) return project.descriptionZh;
+    return project?.description;
   };
 
   return (

@@ -20,12 +20,12 @@ function BlogPage() {
   }
   
   const displayBlog = {
-    title: language === "km" && blog.titleKm ? blog.titleKm : blog.title,
-    date: language === "km" && blog.dateKm ? blog.dateKm : blog.date,
-    readTime: language === "km" && blog.readTimeKm ? blog.readTimeKm : blog.readTime,
-    tags: language === "km" && blog.tagsKm ? blog.tagsKm : blog.tags,
+    title: language === "km" && blog.titleKm ? blog.titleKm : (language === "zh" && blog.titleZh ? blog.titleZh : blog.title),
+    date: language === "km" && blog.dateKm ? blog.dateKm : (language === "zh" && blog.dateZh ? blog.dateZh : blog.date),
+    readTime: language === "km" && blog.readTimeKm ? blog.readTimeKm : (language === "zh" && blog.readTimeZh ? blog.readTimeZh : blog.readTime),
+    tags: language === "km" && blog.tagsKm ? blog.tagsKm : (language === "zh" && blog.tagsZh ? blog.tagsZh : blog.tags),
     images: blog.images,
-    content: language === "km" && blog.contentKm ? blog.contentKm : blog.content,
+    content: language === "km" && blog.contentKm ? blog.contentKm : (language === "zh" && blog.contentZh ? blog.contentZh : blog.content),
   };
   
   return <BlogDetail blog={displayBlog} />;

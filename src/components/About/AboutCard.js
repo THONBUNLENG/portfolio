@@ -19,17 +19,14 @@ function AboutCard() {
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p className="about-card-text">
-            {language === "en"
+            {language === "en" || language === "zh"
               ? <>
-                  Hi everyone! I&apos;m <span className="purple">{t("aboutCardName")}</span>{" "}
-                  from <span className="purple">{t("aboutCardCity")}</span>.
+                  {language === "zh" ? "大家好！我是 " : "Hi everyone! I&apos;m "}<span className="purple">{t("aboutCardName")}</span>{" "}
+                  {language === "zh" ? "来自" : "from"} <span className="purple">{t("aboutCardCity")}</span>.
                   <br />
-                  I&apos;m currently working as a{" "}
-                  <span className="purple">{t("aboutCardRole")}</span>.
+                  {language === "zh" ? "我目前是一名" : "I&apos;m currently working as a"} <span className="purple">{t("aboutCardRole")}</span>.
                   <br />
-                  I hold a Bachelor&apos;s Degree in{" "}
-                  <span className="purple">{t("aboutCardEducation")}</span> from{" "}
-                  <span className="purple">{t("aboutCardUniversity")}</span>.
+                  {language === "zh" ? "我拥有" : "I hold a Bachelor&apos;s Degree in"} <span className="purple">{t("aboutCardEducation")}</span> {language === "zh" ? "学位，毕业于" : "from"} <span className="purple">{t("aboutCardUniversity")}</span>.
                 </>
               : <>{t("aboutCardParagraph")}</>
             }

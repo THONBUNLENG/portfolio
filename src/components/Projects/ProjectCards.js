@@ -15,7 +15,7 @@ function ProjectCards(props) {
           <PhoneMockup />
         </div>
       ) : (
-        <Card.Img variant="top" src={props.imgPath} alt="card-img" />
+        <Card.Img variant="top" src={props.imgPath} alt="card-img" className="project-card-img" />
       )}
       <Card.Body>
         <Card.Title style={{ textAlign: "center" }}>{props.title}</Card.Title>

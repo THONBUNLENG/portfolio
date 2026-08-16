@@ -22,15 +22,20 @@ export const blogPosts = {
     id: "blog1",
     title: "Mastering State Management: Why I Choose Riverpod over BLoC",
     titleKm: "ការស្ទាត់ជំនាញការគ្រប់គ្រង State: ហេតុអ្វីខ្ញុំជ្រើសរើស Riverpod ជាង BLoC",
+    titleZh: "掌握状态管理：为什么我选择 Riverpod 而不是 BLoC",
     date: "June 2026",
     dateKm: "ខែមិគ្រី ២០២៦",
+    dateZh: "2026年6月",
     readTime: "5 min read",
     readTimeKm: "ការអាន ៥ នាទី",
+    readTimeZh: "5 分钟阅读",
     tags: ["Flutter", "Architecture"],
     tagsKm: ["Flutter", "ស្ថាបត្យកម្ម"],
+    tagsZh: ["Flutter", "架构"],
     images: [bloc, bloc2, bloc3, bloc4],
     description: "An in-depth comparison of Riverpod and BLoC patterns in large-scale Flutter applications, focusing on reactivity, testability, and code structure.",
     descriptionKm: "ការប្រៀបប្ដីពីទំនោរ Riverpod និង BLoC ក្នុងកម្មវិធី Flutter កម្រិតធំ ដែលផ្តល់អានុភាពលើសកម្មភាព ភាពងាយស្រួលក្នុងការធ្វើតេស្ត និងរចនាសម្ព័ន្ធកូដ។",
+    descriptionZh: "对大型 Flutter 应用中的 Riverpod 和 BLoC 模式进行深入比较，重点关注响应性、可测试性和代码结构。",
     content: `
       <h2>Introduction</h2>
       <p>State management is one of the most debated topics in Flutter development. After shipping several large-scale apps using both BLoC and Riverpod, I've settled firmly on Riverpod — and in this article I'll explain exactly why.</p>
@@ -133,6 +138,57 @@ class LoginNotifier extends _$LoginNotifier {
       <h2>សេចក្តីសន្និដ្ឋាន</h2>
       <p>Riverpod ផ្តល់ឱ្យអ្នកនូវអ្វីៗទាំងអស់ដែល BLoC មាន — reactivity, ការញែករវាង concerns, ភាពងាយស្រួលក្នុងការធ្វើតេស្ត — ដោយមានការខ្ជះខ្ជាយពេលវេលាតិចជាង។ ប្រសិនបើអ្នកចាប់ផ្តើមគម្រោង Flutter ថ្មីនៅថ្ងៃនេះ Riverpod គឺជាជម្រើសដែលស្អាតជាង លឿនជាង និងងាយថែទាំជាង។</p>
     `,
+    contentZh: `
+      <h2>引言</h2>
+      <p>状态管理是 Flutter 开发中最具争议的话题之一。在发布了几款使用 BLoC 和 Riverpod 构建的大型应用后，我坚定地选择了 Riverpod —— 在这篇文章中，我将详细解释原因。</p>
+
+      <h2>BLoC 的问题</h2>
+      <p>BLoC 功能强大，但带来了显著的开销。每个功能至少需要三个文件：一个事件类、一个状态类和 BLoC 本身。对于一个简单的表单或开关，这些样板代码会迅速累积，拖慢开发速度而不增加真正的架构价值。</p>
+      <pre><code>// BLoC 需要单独的事件和状态类
+abstract class LoginEvent {}
+class LoginSubmitted extends LoginEvent {
+  final String email, password;
+  LoginSubmitted(this.email, this.password);
+}
+
+abstract class LoginState {}
+class LoginInitial extends LoginState {}
+class LoginLoading extends LoginState {}
+class LoginSuccess extends LoginState {}
+class LoginFailure extends LoginState {
+  final String message;
+  LoginFailure(this.message);
+}</code></pre>
+
+      <h2>为什么 Riverpod 胜出</h2>
+      <p>Riverpod 在保持完整响应能力的同时消除了样板代码。提供者是编译安全的，无需上下文即可全局访问，并且在不再需要时自动销毁。您编写的代码更少，但获得的更多 —— 依赖注入、缓存和响应式功能全部集成在一个地方。</p>
+      <pre><code>// Riverpod — 相同的登录逻辑，代码少得多
+@riverpod
+class LoginNotifier extends _$LoginNotifier {
+  @override
+  AsyncValue&lt;void&gt; build() => const AsyncData(null);
+
+  Future&lt;void&gt; submit(String email, String password) async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(
+      () =&gt; ref.read(authRepositoryProvider).login(email, password),
+    );
+  }
+}</code></pre>
+
+      <h2>可测试性</h2>
+      <p>两种方案都是可测试的，但 Riverpod 的 <code>ProviderContainer</code> 使得在测试中覆盖依赖变得非常简单 —— 不需要完整的组件树或模拟流。</p>
+      <pre><code>test('login success', () async {
+  final container = ProviderContainer(overrides: [
+    authRepositoryProvider.overrideWithValue(FakeAuthRepository()),
+  ]);
+  await container.read(loginNotifierProvider.notifier).submit('a@b.com', '123');
+  expect(container.read(loginNotifierProvider), isA&lt;AsyncData&gt;());
+});</code></pre>
+
+      <h2>结论</h2>
+      <p>Riverpod 为您提供了 BLoC 所拥有的一切 —— 响应性、关注点分离、可测试性 —— 但 ceremonial 要少得多。如果您今天开始一个新的 Flutter 项目，Riverpod 是更干净、更快、更可维护的选择。</p>
+    `,
   },
 
   // ─────────────────────────────────────────────────────────────
@@ -142,15 +198,20 @@ class LoginNotifier extends _$LoginNotifier {
     id: "blog2",
     title: "Building Premium Glassmorphic Custom UI in Flutter",
     titleKm: "ការបង្កើត UI Glassmorphic ប្រកបដោយភាពពិសេសក្នុង Flutter",
+    titleZh: "在 Flutter 中构建高级玻璃态自定义 UI",
     date: "May 2026",
     dateKm: "ខែឧសភា ២០២៦",
+    dateZh: "2026年5月",
     readTime: "4 min read",
     readTimeKm: "ការអាន ៤ នាទី",
+    readTimeZh: "4 分钟阅读",
     tags: ["UI/UX", "Design"],
     tagsKm: ["UI/UX", "រចនា"],
+    tagsZh: ["UI/UX", "设计"],
     images: [ui, ui2, ui3, ui4],
     description: "How to implement complex, high-end visual designs like premium dashboards using BackdropFilter and CustomPainter without external packages.",
     descriptionKm: "របៀបអនុវត្តការរចនា complex និង premium ដូចជា dashboard ប្រកបដោយភាពថ្លៃក្នុង Flutter ដោយប្រើ BackdropFilter និង CustomPainter ប៉ុន្តែមិនប្រើផ្កាយផ្សេង។",
+    descriptionZh: "如何使用 BackdropFilter 和 CustomPainter 实现复杂的高端视觉设计，如高级仪表板，而无需外部包。",
     content: `
       <h2>Introduction</h2>
       <p>Glassmorphism — the frosted-glass aesthetic made popular by iOS and macOS — has become one of the most sought-after UI trends in mobile design. In this article I'll show you how to build a reusable, production-ready glassmorphic card widget in Flutter from scratch.</p>
@@ -263,6 +324,62 @@ class LoginNotifier extends _$LoginNotifier {
       <h2>សេចក្តីសន្និដ្ឋាន</h2>
       <p>ដោយប្រើ <code>BackdropFilter</code>, container semi-transparent, និងផ្ទៃខាងក្រោយដ៏រស់រវើក អ្នកអាចបង្កើតសមាសភាគ UI glass ដ៏ស្រស់ស្អាតដែលមានអារម្មណ៍ native ទាំង iOS និង Android។ រក្សាតម្លៃ blur ឱ្យមាន moderation ហើយញែក paint layers របស់អ្នក ហើយដំណើរការនឹងស្ថិតស្ថេរ។</p>
     `,
+    contentZh: `
+      <h2>引言</h2>
+      <p>玻璃态（Glassmorphism）—— 由 iOS 和 macOS 推广的磨砂玻璃美学 —— 已成为移动设计中最受欢迎的 UI 趋势之一。在本文中，我将向您展示如何从头开始构建一个可复用、可用于生产的玻璃态卡片组件。</p>
+
+      <h2>核心技术：BackdropFilter</h2>
+      <p>玻璃态的关键是 Flutter 的 <code>BackdropFilter</code> 组件与 <code>ImageFilter.blur</code> 结合使用。将其包装在 <code>ClipRRect</code> 中以将模糊限制在卡片边界内，然后在顶部叠加一个半透明白色容器。</p>
+      <pre><code>class GlassCard extends StatelessWidget {
+  final Widget child;
+  const GlassCard({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.15),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: Colors.white.withOpacity(0.3),
+              width: 1.5,
+            ),
+          ),
+          child: child,
+        ),
+      ),
+    );
+  }
+}</code></pre>
+
+      <h2>创建背景</h2>
+      <p>玻璃态只有在丰富、多彩的背景前才好看。使用渐变或模糊图像作为卡片背后的场景 —— 在扁平背景上，磨砂效果将无从发挥作用。</p>
+      <pre><code>Container(
+  decoration: const BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [Color(0xFF7C3AED), Color(0xFF2563EB), Color(0xFF06B6D4)],
+    ),
+  ),
+  child: const GlassCard(child: YourContent()),
+)</code></pre>
+
+      <h2>性能考虑</h2>
+      <p>BackdropFilter 对 GPU 消耗较大。遵循以下规则以保持性能流畅：</p>
+      <ul>
+        <li>将模糊区域包装在 <code>RepaintBoundary</code> 中，以便 Flutter 仅在需要时重新绘制该层。</li>
+        <li>避免堆叠多个 <code>BackdropFilter</code> 组件 —— 每个都会触发完整的合成通道。</li>
+        <li>在真实的低端设备上测试，而不仅仅是模拟器。sigmaX/Y 高于 20 的模糊在较旧的硬件上会明显掉帧。</li>
+      </ul>
+
+      <h2>结论</h2>
+      <p>只需 <code>BackdropFilter</code>、半透明容器和 vibrant 背景，您就可以构建令人惊叹的玻璃 UI 组件，在 iOS 和 Android 上都感觉原生。保持适中的模糊值并隔离您的绘制层，性能将保持稳定。</p>
+    `,
   },
   // ─────────────────────────────────────────────────
   // BLOG 3
@@ -271,15 +388,20 @@ class LoginNotifier extends _$LoginNotifier {
     id: "blog3",
     title: "How I Optimized Mobile App Size by 40%",
     titleKm: "របៀបដែលខ្ញុំបានកាត់បន្ថយទំហំកម្មវិធីទូរស័ព្ទបានដល់ 40%",
+    titleZh: "我如何将移动应用体积优化 40%",
     date: "April 2026",
     dateKm: "ខែមេសា ២០២៦",
+    dateZh: "2026年4月",
     readTime: "6 min read",
     readTimeKm: "ការអាន ៦ នាទី",
+    readTimeZh: "6 分钟阅读",
     tags: ["Optimization", "Android"],
     tagsKm: ["ការបង្កើនប្រសិទ្ធភាព", "Android"],
+    tagsZh: ["优化", "Android"],
     images: [app, app2],
     description: "A practical guide to resource shrinking, ProGuard rules, image optimization, and dynamic delivery to achieve lightweight installation files.",
     descriptionKm: "វគ្គស្វ័យប្រវត្តិ practical ស្ដីអំពីការបង្កើនប្រសិទ្ធភាព resources shrinking, ProGuard rules, ការបង្កើនប្រសិទ្ធភាពរូបភាព និងការដឹកជញ្ជូនដដ្ឋានដើម្បីទទួលបានភាពអប្បបរមទំហំកម្មវិធី។",
+    descriptionZh: "关于资源缩减、ProGuard 规则、图像优化和动态分发的实用指南，以实现轻量级安装文件。",
     content: `
       <h2>Introduction</h2>
       <p>Every megabyte counts. Studies show that for every 6 MB increase in APK size, install conversion drops by roughly 1%. After auditing one of my production Flutter apps, I cut its APK from 28 MB down to 17 MB — a 40% reduction — using four targeted techniques.</p>
@@ -348,6 +470,40 @@ flutter build appbundle --release</code></pre>
       <h2>សេចក្តីសន្និដ្ឋាន</h2>
       <p>ជំហានបួននេះ — shrinking, ការបំប្លែង WebP, App Bundles, និងការ audit dependencies — បានកាត់កម្មវិធីរបស់ខ្ញុំពី 28 MB ចុះដល់ 17 MB ដោយមិនបានលុបមុខងារណាមួយ។ ចាប់ផ្តើមដោយ shrinking និង WebP; ពួកវាមានការខិតខំប្រឹងប្រែងតិចបំផុត ប៉ុន្តែបានផលចំណេញខ្ពស់បំផុត។</p>
     `,
+    contentZh: `
+      <h2>引言</h2>
+      <p>每一个字节都很重要。研究表明，APK 大小每增加 6 MB，安装转化率就会下降约 1%。在审计了我的一款生产 Flutter 应用后，我使用四种有针对性的技术将其 APK 从 28 MB 减少到 17 MB —— 减少了 40%。</p>
+
+      <h2>1. 启用资源与代码缩减</h2>
+      <p>第一也是最容易的胜利是在您的 <code>build.gradle</code> 中启用缩减。这告诉 R8 自动删除未使用的代码和资源。</p>
+      <pre><code>// android/app/build.gradle
+buildTypes {
+  release {
+    minifyEnabled true      // 通过 R8 删除未使用的代码
+    shrinkResources true    // 删除未使用的资源
+    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                 'proguard-rules.pro'
+  }
+}</code></pre>
+
+      <h2>2. 将图像转换为 WebP</h2>
+      <p>PNG 和 JPEG 资源是大多数 APK 中最大的问题。转换为 WebP 通常每张图像可节省 25-35%，且没有明显的质量损失。在 Android Studio 中：右键点击任意 drawable 文件夹 → <em>转换为 WebP</em>。对于 Flutter 资源，请使用命令行中的 <code>cwebp</code>。</p>
+      <pre><code># 将整个 assets 文件夹转换为 WebP（无损）
+for f in assets/images/*.png; do
+  cwebp -lossless "$f" -o "${blogImage}.webp"
+done</code></pre>
+
+      <h2>3. 使用 App Bundles 代替 APK</h2>
+      <p>发布 Android App Bundle（<code>.aab</code>）而不是通用 APK。然后 Google Play 只会发送每个特定设备所需的资源和代码 —— 正确的屏幕密度、ABI 和语言 —— 与臃肿的 APK 相比，下载大小最多可减少 40%。</p>
+      <pre><code># 构建发布版 App Bundle
+flutter build appbundle --release</code></pre>
+
+      <h2>4. 审计您的依赖项</h2>
+      <p>运行 <code>flutter pub deps</code> 并查找拉入大型本地库的包。在可能的情况下用更轻量的替代品替换沉重的包。例如，如果您只需要基本的事件跟踪，可以将 <code>firebase_analytics</code> 替换为自定义的轻量级分析客户端。</p>
+
+      <h2>结论</h2>
+      <p>这四个步骤 —— 缩减、WebP 转换、App Bundles 和依赖审计 —— 将我的应用从 28 MB 减少到 17 MB，而无需删除任何功能。从缩减和 WebP 开始；它们的投入最少但收益最高。</p>
+    `,
   },
   // ─────────────────────────────────────────────────────────────
   // BLOG 4
@@ -356,15 +512,20 @@ flutter build appbundle --release</code></pre>
     id: "blog4",
     title: "Implementing BLoC & Cubit Pattern in Flutter: Best Practices",
     titleKm: "ការអនុវត្តបទរូបភាព BLoC និង Cubit ក្នុង Flutter: វិធីអនុវត្តល្អបំផុត",
+    titleZh: "在 Flutter 中实现 BLoC 和 Cubit 模式：最佳实践",
     date: "July 2026",
     dateKm: "ខែកក្កដា ២០២៦",
+    dateZh: "2026年7月",
     readTime: "7 min read",
     readTimeKm: "ការអាន ៧ នាទី",
+    readTimeZh: "7 分钟阅读",
     tags: ["Flutter", "BLoC", "Architecture"],
     tagsKm: ["Flutter", "BLoC", "ស្ថាបត្យកម្ម"],
+    tagsZh: ["Flutter", "BLoC", "架构"],
     images: [bloc_cubit,bloc_cubit2], // Maps accurately to your asset imports above
     description: "Best practices for implementing BLoC pattern in Flutter for scalable and testable applications.",
     descriptionKm: "វិធីអនុវត្តល្អបំផុតសម្រាប់ការអនុវត្តបទរូបភាព BLoC ក្នុង Flutter សម្រាប់កម្មវិធីដែលអាចពង្រីកបាន និងងាយធ្វើតេស្ត។",
+    descriptionZh: "在 Flutter 中实现 BLoC 模式的最佳实践，用于构建可扩展和可测试的应用。",
     content: `
       <h2>Introduction</h2>
       <p>The BLoC (Business Logic Component) pattern is one of Flutter's most powerful architectural tools. After using it across multiple production apps, I've collected a set of best practices that keep BLoC code clean, testable, and maintainable — especially as the app grows.</p>
@@ -544,6 +705,96 @@ switch (state) {
 
       <h2>សេចក្តីសន្និដ្ឋាន</h2>
       <p>BLoC នៅពេលអ្នកគោរពរចនាសម្ព័ន្ធរបស់វា: ជ្រើស Cubit សម្រាប់ករណីសាមញ្ញ scope providers ឱ្យបានត្រឹមត្រូវ កំណត់ states ជា sealed classes និងធ្វើតេស្តគ្រប់ path។ អនុវត្តទម្លាប់ទាំងនេះ ហើយ codebase Flutter របស់អ្នកនឹងស្អាត និងមានភាពជឿជាក់ នៅពេលវា scaling។</p>
+    `,
+    contentZh: `
+      <h2>引言</h2>
+      <p>BLoC（业务逻辑组件）模式是 Flutter 最强大的架构工具之一。在多个生产应用中使用了它之后，我收集了一套最佳实践，使 BLoC 代码保持干净、可测试和可维护 —— 尤其是在应用增长时。</p>
+
+      <h2>BLoC 与 Cubit —— 选择合适的工具</h2>
+      <p>Cubit 是 BLoC 的简化版本，用直接方法调用替换事件。将 Cubit 用于简单的、局部化的逻辑。当您需要事件历史、转换或防抖时，请使用 BLoC。</p>
+      <pre><code>// Cubit — 直接方法调用
+class ThemeCubit extends Cubit&lt;ThemeMode&gt; {
+  ThemeCubit() : super(ThemeMode.light);
+  void toggle() =&gt; emit(state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
+}
+
+// BLoC — 事件驱动，支持转换器
+class SearchBloc extends Bloc&lt;SearchEvent, SearchState&gt; {
+  SearchBloc(this._repo) : super(SearchInitial()) {
+    on&lt;SearchQueryChanged&gt;(_onQueryChanged,
+      transformer: debounce(const Duration(milliseconds: 300)));
+  }
+
+  Future&lt;void&gt; _onQueryChanged(SearchQueryChanged e, Emitter emit) async {
+    emit(SearchLoading());
+    final results = await _repo.search(e.query);
+    emit(SearchLoaded(results));
+  }
+}</code></pre>
+
+      <h2>在正确的层级提供 BLoC</h2>
+      <p>始终将 <code>BlocProvider</code> 放置在需要 BLoC 的最高组件中 —— 既不要更高，也不要更低。提供得太高会浪费内存；提供得太低会导致缺失上下文错误。</p>
+      <pre><code>// ✅ 正确范围到需要它的路由
+GoRoute(
+  path: '/search',
+  builder: (context, state) =&gt; BlocProvider(
+    create: (ctx) =&gt; SearchBloc(ctx.read&lt;SearchRepository&gt;()),
+    child: const SearchPage(),
+  ),
+)</code></pre>
+
+      <h2>设计密封的、不可变的状态</h2>
+      <p>切勿使用多个布尔值来建模状态 —— 这会产生无效的组合。使用 <code>sealed</code> 类（Dart 3+）或 <code>freezed</code> 包来实现穷举的、编译器检查的状态。</p>
+      <pre><code>sealed class OrderState {}
+final class OrderInitial extends OrderState {}
+final class OrderLoading extends OrderState {}
+final class OrderSuccess extends OrderState {
+  final Order order;
+  OrderSuccess(this.order);
+}
+final class OrderFailure extends OrderState {
+  final String message;
+  OrderFailure(this.message);
+}
+
+// 在 UI 中 —— switch 是穷举的，编译器会捕获缺失的 case
+switch (state) {
+  case OrderInitial():  return const SizedBox.shrink();
+  case OrderLoading():  return const CircularProgressIndicator();
+  case OrderSuccess():  return OrderCard(order: state.order);
+  case OrderFailure():  return ErrorView(message: state.message);
+}</code></pre>
+
+      <h2>流管理与释放</h2>
+      <p><code>BlocProvider</code> 在组件离开树时自动关闭您的 BLoC。只有在 <code>BlocProvider</code> 外部实例化 BLoC 时才需要手动管理释放。</p>
+      <pre><code>class _MyPageState extends State&lt;MyPage&gt; {
+  late final MyBloc _bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc = MyBloc();
+  }
+
+  @override
+  void dispose() {
+    _bloc.close(); // 在 BlocProvider 外部创建时需要
+    super.dispose();
+  }
+}</code></pre>
+
+      <h2>使用 bloc_test 编写测试</h2>
+      <p><code>bloc_test</code> 包使 BLoC 单元测试具有表现力且简洁。测试每个事件到状态的路径。</p>
+      <pre><code>blocTest&lt;SearchBloc, SearchState&gt;(
+  'emits [Loading, Loaded] on SearchQueryChanged',
+  build: () =&gt; SearchBloc(FakeSearchRepository()),
+  act: (bloc) =&gt; bloc.add(SearchQueryChanged('flutter')),
+  wait: const Duration(milliseconds: 350), // 等待防抖
+  expect: () =&gt; [isA&lt;SearchLoading&gt;(), isA&lt;SearchLoaded&gt;()],
+);</code></pre>
+
+      <h2>结论</h2>
+      <p>当您遵守其结构时，BLoC 就会大放异彩：为简单情况选择 Cubit，正确范围提供者，将状态建模为密封类，并测试每条路径。养成这些习惯，您的 Flutter 代码库在扩展时将会保持干净和自信。</p>
     `,
   },
 

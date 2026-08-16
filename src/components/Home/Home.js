@@ -125,10 +125,10 @@ function Home() {
                 target="_blank"
                 rel="noreferrer"
                 className="telegram-qr-card"
-                aria-label="Open Telegram"
+                aria-label={t("telegramAriaLabel")}
               >
-                <img src={telegramQrUrl} alt="Telegram QR code" />
-                <span>Telegram</span>
+                <img src={telegramQrUrl} alt={t("telegramQrAlt")} />
+                <span>{t("telegramLabel")}</span>
               </a>
 
               {/* Main Content */}

@@ -1245,6 +1245,15 @@ button:focus {
   border-top-right-radius: 20px !important;
 }
 
+.project-card-img {
+  height: auto !important;
+  max-height: 240px !important;
+  width: 100% !important;
+  object-fit: contain !important;
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+}
+
 .blog-link {
   text-decoration: none !important;
   display: block !important;

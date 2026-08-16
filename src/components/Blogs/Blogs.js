@@ -29,11 +29,11 @@ function Blogs() {
         <Row className="blog-row" style={{ justifyContent: "center" }}>
           {blogEntries.map(({ key, img }) => {
             const post = blogPosts[key];
-            const title = language === "km" && post.titleKm ? post.titleKm : post.title;
-            const description = language === "km" && post.descriptionKm ? post.descriptionKm : post.description;
-            const date = language === "km" && post.dateKm ? post.dateKm : post.date;
-            const readTime = language === "km" && post.readTimeKm ? post.readTimeKm : post.readTime;
-            const tags = language === "km" && post.tagsKm ? post.tagsKm : post.tags;
+            const title = language === "km" && post.titleKm ? post.titleKm : (language === "zh" && post.titleZh ? post.titleZh : post.title);
+            const description = language === "km" && post.descriptionKm ? post.descriptionKm : (language === "zh" && post.descriptionZh ? post.descriptionZh : post.description);
+            const date = language === "km" && post.dateKm ? post.dateKm : (language === "zh" && post.dateZh ? post.dateZh : post.date);
+            const readTime = language === "km" && post.readTimeKm ? post.readTimeKm : (language === "zh" && post.readTimeZh ? post.readTimeZh : post.readTime);
+            const tags = language === "km" && post.tagsKm ? post.tagsKm : (language === "zh" && post.tagsZh ? post.tagsZh : post.tags);
 
             return (
               <Col md={4} className="blog-card" key={key}>
