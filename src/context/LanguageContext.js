@@ -89,6 +89,16 @@ const translations = {
             "Designed efficient SQL queries and REST APIs, reducing application response time by 25%.",
           ],
         },
+        {
+          title: "Designer & Video Editor",
+          company: "Freelance",
+          period: "2024 – Present",
+          details: [
+            "Provided freelance design and video editing services for clients, creating visual content for social media, branding, and marketing campaigns.",
+            "Edited and produced high-quality videos using modern tools, improving client engagement and online presence.",
+            "Collaborated with diverse teams to deliver creative solutions tailored to client needs.",
+          ],
+        },
       ],
       education: [
         {
