@@ -8,7 +8,6 @@ import loan from "../../Assets/Projects/pos_loan.png";
 import pos_coffee from "../../Assets/Projects/coffee_pos.png";
 import ecommerce_web from "../../Assets/Projects/e-commerce_web.png";
 import admin from "../../Assets/Projects/admin.png";
-import chatify from "../../Assets/Projects/dark_mode.png";
 import emotion from "../../Assets/Projects/elements.png";
 import pos_system from "../../Assets/Projects/pos_system.png";
 import looma from "../../Assets/Projects/looma.png";
@@ -133,7 +132,7 @@ export const projects = {
     demoLink: "",
   },
       project14: {
-    title: "LOOMA Ecommerce",
+    title: "LOOMA Ecommerce App",
     titleKm: "កម្មវិធីទិញទំនិញតាមអនឡាញ LOOMA",
     imgPath: looma,
     description: "A premium cross-platform e-commerce mobile application featuring dynamic product catalogs, seamless navigation, interactive rating systems, and personal wishlists.",

@@ -16,6 +16,7 @@ import {
 } from "react-icons/ai";
 import { FaTelegram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { SiTiktok, SiGitlab } from "react-icons/si";
+
 import nodeIcon from "../../Assets/TechIcons/Node.svg";
 import flutterIcon from "../../Assets/TechIcons/flutter.svg";
 import swiftIcon from "../../Assets/TechIcons/swift-svgrepo.svg";
@@ -27,7 +28,6 @@ import figma from "../../Assets/TechIcons/figma.png";
 import laravel from "../../Assets/TechIcons/laravel.png";
 import apple from "../../Assets/TechIcons/apple.png";
 
-
 function Home() {
   const { t } = useLanguage();
   const telegramUrl = "https://t.me/bunleng_dev";
@@ -35,18 +35,16 @@ function Home() {
     "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Ft.me%2Fbunleng_dev";
 
   const techBadges = [
-    { label: "Flutter", icon: flutterIcon, color: "#02569b" },
-    { label: "Swift", icon: swiftIcon, color: "#ffac45" },
-    { label: "Kotlin", icon: kotlinIcon, color: "#7f52ff" },
-    { label: "Java", icon: javaIcon, color: "#f89820" },
-    { label: "Postman", icon: postmanIcon, color: "#ff6c37" },
-    {label: "Figma", icon: figma, color: "#f24e1e"},
-    {label:"Apple", icon: apple, color:"#000000"},
-    { label: "Android Studio", icon: androidstudio, color: "#2994eb" },
-    { label: "Laravel", icon:laravel, color: "#ff2d20" },
-    { label: "Node.js", icon: nodeIcon, color: "#339933" },
-
-
+    { id: "flutter", label: "Flutter", icon: flutterIcon, color: "#02569b" },
+    { id: "swift", label: "Swift", icon: swiftIcon, color: "#ffac45" },
+    { id: "kotlin", label: "Kotlin", icon: kotlinIcon, color: "#7f52ff" },
+    { id: "java", label: "Java", icon: javaIcon, color: "#f89820" },
+    { id: "postman", label: "Postman", icon: postmanIcon, color: "#ff6c37" },
+    { id: "figma", label: "Figma", icon: figma, color: "#f24e1e" },
+    { id: "apple", label: "Apple", icon: apple, color: "#000000" },
+    { id: "androidstudio", label: "Android Studio", icon: androidstudio, color: "#2994eb" },
+    { id: "laravel", label: "Laravel", icon: laravel, color: "#ff2d20" },
+    { id: "node", label: "Node.js", icon: nodeIcon, color: "#339933" },
   ];
 
   const services = [
@@ -60,14 +58,14 @@ function Home() {
   ];
 
   const heroSocialLinks = [
-    { icon: <AiFillGithub />, href: "https://github.com/THONBUNLENG", label: t("socialLabels.github") },
-    { icon: <SiGitlab />, href: "https://gitlab.com/leng94570", label: t("socialLabels.gitlab") },
-    { icon: <FaLinkedin />, href: "https://kh.linkedin.com/in/thon-bunleng-dev", label: t("socialLabels.linkedin") },
-    { icon: <FaTelegram />, href: "https://t.me/bunleng_dev", label: t("socialLabels.telegram") },
-    { icon: <AiOutlineFacebook />, href: "https://www.facebook.com/wen.linji.i", label: t("socialLabels.facebook") },
-    { icon: <FaYoutube />, href: "https://www.youtube.com/", label: t("socialLabels.youtube") },
-    { icon: <SiTiktok />, href: "https://www.tiktok.com/@wen_lin1314", label: t("socialLabels.tiktok") },
-    { icon: <AiFillPhone />, href: "tel:+855011820595", label: t("socialLabels.phone") },
+    { id: "github", icon: <AiFillGithub />, href: "https://github.com/THONBUNLENG", label: t("socialLabels.github") },
+    { id: "gitlab", icon: <SiGitlab />, href: "https://gitlab.com/leng94570", label: t("socialLabels.gitlab") },
+    { id: "linkedin", icon: <FaLinkedin />, href: "https://kh.linkedin.com/in/thon-bunleng-dev", label: t("socialLabels.linkedin") },
+    { id: "telegram", icon: <FaTelegram />, href: "https://t.me/bunleng_dev", label: t("socialLabels.telegram") },
+    { id: "facebook", icon: <AiOutlineFacebook />, href: "https://www.facebook.com/wen.linji.i", label: t("socialLabels.facebook") },
+    { id: "youtube", icon: <FaYoutube />, href: "https://www.youtube.com/", label: t("socialLabels.youtube") },
+    { id: "tiktok", icon: <SiTiktok />, href: "https://www.tiktok.com/@wen_lin1314", label: t("socialLabels.tiktok") },
+    { id: "phone-metfone", icon: <AiFillPhone />, href: "tel:+855883205515", label: t("socialLabels.phone") },
   ];
 
   return (
@@ -85,11 +83,11 @@ function Home() {
                   className="img-fluid home-hero-img"
                 />
 
-                {/* Tech Stack Badges - centered on the image, no color fill */}
+                {/* Tech Stack Badges */}
                 <div className="tech-badges-container">
                   {techBadges.map((badge, idx) => (
                     <div
-                      key={idx}
+                      key={badge.id}
                       className="tech-badge-item"
                       style={{ "--badge-index": idx }}
                     >
@@ -138,7 +136,8 @@ function Home() {
                 <span className="freelance-badge">{t("availableFreelance")}</span>
 
                 <h1 className="hero-title">
-                  {t("homeHeroTitle")} <span className="text-gold">{t("homeHeroTitleHighlight")}</span>
+                  {t("homeHeroTitle")}{" "}
+                  <span className="text-gold">{t("homeHeroTitleHighlight")}</span>
                 </h1>
 
                 <p className="hero-tagline">{t("homeHeroTagline")}</p>
@@ -157,9 +156,13 @@ function Home() {
 
                 {/* Contact Info */}
                 <div className="contact-info">
-                  <p className="contact-phone">
+                  <p className="phone-cellcard">
                     <AiFillPhone style={{ marginRight: "8px" }} />
-                    {t("contactPhone")}
+                    +855 11 820 595
+                  </p>
+                  <p className="phone-metfone">
+                    <AiFillPhone style={{ marginRight: "8px" }} />
+                    +855 88 320 5515
                   </p>
                   <p className="contact-email">
                     <AiOutlineMail style={{ marginRight: "8px" }} />
@@ -169,9 +172,9 @@ function Home() {
 
                 {/* Social Icons Row */}
                 <div className="hero-social-row">
-                  {heroSocialLinks.map((link, idx) => (
+                  {heroSocialLinks.map((link) => (
                     <a
-                      key={idx}
+                      key={link.id}
                       href={link.href}
                       target="_blank"
                       rel="noreferrer"
