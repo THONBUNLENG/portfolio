@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Github from "./Github";
 import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
-import laptopImg from "../../Assets/me2.png";
+import laptopImg from "../../Assets/home-main.svg";
 import Toolstack from "./Toolstack";
 import Particle from "../Particle";
 import { useLanguage } from "../../context/LanguageContext";

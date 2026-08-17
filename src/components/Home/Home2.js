@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Tilt from "react-parallax-tilt";
-import homeLogo from "../../Assets/me6.jpg";
+import homeLogo from "../../Assets/me7.jpg";
 import { useLanguage } from "../../context/LanguageContext";
 
 function Home2() {
