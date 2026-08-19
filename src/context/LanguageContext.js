@@ -85,7 +85,7 @@ const translations = {
         {
           title: "Developer Freelancer & Open Source Contributor",
           company: "Freelance & Open Source",
-          period: "2023 – Present",
+          period: "2024 – Present",
           details: [
             "Built and deployed full-stack applications using Laravel, React, and Flutter for various clients.",
             "Contributed to open-source projects and created technical content (blogs and tutorials) for the developer community.",
@@ -205,7 +205,7 @@ const translations = {
     navbarBlogs: "បន្ដអត្ថបទ",
     homeGreeting: "សួស្តី!",
     homeNameTranslation: "ថុន ប៊ុនឡេង",
-    homeIntroPrefix: "បន្ដសូមអនុញ្ញាត",
+    homeIntroPrefix: "ខ្ញុំចង់",
     homeIntroMiddle: "ណែនាំ",
     homeIntroSuffix: "ខ្លួនឯង",
     availableFreelance: "អាចទទួលការងារឯករាជ្យបាន",
@@ -225,7 +225,7 @@ const translations = {
     telegramAriaLabel: "បើក Telegram",
     telegramQrAlt: "កូដ QR Telegram",
     telegramLabel: "Telegram",
-    aboutTitlePrefix: "បន្ដណែនាំខ្លះៗអំពី",
+    aboutTitlePrefix: "ស្គាល់",
     aboutTitleHighlight: "ខ្ញុំ",
     aboutTitleSuffix: "...!",
     aboutCardName: "ថុន ប៊ុនឡេង​ ",
@@ -279,7 +279,7 @@ const translations = {
         {
           title: "អ្នកអភិវឌ្ឍន៍ឯករាជ្យ & អ្នករួមចំណែក Open Source",
           company: "Freelance & Open Source",
-          period: "2023 – បច្ចុប្បន្ន",
+          period: "2024 – បច្ចុប្បន្ន",
           details: [
             "បង្កើតនិងដំណើរការកម្មវិធី Full-Stack ដោយប្រើ Laravel, React, និង Flutter សម្រាប់អតិថិជនជាច្រើន។",
             "រួមចំណែកនៅក្នុងគម្រោង Open Source និងបង្កើតមាតិកាបច្ចេកទេស (ប្លុក និង tutorial) សម្រាប់សហគមន៍អ្នកអភិវឌ្ឍន៍។",
@@ -378,7 +378,7 @@ const translations = {
       facebook: "Facebook",
       youtube: "YouTube",
       tiktok: "TikTok",
-      phone: "电话",
+      phone: "ទូរស័ព្ទ",
     },
   },
   zh: {
@@ -463,7 +463,7 @@ const translations = {
         {
           title: "自由职业开发者与开源贡献者",
           company: "自由职业与开源",
-          period: "2023年 – 至今",
+          period: "2024年 – 至今",
           details: [
             "使用 Laravel、React 和 Flutter 为各种客户构建和部署全栈应用。",
             "为开源项目做贡献，并为开发者社区创建技术内容（博客和教程）。",

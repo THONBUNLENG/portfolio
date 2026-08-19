@@ -69,9 +69,7 @@ button:focus {
   height: 100vh;
 }
 
-.scroll {
-  overflow-y: auto;
-}
+
 
 /* --------- */
 /*Scrollbar   */
@@ -161,7 +159,33 @@ button:focus {
   transform: rotate(-135deg) !important;
   opacity: 0.9 !important;
 }
+.home-about-section {
+  padding: 80px 20px;
+}
 
+.home-about-description {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.home-intro-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+.home-about-body {
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  line-height: 1.8;
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .home-about-body {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
 @media (max-width: 767px) {
   .navbar {
     padding: 1rem 2rem !important;
@@ -253,40 +277,7 @@ button:focus {
 /* --------- */
 /* Home section */
 /* --------- */
-.wave {
-  animation-name: wave-animation;
-  animation-duration: 2.1s;
-  animation-iteration-count: infinite;
-  transform-origin: 70% 70%;
-  display: inline-block;
-}
 
-@keyframes wave-animation {
-  0% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(14deg);
-  }
-  20% {
-    transform: rotate(-8deg);
-  }
-  30% {
-    transform: rotate(14deg);
-  }
-  40% {
-    transform: rotate(-4deg);
-  }
-  50% {
-    transform: rotate(10deg);
-  }
-  60% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
 #tsparticles {
   position: fixed !important;
   background-repeat: no-repeat !important;
@@ -296,9 +287,7 @@ button:focus {
   z-index: 0 !important;
 }
 
-.home-header {
-  padding-top: 80px !important;
-}
+
 
 .home-section {
   position: relative;
@@ -407,12 +396,7 @@ button:focus {
   font-weight: 400;
 }
 
-.hero-description {
-  font-size: 1.05em;
-  color: #b0b8c7;
-  line-height: 1.6;
-  max-width: 600px;
-}
+
 
 /* Services Section */
 .services-section {
@@ -459,7 +443,6 @@ button:focus {
   border-top: 1px solid rgba(255, 193, 7, 0.2);
 }
 
-.contact-phone,
 .contact-email {
   color: #b0b8c7;
   font-size: 0.95em;
@@ -469,17 +452,9 @@ button:focus {
   gap: 8px;
 }
 
-.main-name {
-  color: #ffc107;
-}
 
-.name-translation {
-  font-size: 0.4em;
-  color: #888;
-  font-weight: normal;
-  margin-left: 10px;
-  vertical-align: middle;
-}
+
+
 
 .Typewriter__wrapper {
   font-size: 2.2em !important;
@@ -490,17 +465,7 @@ button:focus {
   font-size: 2.4em !important;
   color: #ffc107 !important;
 }
-.about-text-col {
-  padding-top: 30px;
-  padding-bottom: 50px;
-}
 
-@media (max-width: 767px) {
-  .about-text-col {
-    padding-top: 10px !important;
-    padding-bottom: 20px !important;
-  }
-}
 @media (max-width: 767px) {
   .Typewriter__wrapper {
     font-size: 1.4em !important;
@@ -512,24 +477,9 @@ button:focus {
   }
 }
 
-.myAvtar {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
 
-.home-about-avatar {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  max-height: none;
-  object-fit: contain;
-  object-position: center center;
-  display: block;
-  margin: 0 auto;
-}
+
+
 
 /* --------- */
 /* Hero Social Icons Row */
@@ -808,13 +758,7 @@ button:focus {
     margin-bottom: 6px;
   }
 
-  .myAvtar {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
+
 
   .home-about-description {
     text-align: center !important;
@@ -891,7 +835,6 @@ button:focus {
     padding-top: 15px;
   }
 
-  .contact-phone,
   .contact-email {
     font-size: 0.85em;
     margin-bottom: 4px;
@@ -933,57 +876,11 @@ button:focus {
   margin: 0 auto;
 }
 
-.home-about-social {
-  text-align: center !important;
-  padding-top: 25px;
-  color: white !important;
-}
 
-.home-about-social-links {
-  justify-content: center !important;
-  padding-top: 15px !important;
-  display: inline-block !important;
-  position: relative !important;
-  padding-inline-start: 0 !important;
-}
 
-.home-social-icons {
-  position: relative !important;
-  display: inline-block !important;
-  width: 40px !important;
-  height: 40px !important;
-  text-align: center !important;
-  font-size: 1.2em !important;
-  line-height: 2em !important;
-  background: rgba(255, 255, 255, 0.972) !important;
-  border-radius: 50% !important;
-  transition: 0.5s !important;
-}
 
-.home-social-icons::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: #ffc107;
-  transition: 0.5s;
-  transform: scale(0.9);
-  z-index: -1;
-}
 
-.home-social-icons:hover::before {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(255, 193, 7, 0.6);
-}
 
-.home-social-icons:hover {
-  color: #1e2a47;
-  box-shadow: 0 0 5px #ffc107;
-  text-shadow: 0 0 2px #ffc107;
-}
 
 .social-icons {
   display: inline-block !important;
@@ -991,9 +888,7 @@ button:focus {
   padding-left: 15px;
 }
 
-.icon-colour {
-  color: #ffc107 !important;
-}
+
 
 /* --------- */
 /* Footer */
@@ -1474,66 +1369,7 @@ button:focus {
     animation: none;
   }
 }
-/* --------- */
-/* Techstack Carousel — swipe left/right, 3 per slide */
-/* --------- */
-.tech-carousel-wrapper {
-  width: 100%;
-  padding-bottom: 30px;
-}
 
-.tech-carousel-track {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  gap: 0;
-  padding-bottom: 10px;
-}
-
-.tech-carousel-track::-webkit-scrollbar {
-  height: 6px;
-}
-
-.tech-carousel-slide {
-  flex: 0 0 100%;
-  scroll-snap-align: center;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 10px 20px;
-}
-
-.tech-carousel-slide .tech-icons {
-  flex: 1 1 0;
-  max-width: 180px;
-}
-
-.tech-carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 15px;
-}
-
-.tech-carousel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-@media (max-width: 767px) {
-  .tech-carousel-slide {
-    gap: 12px;
-    padding: 10px 15px;
-  }
-
-  .tech-carousel-slide .tech-icons {
-    max-width: none;
-  }
-}
 /* --------- */
 /* About Card — glass style redesign */
 /* --------- */
@@ -1636,126 +1472,7 @@ button:focus {
   /* min-height: 100vh; <-- REMOVED: causes big empty gaps when content is short */
 }
 
-/* --------- */
-/* Language Dropdown — purple pill + white panel */
-/* --------- */
-.lang-dropdown-wrapper {
-  position: relative;
-  display: inline-block;
-}
 
-.lang-dropdown-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #c770f0 0%, #8b3fd6 100%);
-  border: none;
-  color: #ffffff;
-  font-size: 0.9rem;
-  font-weight: 700;
-  padding: 8px 16px;
-  border-radius: 25px;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(199, 112, 240, 0.35);
-  transition: all 0.25s ease;
-}
-
-.lang-dropdown-trigger:hover {
-  box-shadow: 0 6px 18px rgba(199, 112, 240, 0.5);
-  transform: translateY(-1px);
-}
-
-.lang-dropdown-globe {
-  font-size: 1.1em;
-}
-
-.lang-dropdown-label {
-  letter-spacing: 0.5px;
-}
-
-.lang-dropdown-arrow {
-  font-size: 0.7rem;
-  transition: transform 0.25s ease;
-}
-
-.lang-dropdown-arrow.open {
-  transform: rotate(180deg);
-}
-
-.lang-dropdown-panel {
-  position: absolute;
-  top: calc(100% + 14px);
-  right: 0;
-  z-index: 1000;
-}
-
-.lang-dropdown-pointer {
-  position: absolute;
-  top: -7px;
-  right: 20px;
-  width: 14px;
-  height: 14px;
-  background: #ffffff;
-  transform: rotate(45deg);
-  box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.04);
-}
-
-.lang-dropdown-menu {
-  position: relative;
-  min-width: 200px;
-  background: #ffffff;
-  border-radius: 14px;
-  list-style: none;
-  margin: 0;
-  padding: 8px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
-  overflow: hidden;
-}
-
-.lang-dropdown-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
-  border-radius: 10px;
-  color: #2d2d3a;
-  font-size: 0.95rem;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.2s ease;
-}
-
-.lang-dropdown-item:hover {
-  background: #f4f0fa;
-}
-
-.lang-dropdown-item.active {
-  font-weight: 700;
-  color: #1a1a2e;
-}
-
-.lang-dropdown-flag {
-  width: 24px;
-  height: 18px;
-  border-radius: 3px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-@media (max-width: 767px) {
-  .lang-dropdown-trigger {
-    padding: 6px 12px !important;
-    font-size: 0.8rem !important;
-  }
-
-  .lang-dropdown-panel {
-    right: -10px;
-  }
-
-  .lang-dropdown-menu {
-    min-width: 170px;
-  }
-}
 /* --------- */
 /* About Image -
 /* --------- */
@@ -1856,40 +1573,9 @@ button:focus {
   background-color: transparent !important;
 }
 
-.about-activity {
-  list-style: none !important;
-  text-align: left !important;
-  padding-left: 1px !important;
-}
 
-.about-img {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  overflow: visible !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
 
-.about-img img {
-  max-width: 90%;
-  width: auto;
-  height: auto !important;
-  max-height: 500px;
-  object-fit: contain !important;
-}
 
-@media (max-width: 767px) {
-  .about-img {
-    padding-top: 0 !important;
-    height: auto !important;
-  }
-
-  .about-img img {
-    max-width: 100%;
-    max-height: 400px;
-  }
-}
 
 /* --------- */
 /* Resume */
@@ -1984,34 +1670,9 @@ button:focus {
   font-family: sans-serif !important;
 }
 
-.like-btn {
-  background-color: #934cce5e !important;
-  border-color: #934cce5e !important;
-  padding: 0.25rem 0.98rem !important;
-  border-radius: 5px !important;
-  line-height: 1.4 !important;
-  transition: 0.3s ease !important;
-}
 
-.like-btn:hover {
-  transform: translateY(-2px) !important;
-  background-color: #a24dd386 !important;
-  border-color: #a24dd386 !important;
-}
 
-.animate-like {
-  animation-name: likeAnimation;
-  animation-fill-mode: forwards;
-  animation-duration: 0.85s;
-}
-@keyframes likeAnimation {
-  0% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+
 
 .fork-btn {
   font-size: 1.1em !important;
