@@ -10,7 +10,7 @@ jest.mock("./AboutCard", () => () => <div data-testid="aboutcard-mock">Aboutcard
 jest.mock("./Toolstack", () => () => <div data-testid="toolstack-mock">Toolstack</div>);
 jest.mock("../Particle", () => () => <div data-testid="particle-mock">Particle</div>);
 
-// Mock useLanguage hook
+// Mock useLanguage hook with comprehensive keys
 jest.mock("../../context/LanguageContext", () => ({
   useLanguage: jest.fn(() => ({
     t: (key) => {
@@ -20,6 +20,17 @@ jest.mock("../../context/LanguageContext", () => ({
         aboutTitleSuffix: "...!",
         professionalSkills: "Professional Skillset",
         toolsTitle: "Tools I use",
+        aboutCardName: "THON BUNLENG",
+        aboutCardCity: "Phnom Penh, Cambodia",
+        aboutCardRole: "Software Developer",
+        aboutCardEducation: "Computer Science",
+        aboutCardUniversity: "BELTEI International University",
+        aboutCardActivitiesPrefix: "Outside of coding, I love engaging in activities that keep me creative and inspired",
+        "aboutCardActivities.games": "Playing Games",
+        "aboutCardActivities.blogs": "Writing Tech Blogs",
+        "aboutCardActivities.travel": "Traveling and Exploring New Places",
+        aboutCardQuote: '"Strive to build things that make a difference!"',
+        aboutCardFooter: "THON BUNLENG",
       };
       return translations[key] || key;
     },
@@ -28,62 +39,60 @@ jest.mock("../../context/LanguageContext", () => ({
 }));
 
 // Mock image import
-jest.mock("../../Assets/me2.jpg", () => "laptop-img-mock.jpg");
+jest.mock("../../Assets/home-main.svg", () => "laptop-img-mock.svg");
 
 function renderAbout() {
   return render(<About />);
 }
 
-describe('About Component', () => {
-  test('renders the main heading with translated text', () => {
+describe('About Component Integration Tests', () => {
+  test('renders the main section heading correctly with translations', () => {
     renderAbout();
-    expect(screen.getByText(/Know Who/)).toBeInTheDocument();
+    expect(screen.getByText(/Know Who/i)).toBeInTheDocument();
     expect(screen.getByText("I'M")).toBeInTheDocument();
     expect(screen.getByText("...!")).toBeInTheDocument();
   });
 
-  test('renders the Particle component mock', () => {
+  test('renders background Particle visual effects wrapper', () => {
     renderAbout();
     expect(screen.getByTestId('particle-mock')).toBeInTheDocument();
   });
 
-  test('renders the Aboutcard component mock', () => {
+  test('renders the main Aboutcard section component', () => {
     renderAbout();
     expect(screen.getByTestId('aboutcard-mock')).toBeInTheDocument();
   });
 
-  test('renders the about image', () => {
+  test('renders vector laptop/developer illustration image with correct src and alt attributes', () => {
     renderAbout();
     const image = screen.getByAltText('about');
     expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('src', 'laptop-img-mock.jpg');
+    expect(image).toHaveAttribute('src', 'laptop-img-mock.svg');
   });
 
-  test('renders the "Professional Skillset" heading', () => {
+  test('renders the Professional Skillset title elements correctly', () => {
     renderAbout();
-    // The component splits the string and renders it.
-    // We check for parts of it.
-    expect(screen.getByText(/Professional/)).toBeInTheDocument();
-    expect(screen.getByText(/Skillset/)).toBeInTheDocument();
+    expect(screen.getByText(/Professional/i)).toBeInTheDocument();
+    expect(screen.getByText("Skillset")).toBeInTheDocument();
   });
 
-  test('renders the Techstack component mock', () => {
+  test('renders Techstack component for skills overview', () => {
     renderAbout();
     expect(screen.getByTestId('techstack-mock')).toBeInTheDocument();
   });
 
-  test('renders the "Tools I use" heading', () => {
+  test('renders the Tools I use heading split elements', () => {
     renderAbout();
-    expect(screen.getByText(/Tools/)).toBeInTheDocument();
-    expect(screen.getByText(/I use/)).toBeInTheDocument();
+    expect(screen.getByText("Tools")).toBeInTheDocument();
+    expect(screen.getByText("I use")).toBeInTheDocument();
   });
 
-  test('renders the Toolstack component mock', () => {
+  test('renders Toolstack component for software tools showcase', () => {
     renderAbout();
     expect(screen.getByTestId('toolstack-mock')).toBeInTheDocument();
   });
 
-  test('renders the Github component mock', () => {
+  test('renders Github component for commit calendar visualization', () => {
     renderAbout();
     expect(screen.getByTestId('github-mock')).toBeInTheDocument();
   });

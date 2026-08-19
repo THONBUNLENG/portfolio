@@ -18,19 +18,18 @@ function AboutCard() {
     <Card className="quote-card-view about-glass-card">
       <Card.Body>
         <blockquote className="blockquote mb-0">
-          <p className="about-card-text">
-            {language === "en" || language === "zh"
-              ? <>
-                  {language === "zh" ? "大家好！我是 " : "Hi everyone! I&apos;m "}<span className="purple">{t("aboutCardName")}</span>{" "}
-                  {language === "zh" ? "来自" : "from"} <span className="purple">{t("aboutCardCity")}</span>.
-                  <br />
-                  {language === "zh" ? "我目前是一名" : "I&apos;m currently working as a"} <span className="purple">{t("aboutCardRole")}</span>.
-                  <br />
-                  {language === "zh" ? "我拥有" : "I hold a Bachelor&apos;s Degree in"} <span className="purple">{t("aboutCardEducation")}</span> {language === "zh" ? "学位，毕业于" : "from"} <span className="purple">{t("aboutCardUniversity")}</span>.
-                </>
-              : <>{t("aboutCardParagraph")}</>
-            }
-          </p>
+          {language === "en" || language === "zh" ? (
+            <p className="about-card-text">
+              {language === "zh" ? "大家好！我是 " : "Hi everyone! I&apos;m "}<span className="purple">{t("aboutCardName")}</span>{" "}
+              {language === "zh" ? "来自" : "from"} <span className="purple">{t("aboutCardCity")}</span>.
+              <br />
+              {language === "zh" ? "我目前是一名" : "I&apos;m currently working as a"} <span className="purple">{t("aboutCardRole")}</span>.
+              <br />
+              {language === "zh" ? "我拥有" : "I hold a Bachelor&apos;s Degree in"} <span className="purple">{t("aboutCardEducation")}</span> {language === "zh" ? "学位，毕业于" : "from"} <span className="purple">{t("aboutCardUniversity")}</span>.
+            </p>
+          ) : (
+            <p className="about-card-text" dangerouslySetInnerHTML={{ __html: t("aboutCardParagraph") }} />
+          )}
 
           <p className="about-activities-intro">
             {t("aboutCardActivitiesPrefix")}

@@ -176,14 +176,25 @@ button:focus {
 
 .home-about-body {
   font-size: clamp(1rem, 1.6vw, 1.25rem);
+  text-align: justify;
+  text-wrap: pretty;
   line-height: 1.8;
   word-break: break-word;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.home-about-body span,
+.home-about-body b,
+.home-about-body strong {
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
   .home-about-body {
     font-size: 1rem;
     line-height: 1.7;
+    max-width: 100%;
   }
 }
 @media (max-width: 767px) {
@@ -772,7 +783,7 @@ button:focus {
 
   .home-about-body {
     font-size: 1em !important;
-    text-align: center !important;
+    text-align: justify !important;
   }
 }
 
@@ -863,7 +874,7 @@ button:focus {
 .home-about-body {
   padding-top: 20px;
   font-size: 1.2em !important;
-  text-align: left;
+  text-align: justify;
 }
 
 .home-about-avatar {

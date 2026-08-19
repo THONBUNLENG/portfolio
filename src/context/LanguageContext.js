@@ -4,7 +4,7 @@ const LanguageContext = createContext();
 
 const translations = {
   en: {
-    homeim:"I'M",
+    homeim: "I'M",
     navbarHome: "Home",
     navbarAbout: "About",
     navbarProjects: "Projects",
@@ -22,7 +22,7 @@ const translations = {
     homeImPrefix: "I'M",
     homeImName: "Thon Bunleng",
     homeIntroParagraph:
-      "I'm a Software Engineer who loves transforming ideas into reliable, scalable products. Over time, I've explored several technologies and found my passion in building high-performance systems and intuitive user experiences. I'm proficient in <span class=\"tech-flutter\">Flutter</span>, <span class=\"tech-react-native\">React Native</span>, <span class=\"tech-swift\">Swift</span>, <span class=\"tech-kotlin\">Kotlin</span>, <span class=\"tech-javascript\">JavaScript</span>, <span class=\"tech-cpp\">C++</span>, <span class=\"tech-csharp\">C#</span>, <span class=\"tech-rust\">Rust</span>, <span class=\"tech-nodejs\">Node.js</span>, <span class=\"tech-laravel\">Laravel</span>, <span class=\"tech-python\">Python</span> and <span class=\"tech-java\">Java</span> — and I enjoy working across both backend and frontend stacks. My key areas of interest include developing Mobile Applications and Web Applications, Blockchain Solutions and exploring new ways to bridge on-chain and off-chain systems. Whenever possible, I love building projects with Flutter and modern frameworks like <span class=\"tech-reactjs\">React.js</span> and <span class=\"tech-nextjs\">Next.js</span>.",
+      "I'm a Software Engineer who loves transforming ideas into reliable, scalable products. Over time, I've explored several technologies and found my passion in building high-performance systems and intuitive user experiences.<br/><br/>I work across both frontend and backend stacks, with primary expertise in <span class=\"tech-flutter\">Flutter</span>, <span class=\"tech-react-native\">React Native</span>, <span class=\"tech-swift\">Swift</span>, <span class=\"tech-kotlin\">Kotlin</span>, <span class=\"tech-javascript\">JavaScript</span>, <span class=\"tech-laravel\">Laravel</span>, <span class=\"tech-nodejs\">Node.js</span>, and <span class=\"tech-python\">Python</span>.<br/><br/>My key areas of interest include Mobile & Web Applications, Blockchain Solutions, and exploring new ways to bridge on-chain and off-chain systems.",
     homeFindMe: "Find Me On",
     homeConnect: "Feel free to connect with me",
     homeConnectHighlight: "connect",
@@ -38,7 +38,7 @@ const translations = {
     aboutCardCity: "Phnom Penh, Cambodia",
     aboutCardRole: "Software Developer",
     aboutCardParagraph:
-      "Hi everyone! I&apos;m Thon Bunleng from Phnom Penh, Cambodia. I&apos;m a Software Developer passionate about building scalable mobile and web applications with clean architecture and modern tools.",
+      "Hi everyone! I'm Thon Bunleng from Phnom Penh, Cambodia. I'm a Software Developer passionate about building scalable mobile and web applications with clean architecture and modern tools.",
     aboutCardEducation: "Computer Science",
     aboutCardUniversity: "BELTEI International University",
     aboutCardActivitiesPrefix:
@@ -134,7 +134,7 @@ const translations = {
       ],
       tools: [
         "VS Code",
-        "Postman" ,
+        "Postman",
         "IntelliJ IDEA",
         "Android Studio",
         "Figma",
@@ -199,10 +199,10 @@ const translations = {
   },
   km: {
     navbarHome: "ទំព័រដើម",
-    navbarAbout: "បន្ដអំពីខ្ញុំ",
-    navbarProjects: "បន្ដគម្រោង",
-    navbarResume: "បន្ដប្រវត្តិរូប",
-    navbarBlogs: "បន្ដអត្ថបទ",
+    navbarAbout: "អំពីខ្ញុំ",
+    navbarProjects: "គម្រោង",
+    navbarResume: "ប្រវត្តិរូប",
+    navbarBlogs: "អត្ថបទ",
     homeGreeting: "សួស្តី!",
     homeNameTranslation: "ថុន ប៊ុនឡេង",
     homeIntroPrefix: "ខ្ញុំចង់",
@@ -211,11 +211,11 @@ const translations = {
     availableFreelance: "អាចទទួលការងារឯករាជ្យបាន",
     homeHeroTitle: "អ្នកអភិវឌ្ឍ",
     homeHeroTitleHighlight: "កម្មវិធី",
-    homeHeroTagline: "សាងសង់កម្មវិធីដែលមានគុណភាព យ៉ាងមានទំនុកចិត្តនឺងឆាប់រហ័ស",
+    homeHeroTagline: "សាងសង់កម្មវិធីដែលមានគុណភាព យ៉ាងមានទំនុកចិត្តនិងឆាប់រហ័ស",
     homeIntroParagraph:
-      "ខ្ញុំជាវិស្វករកម្មវិធីដែលស្រឡាញ់ការប្រែក្លាយគំនិតទៅជាផលិតផលដែលអាចជឿទុកចិត្តបាន និងស្រួលបន្ថែម។ តាមពេលវេលា ខ្ញុំបានសិក្សារស់ន័យបច្ចេកវិទ្យាជាច្រើន ហើយរកឃើញចំណង់ចំណូលចិត្តរបស់ខ្ញុំក្នុងការបង្កើតប្រព័ន្ធដែលមានប្រសិទ្ធភាពខ្ពស់ និងបទពិសោធន៍អ្នកប្រើប្រាស់ដ៏ងាយស្រួល។ ខ្ញុំស្ទាត់ជំនាញក្នុង <span class=\"tech-flutter\">Flutter</span>, <span class=\"tech-react-native\">React Native</span>, <span class=\"tech-swift\">Swift</span>, <span class=\"tech-kotlin\">Kotlin</span>, <span class=\"tech-javascript\">JavaScript</span>, <span class=\"tech-cpp\">C++</span>, <span class=\"tech-csharp\">C#</span>, <span class=\"tech-rust\">Rust</span>, <span class=\"tech-nodejs\">Node.js</span>, <span class=\"tech-laravel\">Laravel</span>, <span class=\"tech-python\">Python</span> និង <span class=\"tech-java\">Java</span> — ហើយខ្ញុំរីករាយក្នុងការធ្វើការទាំងផ្នែក Backend និង Frontend។ ចំណុចចាប់អារម្មណ៍សំខាន់របស់ខ្ញុំរួមមាន ការអភិវឌ្ឍកម្មវិធីទូរស័ព្ទ វេបសាយ ដំណោះស្រាយ Blockchain និងការស្វែងរកវិធីសាស្ត្រថ្មីៗដើម្បីភ្ជាប់ប្រព័ន្ធ on-chain និង off-chain។ នៅពេលណាដែលអាចធ្វើទៅបាន ខ្ញុំស្រឡាញ់ការសាងសង់គម្រោងជាមួយ Flutter និងគ្រោងការណ៍ទំនើបៗដូចជា <span class=\"tech-reactjs\">React.js</span> និង <span class=\"tech-nextjs\">Next.js</span>។",
-    homeFindMe: "រកឃើញខ្ញុំនៅ",
-    homeim:"ខ្ញុំបាទឈ្មោះ",
+      "ខ្ញុំជាវិស្វករកម្មវិធី (Software Engineer) ដែលមានចំណូលចិត្តក្នុងការផ្លាស់ប្តូរគំនិតច្នៃប្រឌិត ឱ្យទៅជាផលិតផលបច្ចេកវិទ្យាដែលមានប្រសិទ្ធភាព និងអាចពង្រីកមាត្រដ្ឋានបាន (Scalable)។ ខ្ញុំផ្តោតលើការបង្កើតប្រព័ន្ធដំណើរការល្បឿនលឿន ព្រមទាំងបទពិសោធន៍អ្នកប្រើប្រាស់ដ៏រលូន។<br/><br/>ខ្ញុំមានជំនាញ និងបទពិសោធន៍ក្នុងការធ្វើការទាំង Frontend និង Backend ដោយប្រើប្រាស់បច្ចេកវិទ្យាចម្បងៗដូចជា <span class=\"tech-flutter\">Flutter</span>, <span class=\"tech-laravel\">Laravel</span>, <span class=\"tech-nodejs\">Node.js</span>, <span class=\"tech-react-native\">React Native</span> និង <span class=\"tech-javascript\">JavaScript</span>។<br/><br/>គោលដៅចម្បងរបស់ខ្ញុំគឺការអភិវឌ្ឍ Mobile & Web Applications, ដំណោះស្រាយ Blockchain និងការភ្ជាប់ប្រព័ន្ធ on-chain ជាមួយ off-chain។",
+    homeFindMe: "រកខ្ញុំនៅទីនេះ",
+    homeim: "ខ្ញុំបាទឈ្មោះ",
     homeImPrefix: "ខ្ញុំបាទឈ្មោះ",
     homeImName: "ថុន ប៊ុនឡេង",
     homeConnect: "សូមទំនាក់ទំនងជាមួយខ្ញុំ",
@@ -228,29 +228,29 @@ const translations = {
     aboutTitlePrefix: "ស្គាល់",
     aboutTitleHighlight: "ខ្ញុំ",
     aboutTitleSuffix: "...!",
-    aboutCardName: "ថុន ប៊ុនឡេង​ ",
-    aboutCardCity: "រាជ្យធានីភ្នំពេញ,ប្រទេសកម្ពុជា",
+    aboutCardName: "ថុន ប៊ុនឡេង",
+    aboutCardCity: "រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា",
     aboutCardRole: "អ្នកអភិវឌ្ឍន៍កម្មវិធី",
     aboutCardParagraph:
-      "សួស្តីអ្នកគ្រប់គ្នា! ខ្ញុំបាទឈ្មោះ​ ថុន ប៊ុនឡេងមកពីរាជ្យធានីភ្នំពេញប្រទេសកម្ពុជា។ ខ្ញុំជាអ្នកអភិវឌ្ឍន៍កម្មវិធីដែលមានចំណង់ចំណូលចិត្តក្នុងការបង្កើតកម្មវិធីទូរស័ព្ទ និងវេបសាយដែលអាចពង្រីកបាន ដែលមានស្ថាបត្យកម្មស្អាត និងឧបករណ៍ទំនើប។",
+      "សួស្តីអ្នកគ្រប់គ្នា! ខ្ញុំបាទឈ្មោះ <span class=\"purple\">ថុន ប៊ុនឡេង</span> មកពី <span class=\"purple\">រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា</span>។<br />ខ្ញុំជាអ្នកអភិវឌ្ឍន៍កម្មវិធីដែលមានចំណង់ចំណូលចិត្តក្នុងការបង្កើតកម្មវិធីទូរស័ព្ទ និងវេបសាយដែលអាចពង្រីកបាន ដែលមានស្ថាបត្យកម្មស្អាត និងឧបករណ៍ទំនើប។",
     aboutCardEducation: "វិទ្យាសាស្ត្រកុំព្យូទ័រ",
     aboutCardUniversity: "សាកលវិទ្យាល័យអន្តរជាតិ ប៊ែលធី",
     aboutCardActivitiesPrefix:
       "ក្រៅពីការសរសេរកូដ ខ្ញុំស្រឡាញ់ធ្វើសកម្មភាពដែលធ្វើឱ្យខ្ញុំមានភាពច្នៃប្រឌិត និងទទួលការបំផុសគំនិត៖",
     aboutCardActivities: {
-      games: "កំពុងលេងហ្គេម 🎮",
+      games: "លេងហ្គេម 🎮",
       blogs: "សរសេរប្លុកបច្ចេកវិទ្យា ✍️",
-      travel: "ធ្វើដំណើរនិងរកមើលទីកន្លែងថ្មីៗ 🌍",
+      travel: "ធ្វើដំណើរនិងរុករកទីកន្លែងថ្មីៗ 🌍",
     },
     aboutCardQuote: '"ខិតខំបង្កើតអ្វីៗដែលបង្កើតការផ្លាស់ប្តូរ!"',
     aboutCardFooter: "ថុន ប៊ុនឡេង",
     professionalSkills: "ជំនាញវិជ្ជាជីវៈ",
     toolsTitle: "ឧបករណ៍ដែលខ្ញុំប្រើ",
-    projectsTitlePrefix: "បន្ដគម្រោង",
+    projectsTitlePrefix: "គម្រោង",
     projectsTitleHighlight: "ថ្មីៗ",
     projectsTitleSuffix: "របស់ខ្ញុំ",
     projectsSubtitle: "នេះជាគម្រោងខ្លះដែលខ្ញុំបានធ្វើថ្មីៗនេះ។",
-    resumeTitlePrefix: "បន្ដប្រវត្តិរូប",
+    resumeTitlePrefix: "ប្រវត្តិរូប",
     resumeTitleHighlight: "សង្ខេប",
     resumeTitleSuffix: "របស់ខ្ញុំ",
     resumeSummary: "សេចក្តីសង្ខេបនៃដំណើរវិជ្ជាជីវៈ ជំនាញ និងការសិក្សារបស់ខ្ញុំ។",
@@ -337,7 +337,7 @@ const translations = {
     blogButton: "អត្ថបទ",
     readArticle: "អានអត្ថបទ",
     backToBlogs: "ត្រឡប់ទៅអត្ថបទ",
-    blogTitle: "បន្ដអត្ថបទរបស់ខ្ញុំ",
+    blogTitle: "អត្ថបទរបស់ខ្ញុំ",
     blogSubtitle:
       "ការស្វែងយល់ស៊ីជម្រៅអំពីស្ថាបត្យកម្មកម្មវិធីទូរស័ព្ទ ការអនុវត្ត UI/UX និងការសរសេរកូដស្អាត។",
     blogNotFound: "រកមិនឃើញអត្ថបទ",
@@ -367,7 +367,7 @@ const translations = {
       customSoftwareDevelopment: "អភិវឌ្ឍន៍កម្មវិធីផ្ទាល់ខ្លួន",
       apiIntegration: "ការរួមបញ្ចូល API",
       databaseDesign: "ការរចនាមូលដ្ឋានទិន្នន័យ",
-      bugFixingMaintenance: "ការជួសជុល និង​​ ថែរក្សា",
+      bugFixingMaintenance: "ការជួសជុល និង ថែរក្សា",
       systemDevelopment: "អភិវឌ្ឍន៍ប្រព័ន្ធសម្រាប់អាជីវកម្ម",
     },
     socialLabels: {
@@ -575,7 +575,6 @@ const translations = {
       phone: "电话",
     },
   },
-  
 };
 
 export const LanguageProvider = ({ children }) => {
