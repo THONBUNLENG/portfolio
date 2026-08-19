@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import Tilt from "react-parallax-tilt";
 import { useLanguage } from "../../context/LanguageContext";
 
 function Home2() {
