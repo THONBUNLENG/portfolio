@@ -100,8 +100,8 @@ function MeScreen() {
       <nav className="w-full relative z-20">
         <div className="container mx-auto px-6 sm:px-12 py-8 flex justify-between items-center max-w-7xl">
           <h2 className="text-2xl font-black tracking-tight text-white">
-            
-            THON BUNLENG<span className="text-[#e74c5e]">.</span>
+
+            THON BUNLENG <span className="text-[#e74c5e]">.</span>
           </h2>
 
           <a

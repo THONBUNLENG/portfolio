@@ -6,7 +6,7 @@ import Flutter from "../../Assets/TechIcons/flutter.svg";
 import Kotlin from "../../Assets/TechIcons/kotlin-svgrepo.svg";
 import Swift from "../../Assets/TechIcons/swift-svgrepo.svg";
 import Go from "../../Assets/TechIcons/go.svg";
-import C from "../../Assets/TechIcons/C++.svg";
+import C from "../../Assets/TechIcons/cpp.svg";
 import Javascript from "../../Assets/TechIcons/Javascript.svg";
 import Node from "../../Assets/TechIcons/Node.svg";
 import ReactIcon from "../../Assets/TechIcons/React.svg";

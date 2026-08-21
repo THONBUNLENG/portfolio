@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import About from './About';
+import { LanguageProvider } from '../../context/LanguageContext';
 
 // Mock child components
 jest.mock("./Github", () => () => <div data-testid="github-mock">Github</div>);
@@ -10,39 +11,15 @@ jest.mock("./AboutCard", () => () => <div data-testid="aboutcard-mock">Aboutcard
 jest.mock("./Toolstack", () => () => <div data-testid="toolstack-mock">Toolstack</div>);
 jest.mock("../Particle", () => () => <div data-testid="particle-mock">Particle</div>);
 
-// Mock useLanguage hook with comprehensive keys
-jest.mock("../../context/LanguageContext", () => ({
-  useLanguage: jest.fn(() => ({
-    t: (key) => {
-      const translations = {
-        aboutTitlePrefix: "Know Who",
-        aboutTitleHighlight: "I'M",
-        aboutTitleSuffix: "...!",
-        professionalSkills: "Professional Skillset",
-        toolsTitle: "Tools I use",
-        aboutCardName: "THON BUNLENG",
-        aboutCardCity: "Phnom Penh, Cambodia",
-        aboutCardRole: "Software Developer",
-        aboutCardEducation: "Computer Science",
-        aboutCardUniversity: "BELTEI International University",
-        aboutCardActivitiesPrefix: "Outside of coding, I love engaging in activities that keep me creative and inspired",
-        "aboutCardActivities.games": "Playing Games",
-        "aboutCardActivities.blogs": "Writing Tech Blogs",
-        "aboutCardActivities.travel": "Traveling and Exploring New Places",
-        aboutCardQuote: '"Strive to build things that make a difference!"',
-        aboutCardFooter: "THON BUNLENG",
-      };
-      return translations[key] || key;
-    },
-    language: "en",
-  })),
-}));
-
 // Mock image import
 jest.mock("../../Assets/home-main.svg", () => "laptop-img-mock.svg");
 
 function renderAbout() {
-  return render(<About />);
+  return render(
+    <LanguageProvider>
+      <About />
+    </LanguageProvider>
+  );
 }
 
 describe('About Component Integration Tests', () => {
@@ -50,7 +27,7 @@ describe('About Component Integration Tests', () => {
     renderAbout();
     expect(screen.getByText(/Know Who/i)).toBeInTheDocument();
     expect(screen.getByText("I'M")).toBeInTheDocument();
-    expect(screen.getByText("...!")).toBeInTheDocument();
+    expect(screen.getByText((content) => content.includes("...!"))).toBeInTheDocument();
   });
 
   test('renders background Particle visual effects wrapper', () => {
@@ -72,8 +49,8 @@ describe('About Component Integration Tests', () => {
 
   test('renders the Professional Skillset title elements correctly', () => {
     renderAbout();
-    expect(screen.getByText(/Professional/i)).toBeInTheDocument();
-    expect(screen.getByText("Skillset")).toBeInTheDocument();
+    expect(screen.getByText(/Technical/i)).toBeInTheDocument();
+    expect(screen.getByText("Skills")).toBeInTheDocument();
   });
 
   test('renders Techstack component for skills overview', () => {
