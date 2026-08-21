@@ -6,23 +6,20 @@ function MeScreen() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-[#eaedf2] text-[#1a2b49] font-sans flex flex-col justify-between relative overflow-hidden selection:bg-[#f0544f] selection:text-white">
-      {/* Background Decorative Accents */}
-      <div className="absolute top-12 left-10 md:left-24 w-8 h-8 rounded-full border-2 border-[#f0544f]/30 pointer-events-none animate-pulse" />
-      <div className="absolute top-1/3 -right-20 w-96 h-96 rounded-full bg-[#f0544f]/10 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-16 left-0 right-0 h-48 opacity-20 pointer-events-none bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-slate-500 via-transparent to-transparent" />
+    <div className="min-h-screen bg-[#1e2436] text-white font-sans flex flex-col justify-between relative overflow-hidden selection:bg-[#e74c5e] selection:text-white">
+      {/* Background circle accent behind portrait */}
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[520px] h-[520px] rounded-full bg-[#2a3150] -z-10 hidden lg:block" />
 
       {/* Header Navigation */}
       <nav className="w-full relative z-20">
         <div className="container mx-auto px-6 sm:px-12 py-8 flex justify-between items-center max-w-7xl">
-          <h2 className="text-2xl font-black tracking-tight text-[#1a2b49]">
-            Portfolio<span className="text-[#f0544f]">.</span>
+          <h2 className="text-2xl font-black tracking-tight text-white">
+            Portfolio<span className="text-[#e74c5e]">.</span>
           </h2>
 
-          {/* Quick Contact Link */}
           <a
             href="mailto:leng94570@gmail.com"
-            className="text-xs font-semibold uppercase tracking-wider text-slate-500 hover:text-[#f0544f] transition-colors duration-200"
+            className="text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-[#e74c5e] transition-colors duration-200"
           >
             Get in touch &rarr;
           </a>
@@ -30,50 +27,63 @@ function MeScreen() {
       </nav>
 
       {/* Hero Section */}
-      <main className="container mx-auto px-6 sm:px-12 max-w-7xl flex-1 flex items-end relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end w-full">
-          
+      <main className="container mx-auto px-6 sm:px-12 max-w-7xl flex-1 flex items-center relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full">
+
           {/* Left Column: Bio & Content */}
-          <div className="lg:col-span-6 space-y-6 pb-12 lg:pb-24 pt-4">
-            {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f0544f]/10 border border-[#f0544f]/20">
-              <span className="w-2 h-2 rounded-full bg-[#f0544f] animate-ping" />
-              <span className="text-xs font-bold text-[#f0544f] tracking-wider uppercase">
-                Available for Projects
-              </span>
-            </div>
-
-            {/* Headline */}
-            <div className="space-y-1">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1a2b49] leading-tight tracking-tight">
-                Hi, I’m{" "}
-                <span className="bg-gradient-to-r from-[#1a2b49] via-[#2c436b] to-[#f0544f] bg-clip-text text-transparent">
-                  Thon Bunleng
-                </span>
-              </h1>
-              <p className="text-2xl sm:text-3xl font-semibold text-slate-500 tracking-tight">
-                Software Engineer
-              </p>
-            </div>
-
-            {/* Description */}
-            <p className="text-slate-600 text-base sm:text-lg max-w-lg leading-relaxed font-normal">
-              Specialized in <strong className="text-[#1a2b49] font-semibold">Flutter</strong>, cross-platform mobile architecture, dynamic UI layout designing, and localizing applications across <span className="text-[#1a2b49] font-medium">Khmer, English, and Chinese</span>.
+          <div className="lg:col-span-6 space-y-5 py-12">
+            {/* Welcome Label */}
+            <p className="text-[#e74c5e] text-sm font-bold tracking-wider uppercase">
+              Welcome!
             </p>
 
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+              I Am Web Designer
+            </h1>
+
+            {/* Description */}
+            <p className="text-slate-300 text-sm sm:text-base max-w-md leading-relaxed">
+              I'm a Web Developer with extensive experience for over 5 years.
+              My expertise is to create and Websites design, graphic design
+              and many more...
+            </p>
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-3 pt-2">
+              {[
+                { icon: "facebook-f", label: "Facebook" },
+                { icon: "twitter", label: "Twitter" },
+                { icon: "linkedin-in", label: "LinkedIn" },
+                { icon: "instagram", label: "Instagram" },
+                { icon: "behance", label: "Behance" },
+              ].map(({ icon, label }) => (
+                <a
+                  key={icon}
+                  href="#"
+                  aria-label={label}
+                  className="w-9 h-9 flex items-center justify-center rounded-full border border-[#e74c5e]/60 text-[#e74c5e] text-sm hover:bg-[#e74c5e] hover:text-white transition-colors duration-200"
+                >
+                  <i className={`fab fa-${icon}`} />
+                </a>
+              ))}
+            </div>
+
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-4 pt-4">
               <button
                 type="button"
                 onClick={() => navigate("/home")}
-                className="bg-[#f0544f] hover:bg-[#d9443f] text-white px-8 py-3.5 rounded-xl text-sm font-semibold shadow-lg shadow-[#f0544f]/25 hover:shadow-[#f0544f]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                className="bg-[#e74c5e] hover:bg-[#d43d4f] text-white px-8 py-3.5 rounded-xl text-sm font-semibold shadow-lg shadow-[#e74c5e]/25 hover:shadow-[#e74c5e]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
               >
                 Learn More
               </button>
               <button
                 type="button"
-                onClick={() => (window.location.href = "mailto:leng94570@gmail.com")}
-                className="bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 px-8 py-3.5 rounded-xl text-sm font-semibold shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                onClick={() =>
+                  (window.location.href = "mailto:leng94570@gmail.com")
+                }
+                className="bg-transparent hover:bg-white/10 text-white border border-white/30 px-8 py-3.5 rounded-xl text-sm font-semibold hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
               >
                 Hire Me
               </button>
@@ -81,20 +91,13 @@ function MeScreen() {
           </div>
 
           {/* Right Column: Hero Portrait */}
-          <div className="lg:col-span-6 flex justify-center lg:justify-end items-end">
-            <div className="relative w-full max-w-lg lg:max-w-xl flex justify-center items-end">
-              {/* Backlight Glow */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-300/60 via-slate-200/20 to-transparent rounded-full -z-10 blur-3xl scale-95" />
-              
-              {/* Portrait Image */}
-              <img
-                src={myImg}
-                alt="Thon Bunleng"
-                className="w-full h-auto max-h-[550px] sm:max-h-[640px] lg:max-h-[760px] object-contain object-bottom drop-shadow-2xl brightness-105 contrast-105 hover:scale-[1.01] transition-transform duration-300 block"
-              />
-            </div>
+          <div className="lg:col-span-6 flex justify-center lg:justify-end items-end relative">
+            <img
+              src={myImg}
+              alt="Portrait"
+              className="w-full h-auto max-h-[500px] sm:max-h-[600px] lg:max-h-[680px] object-contain object-bottom drop-shadow-2xl block relative z-10"
+            />
           </div>
-
         </div>
       </main>
     </div>
