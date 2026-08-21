@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Preloader from "./components/Pre";
+import React, { useEffect } from "react";
+import SplashScreen from "./components/MeScreen";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
 import Footer from "./components/Footer";
@@ -34,37 +34,37 @@ function AnimatedRoutes() {
         className="page-transition-container"
       >
       <Routes location={location}>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<SplashScreen />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/language" element={<LanguagePage />} />
         <Route path="/blogs/:blogId" element={<BlogPage />} />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
     </div>
   );
 }
 
 function App() {
-  const [load, updateLoad] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      updateLoad(false);
-    }, 1200);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <LanguageProvider>
       <Router>
-        <Preloader load={load} />
-        <div className="App">
-          <Navbar />
-          <ScrollToTop />
-          <AnimatedRoutes />
-          <Footer />
-        </div>
+        <AppContent />
       </Router>
     </LanguageProvider>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
+  const isSplash = location.pathname === "/";
+
+  return (
+    <div className="App">
+      {!isSplash && <Navbar />}
+      <ScrollToTop />
+      <AnimatedRoutes />
+      {!isSplash && <Footer />}
+    </div>
   );
 }
 

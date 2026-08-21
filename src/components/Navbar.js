@@ -28,8 +28,8 @@ function NavBar() {
 
   const goToSection = (id) => {
     updateExpanded(false);
-    if (location.pathname !== "/") {
-      navigate("/");
+    if (location.pathname !== "/home") {
+      navigate("/home");
       setTimeout(() => {
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
       }, 300);
@@ -40,8 +40,8 @@ function NavBar() {
 
   const goHome = () => {
     updateExpanded(false);
-    if (location.pathname !== "/") {
-      navigate("/");
+    if (location.pathname !== "/home") {
+      navigate("/home");
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }, 300);
@@ -116,7 +116,7 @@ function NavBar() {
     >
       <Container className="d-flex align-items-center justify-content-between">
         <Navbar.Brand
-          href="/"
+          href="/home"
           onClick={(e) => {
             e.preventDefault();
             goHome();

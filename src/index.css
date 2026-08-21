@@ -2,6 +2,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Outfit&family=PT+Mono&family=Noto+Sans+Khmer&display=swap");
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: "PT Mono", "Noto Sans Khmer", monospace !important;

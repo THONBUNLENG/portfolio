@@ -22,7 +22,7 @@ function LanguagePage() {
   };
 
   const handleContinue = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   return (

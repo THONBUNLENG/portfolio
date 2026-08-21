@@ -9,7 +9,7 @@ function BlogDetail({ blog }) {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate("/");
+    navigate("/home");
     setTimeout(() => {
       document.getElementById("blogs")?.scrollIntoView({ behavior: "smooth" });
     }, 300);
