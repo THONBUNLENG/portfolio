@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import myImg from "../Assets/me3.png";
+import myImg from "../Assets/me.png";
 
 function MeScreen() {
   const navigate = useNavigate();
