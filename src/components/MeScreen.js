@@ -19,21 +19,21 @@ function MeScreen() {
   ];
 
   return (
-    <div className="min-h-screen text-white font-sans flex flex-col justify-between relative overflow-x-hidden selection:bg-[#d4af37] selection:text-black">
+    <div className="min-h-screen text-white font-sans flex flex-col justify-between relative overflow-x-hidden selection:bg-[#e74c5e] selection:text-white">
       
-      {/* 1. BACKGROUND IMAGE - CRYSTAL CLEAR & SHARP */}
+      {/* 1. BACKGROUND IMAGE & IMPROVED OVERLAY */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <img
           src={workingBg}
           alt="Workspace Background"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center filter brightness-90"
         />
-        {/* Soft vignette/shadow overlay purely to make text pop without dulling the image */}
-        <div className="absolute inset-0 bg-black/45" />
+        {/* Darkened overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/65 backdrop-blur-[2px]" />
       </div>
 
       {/* 2. DYNAMIC CIRCUIT SVG LINES */}
-      <div className="absolute top-0 left-0 w-full h-[450px] pointer-events-none z-[2] opacity-60 overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-[450px] pointer-events-none z-[2] opacity-50 overflow-hidden">
         <svg
           className="w-full h-full"
           viewBox="0 0 1200 400"
@@ -83,48 +83,48 @@ function MeScreen() {
       {/* 3. HEADER NAVIGATION */}
       <nav className="w-full relative z-20">
         <div className="container mx-auto px-6 sm:px-12 py-6 sm:py-8 flex justify-between items-center max-w-7xl">
-          <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+          <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white drop-shadow-md">
             THON BUNLENG <span className="text-[#e74c5e]">.</span>
           </h2>
 
           <a
             href="mailto:leng94570@gmail.com"
-            className="text-xs font-semibold uppercase tracking-wider text-slate-100 hover:text-[#c29b53] transition-colors duration-200 border-b border-transparent hover:border-[#c29b53] pb-0.5 drop-shadow"
+            className="text-xs font-semibold uppercase tracking-wider text-slate-200 hover:text-[#e74c5e] transition-colors duration-200 border-b border-transparent hover:border-[#e74c5e] pb-0.5"
           >
             Get in touch &mdash;
           </a>
         </div>
       </nav>
 
-      {/* 4. MAIN HERO SECTION (CENTERED, CLEAN & CRISP) */}
+      {/* 4. MAIN HERO SECTION */}
       <main className="container mx-auto px-6 sm:px-12 max-w-4xl flex-1 flex flex-col justify-center items-center text-center relative z-10 py-12">
         <div className="space-y-6 flex flex-col items-center">
           
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 border border-white/20 text-xs sm:text-sm font-bold tracking-widest text-[#e74c5e] uppercase shadow-lg">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 border border-[#e74c5e]/30 text-xs sm:text-sm font-bold tracking-widest text-[#e74c5e] uppercase shadow-lg backdrop-blur-sm">
             Welcome to my portfolio
           </span>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
             SOFTWARE ENGINEER
           </h1>
 
-          <p className="text-slate-100 text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-            Full-Stack & Mobile Application Developer with 3+ years of experience crafting responsive web solutions, UI/UX designs, and cross-platform mobile apps for iOS and Android.
+          <p className="text-slate-200 text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed drop-shadow-md">
+            Full-Stack & Mobile Application Developer crafting responsive web solutions, intuitive UI/UX designs, and scalable cross-platform mobile apps for iOS and Android.
           </p>
 
-          {/* Badges */}
+          {/* Badges - Corrected Mismatch */}
           <div className="flex flex-wrap justify-center items-center gap-3 pt-2">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/20 text-xs sm:text-sm font-semibold text-slate-100 shadow-xl">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/20 text-xs sm:text-sm font-semibold text-slate-100 shadow-xl backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-[#e74c5e]" />
-              3+ Years Web Development
+              1+ Years Total Experience
             </span>
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/20 text-xs sm:text-sm font-semibold text-slate-100 shadow-xl">
-              <span className="w-2 h-2 rounded-full bg-[#e74c5e]" />
-              1+ Year Mobile App Development
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/20 text-xs sm:text-sm font-semibold text-slate-100 shadow-xl backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-[#c29b53]" />
+              Web & Mobile Specialist
             </span>
           </div>
 
-          {/* Social Links */}
+          {/* Social Links - Primary Color Hover */}
           <div className="flex flex-wrap justify-center items-center gap-3 pt-2">
             {heroSocialLinks.map(({ id, icon, href, label }) => (
               <a
@@ -134,19 +134,19 @@ function MeScreen() {
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 aria-label={label}
                 title={label}
-                className="w-11 h-11 flex items-center justify-center rounded-full border border-white/25 bg-black/50 text-slate-100 text-lg hover:bg-[#c29b53] hover:border-[#c29b53] hover:text-black transition-all duration-200 shadow-xl hover:scale-105 active:scale-95"
+                className="w-11 h-11 flex items-center justify-center rounded-full border border-white/20 bg-black/60 text-slate-200 text-lg hover:bg-[#e74c5e] hover:border-[#e74c5e] hover:text-white transition-all duration-200 shadow-xl hover:scale-105 active:scale-95 backdrop-blur-sm"
               >
                 {icon}
               </a>
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* Action Buttons - High Contrast CTA */}
           <div className="flex flex-wrap justify-center items-center gap-4 pt-4">
             <button
               type="button"
               onClick={() => navigate("/home")}
-              className="inline-flex items-center gap-2 bg-[#c29b53] hover:bg-[#b08a42] text-black px-8 py-3.5 rounded-xl text-sm font-bold shadow-2xl shadow-black/60 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+              className="inline-flex items-center gap-2 bg-[#e74c5e] hover:bg-[#d43f51] text-white px-8 py-3.5 rounded-xl text-sm font-bold shadow-lg shadow-[#e74c5e]/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
             >
               Learn More
               <FaArrowRight className="text-xs" />
@@ -154,7 +154,7 @@ function MeScreen() {
             <button
               type="button"
               onClick={() => (window.location.href = "mailto:leng94570@gmail.com")}
-              className="bg-black/50 hover:bg-white/20 text-white border border-white/30 px-8 py-3.5 rounded-xl text-sm font-semibold hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-2xl shadow-black/60"
+              className="bg-black/60 hover:bg-white/10 text-white border border-white/30 px-8 py-3.5 rounded-xl text-sm font-semibold hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg backdrop-blur-sm"
             >
               Hire Me
             </button>
