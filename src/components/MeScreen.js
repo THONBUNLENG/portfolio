@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import workingBg from "../Assets/Working.jpg";
+import workingBg from "../Assets/work.png";
 import { AiFillGithub, AiOutlineTwitter, AiFillPhone } from "react-icons/ai";
 import { SiGitlab, SiTiktok } from "react-icons/si";
 import { FaLinkedin, FaTelegram, FaYoutube, FaArrowRight } from "react-icons/fa";
