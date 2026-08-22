@@ -109,7 +109,7 @@ function MeScreen() {
           </h1>
 
           <p className="text-slate-200 text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed drop-shadow-md">
-            Full-Stack & Mobile Application Developer crafting responsive web solutions, intuitive UI/UX designs, and scalable cross-platform mobile apps for iOS and Android.
+           Full-Stack & Mobile Application Developer crafting responsive web solutions, intuitive UI/UX designs, and scalable cross-platform mobile apps for iOS and Android.
           </p>
 
           {/* Badges - Corrected Mismatch */}
