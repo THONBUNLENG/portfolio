@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import workingBg from "../Assets/work.png";
-import { AiFillGithub, AiOutlineTwitter, AiFillPhone } from "react-icons/ai";
-import { SiGitlab, SiTiktok } from "react-icons/si";
+import { AiFillGithub, AiFillPhone } from "react-icons/ai";
+import { SiGitlab, SiTiktok, SiX } from "react-icons/si";
 import { FaLinkedin, FaTelegram, FaArrowRight } from "react-icons/fa";
 
 function MeScreen() {
@@ -10,7 +10,7 @@ function MeScreen() {
 
   const heroSocialLinks = [
     { id: "github", icon: <AiFillGithub />, href: "https://github.com/THONBUNLENG", label: "GitHub" },
-    { id: "twitter", icon: <AiOutlineTwitter />, href: "https://twitter.com", label: "Twitter" },
+    { id: "x", icon: <SiX />, href: "https://twitter.com", label: "X (Twitter)" },
     { id: "linkedin", icon: <FaLinkedin />, href: "https://kh.linkedin.com/in/thon-bunleng-dev", label: "LinkedIn" },
     { id: "telegram", icon: <FaTelegram />, href: "https://t.me/bunleng_dev", label: "Telegram" },
     { id: "gitlab", icon: <SiGitlab />, href: "https://gitlab.com/leng94570", label: "GitLab" },
@@ -29,7 +29,7 @@ function MeScreen() {
           className="w-full h-full object-cover object-center filter brightness-90"
         />
         {/* Darkened overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/65 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-black/75 backdrop-blur-[2px]" />
       </div>
 
       {/* 2. DYNAMIC CIRCUIT SVG LINES */}
@@ -109,14 +109,14 @@ function MeScreen() {
           </h1>
 
           <p className="text-slate-200 text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed drop-shadow-md">
-           Full-Stack & Mobile Application Developer crafting responsive web solutions, intuitive UI/UX designs, and scalable cross-platform mobile apps for iOS and Android.
+            Full-Stack & Mobile Application Developer crafting responsive web solutions, intuitive UI/UX designs, and scalable cross-platform mobile apps for iOS and Android.
           </p>
 
-          {/* Badges - Corrected Mismatch */}
+          {/* Badges - Replaced 1+ Years with Open to Work/Available */}
           <div className="flex flex-wrap justify-center items-center gap-3 pt-2">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/20 text-xs sm:text-sm font-semibold text-slate-100 shadow-xl backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-[#e74c5e]" />
-              1+ Years Total Experience
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Available for Hire
             </span>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/20 text-xs sm:text-sm font-semibold text-slate-100 shadow-xl backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-[#c29b53]" />
@@ -124,8 +124,8 @@ function MeScreen() {
             </span>
           </div>
 
-          {/* Social Links - Primary Color Hover */}
-          <div className="flex flex-wrap justify-center items-center gap-3 pt-2">
+          {/* Social Links - Responsive Flex/Grid with Max Width */}
+          <div className="flex flex-wrap justify-center items-center gap-3 pt-2 max-w-xs sm:max-w-md">
             {heroSocialLinks.map(({ id, icon, href, label }) => (
               <a
                 key={id}
@@ -134,29 +134,29 @@ function MeScreen() {
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 aria-label={label}
                 title={label}
-                className="w-11 h-11 flex items-center justify-center rounded-full border border-white/20 bg-black/60 text-slate-200 text-lg hover:bg-[#e74c5e] hover:border-[#e74c5e] hover:text-white transition-all duration-200 shadow-xl hover:scale-105 active:scale-95 backdrop-blur-sm"
+                className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-full border border-white/20 bg-black/60 text-slate-200 text-base sm:text-lg hover:bg-[#e74c5e] hover:border-[#e74c5e] hover:text-white transition-all duration-200 shadow-xl hover:scale-105 active:scale-95 backdrop-blur-sm"
               >
                 {icon}
               </a>
             ))}
           </div>
 
-          {/* Action Buttons - High Contrast CTA */}
+          {/* Action Buttons - Swapped Primary/Secondary CTA */}
           <div className="flex flex-wrap justify-center items-center gap-4 pt-4">
             <button
               type="button"
-              onClick={() => navigate("/home")}
-              className="inline-flex items-center gap-2 bg-[#e74c5e] hover:bg-[#d43f51] text-white px-8 py-3.5 rounded-xl text-sm font-bold shadow-lg shadow-[#e74c5e]/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+              onClick={() => (window.location.href = "mailto:leng94570@gmail.com")}
+              className="inline-flex items-center justify-center bg-[#e74c5e] hover:bg-[#d43f51] text-white px-8 py-3.5 rounded-xl text-sm font-bold shadow-lg shadow-[#e74c5e]/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 min-w-[140px]"
             >
-              Learn More
-              <FaArrowRight className="text-xs" />
+              Hire Me
             </button>
             <button
               type="button"
-              onClick={() => (window.location.href = "mailto:leng94570@gmail.com")}
-              className="bg-black/60 hover:bg-white/10 text-white border border-white/30 px-8 py-3.5 rounded-xl text-sm font-semibold hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg backdrop-blur-sm"
+              onClick={() => navigate("/home")}
+              className="inline-flex items-center justify-center gap-2 bg-black/60 hover:bg-white/10 text-white border border-white/30 px-8 py-3.5 rounded-xl text-sm font-semibold hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg backdrop-blur-sm min-w-[140px]"
             >
-              Hire Me
+              Learn More
+              <FaArrowRight className="text-xs" />
             </button>
           </div>
 
