@@ -4,13 +4,17 @@ import workingBg from "../Assets/work.png";
 import { AiFillGithub, AiFillPhone } from "react-icons/ai";
 import { SiGitlab, SiTiktok, SiX } from "react-icons/si";
 import { FaLinkedin, FaTelegram, FaArrowRight } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
+import cambodiaFlag from "../Assets/cambodia-flag.png";
+import ukFlag from "../Assets/uk-flag.png";
+import taiwanFlag from "../Assets/taiwan.png";
 
 function MeScreen() {
   const navigate = useNavigate();
+  const { language, setLanguage, t } = useLanguage();
 
   const heroSocialLinks = [
     { id: "github", icon: <AiFillGithub />, href: "https://github.com/THONBUNLENG", label: "GitHub" },
-    { id: "x", icon: <SiX />, href: "https://twitter.com", label: "X (Twitter)" },
     { id: "linkedin", icon: <FaLinkedin />, href: "https://kh.linkedin.com/in/thon-bunleng-dev", label: "LinkedIn" },
     { id: "telegram", icon: <FaTelegram />, href: "https://t.me/bunleng_dev", label: "Telegram" },
     { id: "gitlab", icon: <SiGitlab />, href: "https://gitlab.com/leng94570", label: "GitLab" },
@@ -84,15 +88,24 @@ function MeScreen() {
       <nav className="w-full relative z-20">
         <div className="container mx-auto px-6 sm:px-12 py-6 sm:py-8 flex justify-between items-center max-w-7xl">
           <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white drop-shadow-md">
-            THON BUNLENG <span className="text-[#e74c5e]">.</span>
+            {t("meBrandName")} <span className="text-[#e74c5e]">.</span>
           </h2>
 
-          <a
-            href="mailto:leng94570@gmail.com"
-            className="text-xs font-semibold uppercase tracking-wider text-slate-200 hover:text-[#e74c5e] transition-colors duration-200 border-b border-transparent hover:border-[#e74c5e] pb-0.5"
-          >
-            Get in touch &mdash;
-          </a>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <button
+              type="button"
+              onClick={() => setLanguage(language === "en" ? "km" : language === "km" ? "zh" : "en")}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 border border-white/20 text-slate-200 text-xs font-semibold hover:border-[#e74c5e] hover:text-[#e74c5e] transition-all duration-200"
+            >
+              <img
+                src={language === "en" ? ukFlag : language === "zh" ? taiwanFlag : cambodiaFlag}
+                alt={language === "en" ? "English" : language === "zh" ? "台語" : "ខ្មែរ"}
+                className="h-4 w-4 rounded-full object-cover"
+              />
+              <span className="uppercase">{language === "en" ? "EN" : language === "zh" ? "台" : "KM"}</span>
+            </button>
+      
+          </div>
         </div>
       </nav>
 
@@ -101,26 +114,26 @@ function MeScreen() {
         <div className="space-y-6 flex flex-col items-center">
           
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 border border-[#e74c5e]/30 text-xs sm:text-sm font-bold tracking-widest text-[#e74c5e] uppercase shadow-lg backdrop-blur-sm">
-            Welcome to my portfolio
+            {t("meWelcome")}
           </span>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
-            SOFTWARE ENGINEER
+            {t("homeHeroTitle")} {t("homeHeroTitleHighlight")}
           </h1>
 
           <p className="text-slate-200 text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed drop-shadow-md">
-            Full-Stack & Mobile Application Developer crafting responsive web solutions, intuitive UI/UX designs, and scalable cross-platform mobile apps for iOS and Android.
+            {t("meHeroDescription")}
           </p>
 
           {/* Badges - Replaced 1+ Years with Open to Work/Available */}
           <div className="flex flex-wrap justify-center items-center gap-3 pt-2">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/20 text-xs sm:text-sm font-semibold text-slate-100 shadow-xl backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              Available for Hire
+              {t("meAvailableForHire")}
             </span>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/20 text-xs sm:text-sm font-semibold text-slate-100 shadow-xl backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-[#c29b53]" />
-              Web & Mobile Specialist
+              {t("meSpecialist")}
             </span>
           </div>
 
@@ -148,14 +161,14 @@ function MeScreen() {
               onClick={() => (window.location.href = "mailto:leng94570@gmail.com")}
               className="inline-flex items-center justify-center bg-[#e74c5e] hover:bg-[#d43f51] text-white px-8 py-3.5 rounded-xl text-sm font-bold shadow-lg shadow-[#e74c5e]/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 min-w-[140px]"
             >
-              Hire Me
+              {t("meHireMe")}
             </button>
             <button
               type="button"
               onClick={() => navigate("/home")}
               className="inline-flex items-center justify-center gap-2 bg-black/60 hover:bg-white/10 text-white border border-white/30 px-8 py-3.5 rounded-xl text-sm font-semibold hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg backdrop-blur-sm min-w-[140px]"
             >
-              Learn More
+              {t("meLearnMore")}
               <FaArrowRight className="text-xs" />
             </button>
           </div>

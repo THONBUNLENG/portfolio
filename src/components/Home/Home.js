@@ -7,6 +7,7 @@ import Home2 from "./Home2";
 import Projects from "../Projects/Projects";
 import Resume from "../Resume/ResumeNew";
 import Blogs from "../Blogs/Blogs";
+import Contact from "../Contact/Contact";
 import { useLanguage } from "../../context/LanguageContext";
 import {
   AiFillGithub,
@@ -195,6 +196,7 @@ function Home() {
       <Projects />
       <Resume />
       <Blogs />
+      <Contact />
     </section>
   );
 }

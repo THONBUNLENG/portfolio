@@ -1,0 +1,47 @@
+.contact-section {
+  position: relative;
+  background: linear-gradient(135deg, #1e2a47 0%, #0f1419 100%);
+  background-position: top center;
+  background-repeat: no-repeat;
+  padding-top: 150px;
+  padding-bottom: 60px;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* Base input & textarea styling */
+.contact-section .contact-input {
+  background-color: rgba(14, 18, 30, 0.85) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  font-family: inherit !important;
+  font-size: 0.95rem !important;
+  transition: all 0.25s ease-in-out !important;
+}
+
+/* Placeholder styling */
+.contact-section .contact-input::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+  font-family: inherit !important;
+}
+
+/* Focus state */
+.contact-section .contact-input:focus {
+  background-color: rgba(20, 26, 42, 0.95) !important;
+  color: #ffffff !important;
+  border-color: #e74c5e !important;
+  box-shadow: 0 0 0 0.25rem rgba(231, 76, 94, 0.25) !important;
+  outline: none !important;
+}
+
+/* Fix Browser Autofill (Chrome, Edge, Brave, Safari) */
+.contact-section .contact-input:-webkit-autofill,
+.contact-section .contact-input:-webkit-autofill:hover, 
+.contact-section .contact-input:-webkit-autofill:focus, 
+.contact-section .contact-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #0e121e inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

@@ -6,15 +6,10 @@ import { useLanguage } from "../../context/LanguageContext";
 function Github() {
   const { t, language } = useLanguage();
 
-  // រៀបចំកម្រិតពណ៌ពី "គ្មាន Contribution (ងងឹត)" ទៅ "ច្រើនបំផុត (ភ្លឺ)"
-  const customTheme = {
-    dark: [
-      "#161b22", // 0 contributions (ផ្ទៃងងឹត)
-      "#591b26", // កម្រិត 1
-      "#8c2436", // កម្រិត 2
-      "#bf364c", // កម្រិត 3
-      "#e74c5e", // កម្រិត 4 (ច្រើនបំផុត - Accent Pink/Red)
-    ],
+  // កំណត់ Palette ពណ៌ពីងងឹត (0 contributions) ទៅភ្លឺ (#e74c5e - Max)
+  const explicitTheme = {
+    light: ["#161b22", "#4a121a", "#7e1d2c", "#b82b41", "#e74c5e"],
+    dark: ["#161b22", "#4a121a", "#7e1d2c", "#b82b41", "#e74c5e"],
   };
 
   return (
@@ -53,10 +48,10 @@ function Github() {
             blockSize={14}
             blockMargin={4}
             colorScheme="dark"
-            theme={customTheme}
+            theme={explicitTheme}
             fontSize={13}
-            style={{
-              color: "#e2e8f0",
+            labels={{
+              totalCount: "{{count}} contributions in the last year",
             }}
           />
         </div>

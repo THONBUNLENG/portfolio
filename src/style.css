@@ -39,7 +39,19 @@ html {
   border-radius: 6px;
   display: inline-block;
 }
+/* បង្ខំក្រឡា GitHub Calendar ឱ្យចេញផ្ទៃងងឹតត្រឹមត្រូវ */
+.react-activity-calendar rect[data-level="0"],
+.github-calendar-wrapper rect[data-level="0"],
+rect[fill="#ebedf0"], 
+rect[fill="#ffffff"] {
+  fill: #161b22 !important;
+}
 
+.react-activity-calendar text,
+.github-calendar-wrapper text {
+  fill: #94a3b8 !important;
+  font-family: inherit !important;
+}
 button:focus {
   box-shadow: none !important;
 }

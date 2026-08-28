@@ -18,6 +18,14 @@ const resizeObserverLoopErr = (e) => {
 };
 window.addEventListener("error", resizeObserverLoopErr);
 
+const brokenImageHandler = (e) => {
+  if (e && e.target && e.target.tagName === "IMG") {
+    e.target.style.visibility = "hidden";
+    e.target.setAttribute("alt", "");
+  }
+};
+window.addEventListener("error", brokenImageHandler, true);
+
 const root = createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

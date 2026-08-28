@@ -12,12 +12,14 @@ import {
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
+  AiOutlineMail,
 } from "react-icons/ai";
-import { CgFileDocument } from "react-icons/cg";
+
 import { useLanguage } from "../context/LanguageContext";
 import cambodiaFlag from "../Assets/cambodia-flag.png";
 import ukFlag from "../Assets/uk-flag.png";
-const chinaFlag = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23DE2910'/%3E%3Cpolygon points='5,3 5.5,5 7.5,5 6,6.2 6.5,8.2 5,7 3.5,8.2 4,6.2 2.5,5 4.5,5' fill='%23FFDE00'/%3E%3C/svg%3E";
+
+import taiwanFlag from "../Assets/taiwan.png";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -66,8 +68,8 @@ function NavBar() {
       onClick={() => navigate("/language")}
       className={className}
       style={{
-        background: "transparent",
-        border: "1px solid #c770f0",
+        background: "rgba(0, 0, 0, 0.4)",
+        border: "1px solid #e74c5e",
         color: "#fbfbfb",
         fontSize: "0.85rem",
         padding: "4px 12px",
@@ -84,14 +86,14 @@ function NavBar() {
           language === "en"
             ? ukFlag
             : language === "zh"
-            ? chinaFlag
+            ? taiwanFlag
             : cambodiaFlag
         }
         alt={
           language === "en"
             ? "English"
             : language === "zh"
-            ? "中文"
+            ? "台語"
             : "ខ្មែរ"
         }
         style={{
@@ -102,7 +104,7 @@ function NavBar() {
         }}
       />
       <span style={{ fontWeight: "500", textTransform: "uppercase" }}>
-        {language === "en" ? "EN" : language === "zh" ? "ZH" : "KM"}
+        {language === "en" ? "EN" : language === "zh" ? "台" : "KM"}
       </span>
     </Button>
   );
@@ -126,10 +128,10 @@ function NavBar() {
           <img src={logo} className="img-fluid logo" alt="brand" />
           <span className="brand-name">THON BUNLENG</span>
         </Navbar.Brand>
-        <div className="d-flex d-md-none align-items-center">
+
+        <div className="d-flex d-md-none align-items-center me-2">
           <LanguageButton className="lang-btn lang-btn-mobile" />
         </div>
-
 
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
@@ -149,10 +151,10 @@ function NavBar() {
                 href="#home"
                 onClick={(e) => {
                   e.preventDefault();
-                  goToSection("home");
+                  goHome();
                 }}
               >
-                <AiOutlineHome style={{ marginBottom: "2px" }} /> {t("navbarHome")}
+                <AiOutlineHome style={{ marginBottom: "2px" }} /> {t("navbarHome") || "Home"}
               </Nav.Link>
             </Nav.Item>
 
@@ -164,7 +166,7 @@ function NavBar() {
                   goToSection("about");
                 }}
               >
-                <AiOutlineUser style={{ marginBottom: "2px" }} /> {t("navbarAbout")}
+                <AiOutlineUser style={{ marginBottom: "2px" }} /> {t("navbarAbout") || "About"}
               </Nav.Link>
             </Nav.Item>
 
@@ -177,19 +179,7 @@ function NavBar() {
                 }}
               >
                 <AiOutlineFundProjectionScreen style={{ marginBottom: "2px" }} />{" "}
-                {t("navbarProjects")}
-              </Nav.Link>
-            </Nav.Item>
-
-            <Nav.Item>
-              <Nav.Link
-                href="#resume"
-                onClick={(e) => {
-                  e.preventDefault();
-                  goToSection("resume");
-                }}
-              >
-                <CgFileDocument style={{ marginBottom: "2px" }} /> {t("navbarResume")}
+                {t("navbarProjects") || "Projects"}
               </Nav.Link>
             </Nav.Item>
 
@@ -201,27 +191,32 @@ function NavBar() {
                   goToSection("blogs");
                 }}
               >
-                <ImBlog style={{ marginBottom: "2px" }} /> {t("navbarBlogs")}
+                <ImBlog style={{ marginBottom: "2px" }} /> {t("navbarBlogs") || "Blogs"}
               </Nav.Link>
             </Nav.Item>
 
+            {/* Contact Navigation Item */}
             <Nav.Item>
               <Nav.Link
-                href="/language"
+                href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
-                  updateExpanded(false);
-                  navigate("/language");
+                  goToSection("contact");
                 }}
               >
-                🌐 {language === "en" ? "Language" : language === "zh" ? "语言" : "ភាសា"}
+                <AiOutlineMail style={{ marginBottom: "2px" }} /> {t("Contact") || (language === "km" ? "ទំនាក់ទំនង" : language === "zh" ? "联系我" : "Contact")}
               </Nav.Link>
             </Nav.Item>
 
-            <Nav.Item className="fork-btn">
+            <Nav.Item className="d-none d-md-flex align-items-center ms-2">
+              <LanguageButton className="lang-btn" />
+            </Nav.Item>
+
+            <Nav.Item className="fork-btn ms-2">
               <Button
                 href="https://github.com/THONBUNLENG/portfolio.git"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="fork-btn-inner"
               >
                 <CgGitFork style={{ fontSize: "1.2em" }} />{" "}
