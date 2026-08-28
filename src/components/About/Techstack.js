@@ -30,19 +30,34 @@ const primarySkills = [
 
 function Techstack() {
   return (
-    <Row className="g-3 justify-content-center pb-4">
+    <Row className="g-3 g-md-4 justify-content-center pb-4">
       {primarySkills.map((tech, idx) => (
         <Col xs={4} sm={4} md={3} lg={2} key={idx} className="d-flex">
-          <div className="tech-icons w-100 d-flex flex-column align-items-center justify-content-center p-3 rounded-2xl bg-[#0e121e]/80 border border-purple-500/30 hover:border-[#e74c5e] transition-all">
-            <img
-              src={tech.icon}
-              alt={tech.name}
-              className="tech-icon-images mb-2"
-              style={{ width: "36px", height: "36px", objectFit: "contain" }}
-            />
-            <div className="tech-icons-text text-center text-xs text-slate-200 font-mono tracking-tight truncate w-100">
-              {tech.name}
+          <div
+            className="w-100 d-flex flex-column align-items-center justify-content-center p-3 p-md-4 rounded-2xl bg-[#0e121e]/80 border border-purple-500/30 shadow-lg hover:border-[#e74c5e] hover:shadow-[#e74c5e]/20 hover:-translate-y-1 transition-all duration-300"
+            style={{
+              aspectRatio: "1 / 1",
+              minHeight: "110px",
+              backdropFilter: "blur(6px)",
+            }}
+          >
+            <div className="d-flex align-items-center justify-content-center mb-2" style={{ height: "45px" }}>
+              <img
+                src={tech.icon}
+                alt={tech.name}
+                className="w-auto h-auto transition-transform duration-300 hover:scale-110"
+                style={{
+                  maxHeight: "42px",
+                  maxWidth: "42px",
+                  objectFit: "contain",
+                }}
+                loading="lazy"
+              />
             </div>
+            
+            <span className="text-xs sm:text-sm text-slate-200 font-semibold tracking-wide text-center truncate w-100 mt-1">
+              {tech.name}
+            </span>
           </div>
         </Col>
       ))}
