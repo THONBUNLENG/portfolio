@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaTelegram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { SiX } from "react-icons/si";
 import { useLanguage } from "../../context/LanguageContext";
 import Particle from "../Particle";
 import "./Contact.css";
 
 function Contact() {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",

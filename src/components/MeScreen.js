@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import workingBg from "../Assets/work.png";
 import { AiFillGithub, AiFillPhone } from "react-icons/ai";
-import { SiGitlab, SiTiktok, SiX } from "react-icons/si";
+import { SiGitlab, SiTiktok } from "react-icons/si";
 import { FaLinkedin, FaTelegram, FaArrowRight } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
 import cambodiaFlag from "../Assets/cambodia-flag.png";
