@@ -32,18 +32,18 @@ function Contact() {
   const contactInfo = [
     {
       icon: <FaMapMarkerAlt />,
-      title: language === "km" ? "ទីតាំងបច្ចុប្បន្ន" : "Location",
+      title: language === "nan" ? "地點" : "Location",
       desc: "Phnom Penh, Cambodia",
     },
     {
       icon: <FaPhoneAlt />,
-      title: language === "km" ? "លេខទូរស័ព្ទ" : "Phone & Telegram",
+      title: language === "nan" ? "電話 & Telegram" : "Phone & Telegram",
       desc: "+855 88 320 5515",
       link: "tel:+855883205515",
     },
     {
       icon: <FaEnvelope />,
-      title: language === "km" ? "អ៊ីមែលផ្លូវការ" : "Email Address",
+      title: language === "nan" ? "電子郵件" : "Email Address",
       desc: "leng94570@gmail.com",
       link: "mailto:leng94570@gmail.com",
     },
@@ -64,14 +64,14 @@ function Contact() {
         {/* Heading */}
         <div className="text-center mb-5">
           <h1 className="font-extrabold text-3xl sm:text-5xl mb-3 tracking-tight">
-            {language === "km" ? "ទំនាក់ទំនង" : "Get In"}{" "}
+            {language === "nan" ? "聯繫" : "Get In"}{" "}
             <strong style={{ color: "#e74c5e" }}>
-              {language === "km" ? "មកកាន់ខ្ញុំ" : "Touch"}
+              {language === "nan" ? "我" : "Touch"}
             </strong>
           </h1>
           <p className="text-slate-400 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
-            {language === "km"
-              ? "មានគម្រោងថ្មី ឬចង់ពិភាក្សាការងារ? សូមផ្ញើសារមកកាន់ខ្ញុំតាមរយៈទម្រង់ខាងក្រោម។"
+            {language === "nan"
+              ? "有專案構想或正在尋找優秀的開發者嗎？歡迎直接與我聯繫。"
               : "Have a project in mind or looking for a skilled developer? Feel free to reach out directly."}
           </p>
         </div>
@@ -129,7 +129,7 @@ function Contact() {
                         type="text"
                         name="name"
                         required
-                        placeholder={language === "km" ? "ឈ្មោះរបស់អ្នក *" : "Your Name *"}
+                        placeholder={language === "nan" ? "您的姓名 *" : "Your Name *"}
                         value={formData.name}
                         onChange={handleChange}
                         className="contact-input py-2.5 px-3 rounded-xl shadow-none"
@@ -143,7 +143,7 @@ function Contact() {
                         type="email"
                         name="email"
                         required
-                        placeholder={language === "km" ? "អ៊ីមែល *" : "Email Address *"}
+                        placeholder={language === "nan" ? "電子郵件 *" : "Email Address *"}
                         value={formData.email}
                         onChange={handleChange}
                         className="contact-input py-2.5 px-3 rounded-xl shadow-none"
@@ -156,7 +156,7 @@ function Contact() {
                       <Form.Control
                         type="text"
                         name="phone"
-                        placeholder={language === "km" ? "លេខទូរស័ព្ទ" : "Phone Number"}
+                        placeholder={language === "nan" ? "電話號碼" : "Phone Number"}
                         value={formData.phone}
                         onChange={handleChange}
                         className="contact-input py-2.5 px-3 rounded-xl shadow-none"
@@ -169,7 +169,7 @@ function Contact() {
                       <Form.Control
                         type="text"
                         name="subject"
-                        placeholder={language === "km" ? "កម្មវត្ថុ / ប្រធានបទ" : "Subject"}
+                        placeholder={language === "nan" ? "主旨" : "Subject"}
                         value={formData.subject}
                         onChange={handleChange}
                         className="contact-input py-2.5 px-3 rounded-xl shadow-none"
@@ -184,7 +184,7 @@ function Contact() {
                         rows={4}
                         name="message"
                         required
-                        placeholder={language === "km" ? "សាររបស់អ្នក..." : "Your Message..."}
+                        placeholder={language === "nan" ? "您的訊息..." : "Your Message..."}
                         value={formData.message}
                         onChange={handleChange}
                         className="contact-input py-2.5 px-3 rounded-xl shadow-none"
@@ -203,7 +203,7 @@ function Contact() {
                         boxShadow: "0 4px 15px rgba(231, 76, 94, 0.35)",
                       }}
                     >
-                      {language === "km" ? "ផ្ញើសារឥឡូវនេះ" : "Send Message"} &rarr;
+                      {language === "nan" ? "發送訊息" : "Send Message"} &rarr;
                     </Button>
                   </Col>
                 </Row>

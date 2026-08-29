@@ -16,10 +16,9 @@ import {
 } from "react-icons/ai";
 
 import { useLanguage } from "../context/LanguageContext";
-import cambodiaFlag from "../Assets/cambodia-flag.png";
 import ukFlag from "../Assets/uk-flag.png";
 
-import taiwanFlag from "../Assets/taiwan.png";
+import taiwanFlag from "../Assets/taiwan-flag.png";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -82,20 +81,8 @@ function NavBar() {
       }}
     >
       <img
-        src={
-          language === "en"
-            ? ukFlag
-            : language === "zh"
-            ? taiwanFlag
-            : cambodiaFlag
-        }
-        alt={
-          language === "en"
-            ? "English"
-            : language === "zh"
-            ? "台語"
-            : "ខ្មែរ"
-        }
+        src={language === "en" ? ukFlag : taiwanFlag}
+        alt={language === "en" ? "English" : "台語"}
         style={{
           height: "1.2em",
           width: "1.2em",
@@ -104,8 +91,43 @@ function NavBar() {
         }}
       />
       <span style={{ fontWeight: "500", textTransform: "uppercase" }}>
-        {language === "en" ? "EN" : language === "zh" ? "台" : "KM"}
+        {language === "en" ? "EN" : "台語"}
       </span>
+    </Button>
+  );
+
+  // Matches the LanguageButton's visual language: dark translucent pill,
+  // thin accent border, consistent padding/gap so it no longer looks like
+  // a raw, unstyled box next to the language toggle.
+  const ForkButton = () => (
+    <Button
+      href="https://github.com/THONBUNLENG/portfolio.git"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        background: "rgba(0, 0, 0, 0.4)",
+        border: "1px solid #e74c5e",
+        color: "#fbfbfb",
+        padding: "6px 14px",
+        borderRadius: "20px",
+        cursor: "pointer",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "8px",
+        lineHeight: 1,
+        transition: "all 0.3s ease",
+        textDecoration: "none",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = "rgba(231, 76, 94, 0.15)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = "rgba(0, 0, 0, 0.4)";
+      }}
+    >
+      <CgGitFork style={{ fontSize: "1.3em", display: "block" }} />
+      <AiFillStar style={{ fontSize: "1.1em", display: "block" }} />
     </Button>
   );
 
@@ -145,7 +167,7 @@ function NavBar() {
         </Navbar.Toggle>
 
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ms-auto" defaultActiveKey="#home">
+          <Nav className="ms-auto align-items-md-center" defaultActiveKey="#home">
             <Nav.Item>
               <Nav.Link
                 href="#home"
@@ -204,7 +226,7 @@ function NavBar() {
                   goToSection("contact");
                 }}
               >
-                <AiOutlineMail style={{ marginBottom: "2px" }} /> {t("Contact") || (language === "km" ? "ទំនាក់ទំនង" : language === "zh" ? "联系我" : "Contact")}
+                <AiOutlineMail style={{ marginBottom: "2px" }} /> {t("navbarContact")}
               </Nav.Link>
             </Nav.Item>
 
@@ -212,16 +234,8 @@ function NavBar() {
               <LanguageButton className="lang-btn" />
             </Nav.Item>
 
-            <Nav.Item className="fork-btn ms-2">
-              <Button
-                href="https://github.com/THONBUNLENG/portfolio.git"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fork-btn-inner"
-              >
-                <CgGitFork style={{ fontSize: "1.2em" }} />{" "}
-                <AiFillStar style={{ fontSize: "1.1em" }} />
-              </Button>
+            <Nav.Item className="d-flex align-items-center ms-2 mt-2 mt-md-0">
+              <ForkButton />
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

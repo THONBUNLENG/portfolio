@@ -5,7 +5,6 @@ import { AiFillGithub, AiFillPhone } from "react-icons/ai";
 import { SiGitlab, SiTiktok } from "react-icons/si";
 import { FaLinkedin, FaTelegram, FaArrowRight } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
-import cambodiaFlag from "../Assets/cambodia-flag.png";
 import ukFlag from "../Assets/uk-flag.png";
 import taiwanFlag from "../Assets/taiwan.png";
 
@@ -94,15 +93,15 @@ function MeScreen() {
           <div className="flex items-center gap-3 sm:gap-4">
             <button
               type="button"
-              onClick={() => setLanguage(language === "en" ? "km" : language === "km" ? "zh" : "en")}
+              onClick={() => setLanguage(language === "en" ? "nan" : "en")}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 border border-white/20 text-slate-200 text-xs font-semibold hover:border-[#e74c5e] hover:text-[#e74c5e] transition-all duration-200"
             >
               <img
-                src={language === "en" ? ukFlag : language === "zh" ? taiwanFlag : cambodiaFlag}
-                alt={language === "en" ? "English" : language === "zh" ? "台語" : "ខ្មែរ"}
+                src={language === "en" ? ukFlag : taiwanFlag}
+                alt={language === "en" ? "English" : "台語"}
                 className="h-4 w-4 rounded-full object-cover"
               />
-              <span className="uppercase">{language === "en" ? "EN" : language === "zh" ? "台" : "KM"}</span>
+              <span className="uppercase">{language === "en" ? "EN" : "台"}</span>
             </button>
       
           </div>

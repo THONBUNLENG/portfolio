@@ -36,37 +36,27 @@ function Blogs() {
             if (!post) return null;
 
             const title =
-              language === "km" && post.titleKm
-                ? post.titleKm
-                : language === "zh" && post.titleZh
+              language === "nan" && post.titleZh
                 ? post.titleZh
                 : post.title;
 
             const description =
-              language === "km" && post.descriptionKm
-                ? post.descriptionKm
-                : language === "zh" && post.descriptionZh
+              language === "nan" && post.descriptionZh
                 ? post.descriptionZh
                 : post.description;
 
             const date =
-              language === "km" && post.dateKm
-                ? post.dateKm
-                : language === "zh" && post.dateZh
+              language === "nan" && post.dateZh
                 ? post.dateZh
                 : post.date;
 
             const readTime =
-              language === "km" && post.readTimeKm
-                ? post.readTimeKm
-                : language === "zh" && post.readTimeZh
+              language === "nan" && post.readTimeZh
                 ? post.readTimeZh
                 : post.readTime;
 
             const tags =
-              language === "km" && post.tagsKm
-                ? post.tagsKm
-                : language === "zh" && post.tagsZh
+              language === "nan" && post.tagsZh
                 ? post.tagsZh
                 : post.tags;
 

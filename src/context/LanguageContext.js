@@ -10,6 +10,7 @@ const translations = {
     navbarProjects: "Projects",
     navbarResume: "Resume",
     navbarBlogs: "Blogs",
+    navbarContact: "Contact",
     homeGreeting: "Hi There!",
     homeNameTranslation: "Thon Bunleng",
     homeIntroPrefix: "LET ME",
@@ -208,208 +209,14 @@ const translations = {
     meGetInTouch: "Get in touch",
     meBrandName: "THON BUNLENG",
   },
-  km: {
-    navbarHome: "ទំព័រដើម",
-    navbarAbout: "អំពីខ្ញុំ",
-    navbarProjects: "គម្រោង",
-    navbarResume: "ប្រវត្តិរូប",
-    navbarBlogs: "អត្ថបទ",
-    homeGreeting: "សួស្តី!",
-    homeNameTranslation: "ថុន ប៊ុនឡេង",
-    homeIntroPrefix: "ខ្ញុំចង់",
-    homeIntroMiddle: "ណែនាំ",
-    homeIntroSuffix: "ខ្លួនឯង",
-    availableFreelance: "អាចទទួលការងារឯករាជ្យបាន",
-    homeHeroTitle: "អ្នកអភិវឌ្ឍ",
-    homeHeroTitleHighlight: "កម្មវិធី",
-    homeHeroTagline: "សាងសង់កម្មវិធីដែលមានគុណភាព យ៉ាងមានទំនុកចិត្តនិងឆាប់រហ័ស",
-    homeIntroParagraph:
-      "ខ្ញុំជាវិស្វករកម្មវិធី (Software Engineer) ដែលមានចំណូលចិត្តក្នុងការផ្លាស់ប្តូរគំនិតច្នៃប្រឌិត ឱ្យទៅជាផលិតផលបច្ចេកវិទ្យាដែលមានប្រសិទ្ធភាព និងអាចពង្រីកមាត្រដ្ឋានបាន (Scalable)។ ខ្ញុំផ្តោតលើការបង្កើតប្រព័ន្ធដំណើរការល្បឿនលឿន ព្រមទាំងបទពិសោធន៍អ្នកប្រើប្រាស់ដ៏រលូន។<br/><br/>ខ្ញុំមានជំនាញ និងបទពិសោធន៍ក្នុងការធ្វើការទាំង Frontend និង Backend ដោយប្រើប្រាស់បច្ចេកវិទ្យាចម្បងៗដូចជា <span class=\"tech-flutter\">Flutter</span>, <span class=\"tech-laravel\">Laravel</span>, <span class=\"tech-nodejs\">Node.js</span>, <span class=\"tech-react-native\">React Native</span> និង <span class=\"tech-javascript\">JavaScript</span>។<br/><br/>គោលដៅចម្បងរបស់ខ្ញុំគឺការអភិវឌ្ឍ Mobile & Web Applications, ដំណោះស្រាយ Blockchain និងការភ្ជាប់ប្រព័ន្ធ on-chain ជាមួយ off-chain។",
-    homeFindMe: "រកខ្ញុំនៅទីនេះ",
-    homeim: "ខ្ញុំបាទឈ្មោះ",
-    homeImPrefix: "ខ្ញុំបាទឈ្មោះ",
-    homeImName: "ថុន ប៊ុនឡេង",
-    homeConnect: "សូមទំនាក់ទំនងជាមួយខ្ញុំ",
-    homeConnectHighlight: "ទំនាក់ទំនង",
-    contactPhone: "+855 011 820 595",
-    contactEmail: "leng94570@gmail.com",
-    telegramAriaLabel: "បើក Telegram",
-    telegramQrAlt: "កូដ QR Telegram",
-    telegramLabel: "Telegram",
-    aboutTitlePrefix: "ស្គាល់",
-    aboutTitleHighlight: "ខ្ញុំ",
-    aboutTitleSuffix: "...!",
-    aboutCardName: "ថុន ប៊ុនឡេង",
-    aboutCardCity: "រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា",
-    aboutCardRole: "អ្នកអភិវឌ្ឍន៍កម្មវិធី",
-    aboutCardParagraph:
-      "សួស្តីអ្នកគ្រប់គ្នា! ខ្ញុំបាទឈ្មោះ <span class=\"purple\">ថុន ប៊ុនឡេង</span> មកពី <span class=\"purple\">រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា</span>។<br />ខ្ញុំជាអ្នកអភិវឌ្ឍន៍កម្មវិធីដែលមានចំណង់ចំណូលចិត្តក្នុងការបង្កើតកម្មវិធីទូរស័ព្ទ និងវេបសាយដែលអាចពង្រីកបាន ដែលមានស្ថាបត្យកម្មស្អាត និងឧបករណ៍ទំនើប។",
-    aboutCardEducation: "វិទ្យាសាស្ត្រកុំព្យូទ័រ",
-    aboutCardUniversity: "សាកលវិទ្យាល័យអន្តរជាតិ ប៊ែលធី",
-    aboutCardActivitiesPrefix:
-      "ក្រៅពីការសរសេរកូដ ខ្ញុំស្រឡាញ់ធ្វើសកម្មភាពដែលធ្វើឱ្យខ្ញុំមានភាពច្នៃប្រឌិត និងទទួលការបំផុសគំនិត៖",
-    aboutCardActivities: {
-      games: "លេងហ្គេម 🎮",
-      blogs: "សរសេរប្លុកបច្ចេកវិទ្យា ✍️",
-      travel: "ធ្វើដំណើរនិងរុករកទីកន្លែងថ្មីៗ 🌍",
-    },
-    aboutCardQuote: '"ខិតខំបង្កើតអ្វីៗដែលបង្កើតការផ្លាស់ប្តូរ!"',
-    aboutCardFooter: "ថុន ប៊ុនឡេង",
-    professionalSkills: "ជំនាញវិជ្ជាជីវៈ",
-    toolsTitle: "ឧបករណ៍ដែលខ្ញុំប្រើ",
-    toolsTitlePrefix: "ឧបករណ៍",
-    toolsTitleSuffix: "ដែលខ្ញុំប្រើ",
-    projectsTitlePrefix: "គម្រោង",
-    projectsTitleHighlight: "ថ្មីៗ",
-    projectsTitleSuffix: "របស់ខ្ញុំ",
-    projectsSubtitle: "នេះជាគម្រោងខ្លះដែលខ្ញុំបានធ្វើថ្មីៗនេះ។",
-    resumeTitlePrefix: "ប្រវត្តិរូប",
-    resumeTitleHighlight: "សង្ខេប",
-    resumeTitleSuffix: "របស់ខ្ញុំ",
-    resumeSummary: "សេចក្តីសង្ខេបនៃដំណើរវិជ្ជាជីវៈ ជំនាញ និងការសិក្សារបស់ខ្ញុំ។",
-    resume: {
-      experience: [
-        {
-          title: "អ្នកអភិវឌ្ឍន៍កម្មវិធីទូរស័ព្ទ (Flutter/Dart)",
-          company: "Wintech Software Development Cambodia Co. Ltd",
-          period: "2025 – 2026",
-          details: [
-            "អភិវឌ្ឍន៍និងថែរក្សាប្រព័ន្ធគ្រប់គ្រងហាងកាហ្វេជាកម្មវិធីទូរស័ព្ទដែលរួចរាល់សម្រាប់ប្រើការ។",
-            "បង្កើតមុខងារដូចជា POS ការគ្រប់គ្រងស្តុក របាយការណ៍លក់ និងការផ្ទៀងផ្ទាត់អ្នកប្រើប្រាស់ ដោយប្រើ Flutter/Dart។",
-            "សហការជាមួយក្រុម Backend និង QA ដើម្បីភ្ជាប់ API និងធានាការដំណើរការរលូននៅក្នុងបរិយាកាសធ្វើការពិតប្រាកដ។",
-          ],
-        },
-        {
-          title: "អ្នកអភិវឌ្ឍន៍ Backend ក្រោមការបណ្តុះបណ្តាល",
-          company: "VANNA (សៀមរាប, កម្ពុជា)",
-          period: "កក្កដា 2024 – តុលា 2024",
-          details: [
-            "អភិវឌ្ឍន៍និងថែរក្សា RESTful APIs ដោយប្រើ Node.js និង Express ផ្តល់ endpoint ដែលអាចជឿទុកចិត្តបានសម្រាប់កម្មវិធីទូរស័ព្ទ និងវេបសាយ។",
-            "ដាក់បញ្ចូល MongoDB និង PostgreSQL ទៅក្នុងសេវាកម្ម Backend ធ្វើឲ្យល្បឿនចូលដំណើរទិន្នន័យកើនឡើងដល់ ៣០%។",
-            "សហការជាមួយក្រុមមុខងារផ្សេងៗ ដើម្បីដំណើរការផ្ដល់ feature នៅក្នុង sprint និងចូលរួមក្នុងការត្រួតពិនិត្យកូដ។",
-          ],
-        },
-        {
-          title: "អ្នកអភិវឌ្ឍន៍ឯករាជ្យ & អ្នករួមចំណែក Open Source",
-          company: "Freelance & Open Source",
-          period: "2024 – បច្ចុប្បន្ន",
-          details: [
-            "បង្កើតនិងដំណើរការកម្មវិធី Full-Stack ដោយប្រើ Laravel, React, និង Flutter សម្រាប់អតិថិជនជាច្រើន។",
-            "រួមចំណែកនៅក្នុងគម្រោង Open Source និងបង្កើតមាតិកាបច្ចេកទេស (ប្លុក និង tutorial) សម្រាប់សហគមន៍អ្នកអភិវឌ្ឍន៍។",
-            "រចនាសំណួរ SQL និង REST API ដែលមានប្រសិទ្ធភាព ធ្វើឲ្យពេលវេលាឆ្លើយតបនៃកម្មវិធីប្រសើរឡើង ២៥%។",
-          ],
-        },
-      ],
-      education: [
-        {
-          title: "បរិញ្ញាបត្រវិទ្យាសាស្ត្រកុំព្យូទ័រ",
-          school: "សាកលវិទ្យាល័យអន្តរជាតិ ប៊ែលធី (ភ្នំពេញ, កម្ពុជា)",
-          period: "២០២៣ – ២០២៦",
-          details: [
-            "ផ្តោតលើវិស្វកម្មសូហ្វវែរ ក្បួនដោះស្រាយ មូលដ្ឋានទិន្នន័យ និងបច្ចេកវិទ្យាវេបសាយ/ទូរស័ព្ទ។",
-            "គម្រោងចប់ស្រេច: ប្រព័ន្ធគ្រប់គ្រងសាលារៀនស្វ័យប្រវត្តិ។",
-          ],
-        },
-        {
-          title: "សញ្ញាបត្រវិទ្យាល័យ – ផ្នែកវិទ្យាសាស្ត្រសង្គម",
-          school: "វិទ្យាល័យចំណេះទូទៅនិងបច្ចេកទេស ព្រះបាទសម្ដេចព្រះបរមនាថ នរោត្ដម សីហមុនី",
-          period: "២០១៩ – ២០២៣",
-          details: [
-            "បញ្ចប់ការសិក្សាដោយផ្តោតលើវិទ្យាសាស្ត្រសង្គម និងគណិតវិទ្យា ទទួលបានពិន្ទុខ្ពស់ក្នុងវិទ្យាសាស្ត្រកុំព្យូទ័រ និងរូបវិទ្យា។",
-          ],
-        },
-      ],
-      skills: [
-        "Flutter / Dart",
-        "JavaScript / TypeScript",
-        "React.js / Next.js",
-        "Node.js / Express",
-        "Laravel / PHP",
-        "MongoDB / PostgreSQL",
-        "Docker / Git / CI-CD",
-        "Tailwind CSS / Bootstrap",
-      ],
-      tools: [
-        "VS Code",
-        "Postman",
-        "IntelliJ IDEA",
-        "Android Studio",
-        "Figma",
-        "GitHub / GitLab",
-        "Linux",
-      ],
-    },
-    experienceTitle: "បទពិសោធន៍",
-    educationTitle: "ការសិក្សា",
-    skillsTitle: "ជំនាញ",
-    technicalSkillsTitle: "បច្ចេកទេស",
-    technicalSkillsHighlight: "ជំនាញ",
-    technicalSkillsSubtitle: "ឧបករណ៍និងបច្ចេកវិទ្យាដែលខ្ញុំប្រើប្រចាំថ្ងៃ។",
-    githubButton: "GitHub",
-    demoButton: "សាកល្បង",
-    blogButton: "អត្ថបទ",
-    readArticle: "អានអត្ថបទ",
-    backToBlogs: "ត្រឡប់ទៅអត្ថបទ",
-    blogTitle: "អត្ថបទរបស់ខ្ញុំ",
-    blogSubtitle:
-      "ការស្វែងយល់ស៊ីជម្រៅអំពីស្ថាបត្យកម្មកម្មវិធីទូរស័ព្ទ ការអនុវត្ត UI/UX និងការសរសេរកូដស្អាត។",
-    blogNotFound: "រកមិនឃើញអត្ថបទ",
-    codeDays: "ថ្ងៃដែលខ្ញុំសរសេរ",
-    codeDaysHighlight: "កូដ",
-    footerDesigned: "រចនានិងអភិវឌ្ឍដោយ ថុន ប៊ុនឡេង",
-    footerCopyright: "រក្សាសិទ្ធ ©",
-    footerBy: "ថុន ប៊ុនឡេង",
-    languagePageTitle: "ជ្រើសរើសភាសារបស់អ្នក",
-    languagePageSubtitle: "ជ្រើសរើសភាសាមួយដើម្បីបន្ត",
-    languagePageEnglish: "English",
-    languagePageKhmer: "ខ្មែរ",
-    languagePageContinue: "បន្ត",
-    typeOptions: {
-      softwareDeveloper: "អ្នកអភិវឌ្ឍន៍កម្មវិធី",
-      mobileAppDeveloper: "អ្នកអភិវឌ្ឍន៍កម្មវិធីទូរស័ព្ទ",
-      webDeveloper: "អ្នកអភិវឌ្ឍន៍វេបសាយ",
-      uxUiDesigner: "អ្នករចនា UX/UI",
-      freelancer: "អ្នកធ្វើការឯករាជ្យ",
-      mernStackDeveloper: "អ្នកអភិវឌ្ឍន៍ MERN Stack",
-      openSourceContributor: "អ្នករួមចំណែក Open Source",
-    },
-    servicesTitle: "សេវាកម្ម",
-    services: {
-      webDevelopment: "អភិវឌ្ឍន៍វេបសាយ",
-      mobileAppDevelopment: "អភិវឌ្ឍន៍កម្មវិធីទូរស័ព្ទ",
-      customSoftwareDevelopment: "អភិវឌ្ឍន៍កម្មវិធីផ្ទាល់ខ្លួន",
-      apiIntegration: "ការរួមបញ្ចូល API",
-      databaseDesign: "ការរចនាមូលដ្ឋានទិន្នន័យ",
-      bugFixingMaintenance: "ការជួសជុល និង ថែរក្សា",
-      systemDevelopment: "អភិវឌ្ឍន៍ប្រព័ន្ធសម្រាប់អាជីវកម្ម",
-    },
-    socialLabels: {
-      github: "GitHub",
-      gitlab: "GitLab",
-      linkedin: "LinkedIn",
-      telegram: "Telegram",
-      facebook: "Facebook",
-      youtube: "YouTube",
-      tiktok: "TikTok",
-      phone: "ទូរស័ព្ទ",
-    },
-    meWelcome: "សួស្តីមកកាន់បណ្តាញខ្ញុំ",
-    meHeroDescription:
-      "អ្នកអភិវឌ្ឍន៍ Full-Stack & Mobile Application ដែលបង្កើតឧបករណ៍វេបសាយដែលឆ្លើយតប, រចនាបថ UI/UX ដែលងាយប្រើ, និងកម្មវិធីទូរស័ព្ទដែលអាចពង្រីកបានសម្រាប់ iOS និង Android ។",
-    meAvailableForHire: "មានលក់ដល់ពេលនេះ",
-    meSpecialist: "ជំនាញ Web & Mobile",
-    meHireMe: "ជួលខ្ញុំ",
-    meLearnMore: "ស្វែងយល់បន្ថែម",
-    meGetInTouch: "ទាក់ទងជាមួយខ្ញុំ",
-    meBrandName: "ថុន ប៊ុនឡេង",
-  },
-zh: {
+  nan: {
     homeim: "我是",
     navbarHome: "首頁",
     navbarAbout: "關於我",
     navbarProjects: "專案",
     navbarResume: "履歷",
     navbarBlogs: "部落格",
+    navbarContact: "聯繫我",
     homeGreeting: "你好！",
     homeNameTranslation: "何文霖",
     homeIntroPrefix: "讓",
@@ -611,13 +418,58 @@ zh: {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState(() => {
-    return typeof window !== "undefined" ? localStorage.getItem("language") || "en" : "en";
+  const [language, setLanguageState] = useState(() => {
+    if (typeof window === "undefined") return "en";
+    const stored = localStorage.getItem("language");
+    if (stored === "km") {
+      localStorage.removeItem("language");
+      return "en";
+    }
+    if (stored === "zh") {
+      localStorage.setItem("language", "nan");
+      return "nan";
+    }
+    return stored || "en";
   });
 
+  // Persist every change immediately.
   useEffect(() => {
     localStorage.setItem("language", language);
   }, [language]);
+
+  // --- Cross-instance sync -------------------------------------------
+  // If <LanguageProvider> ends up mounted more than once in the tree
+  // (e.g. wrapped around a single route instead of once at the app root),
+  // each instance holds its OWN `language` state — selecting a language
+  // in one updates localStorage but the other instance never re-renders,
+  // so parts of the UI (like the navbar flag) look stuck on English.
+  //
+  // The native "storage" event only fires in OTHER tabs/windows, not the
+  // same one, so we dispatch a custom event locally whenever this
+  // instance changes the language, and every instance (including this
+  // one) listens for it and stays in sync. This makes the symptom
+  // disappear even if the duplicate-provider issue in the component tree
+  // isn't fixed yet — though fixing the tree structure is still the
+  // correct long-term solution (see the App.js note below).
+  useEffect(() => {
+    function handleSync(e) {
+      const next = e.detail;
+      if (next && next !== language && translations[next]) {
+        setLanguageState(next);
+      }
+    }
+    window.addEventListener("language-sync", handleSync);
+    return () => window.removeEventListener("language-sync", handleSync);
+  }, [language]);
+
+  const setLanguage = (lang) => {
+    if (!translations[lang]) {
+      console.warn(`LanguageContext: "${lang}" is not a supported language, ignoring.`);
+      return;
+    }
+    setLanguageState(lang);
+    window.dispatchEvent(new CustomEvent("language-sync", { detail: lang }));
+  };
 
   const t = (key) => {
     const keys = key.split(".");

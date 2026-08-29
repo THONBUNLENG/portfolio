@@ -1,7 +1,6 @@
 import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import { useNavigate } from "react-router-dom";
-import cambodiaFlag from "../../Assets/cambodia-flag.png";
 import ukFlag from "../../Assets/uk-flag.png";
 import "./LanguagePage.css";
 
@@ -9,8 +8,7 @@ import taiwanFlag from "../../Assets/taiwan-flag.png";
 
 const LANGUAGES = [
   { code: "en", label: "English", flag: ukFlag }, 
-  { code: "km", label: "ខ្មែរ", flag: cambodiaFlag },
-  { code: "zh", label: "台語", flag: taiwanFlag },
+  { code: "nan", label: "台語", flag: taiwanFlag },
 ];
 
 function LanguagePage() {
