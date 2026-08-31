@@ -5,7 +5,6 @@ import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/home-main.svg";
 import Toolstack from "./Toolstack";
-import Particle from "../Particle";
 import { useLanguage } from "../../context/LanguageContext";
 
 function About() {
@@ -13,7 +12,6 @@ function About() {
 
   return (
     <Container fluid className="about-section" id="about">
-      <Particle />
       <Container>
         <Row
           style={{

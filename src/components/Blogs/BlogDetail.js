@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
-import Particle from "../Particle";
 
 function BlogDetail({ blog }) {
   const { t } = useLanguage();
@@ -17,7 +16,6 @@ function BlogDetail({ blog }) {
 
   return (
     <Container fluid className="blog-section position-relative py-5 min-h-screen text-white">
-      <Particle />
       <Container className="position-relative" style={{ zIndex: 2 }}>
         <div className="mb-4">
           <Button

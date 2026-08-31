@@ -9,7 +9,6 @@ jest.mock("./Github", () => () => <div data-testid="github-mock">Github</div>);
 jest.mock("./Techstack", () => () => <div data-testid="techstack-mock">Techstack</div>);
 jest.mock("./AboutCard", () => () => <div data-testid="aboutcard-mock">Aboutcard</div>);
 jest.mock("./Toolstack", () => () => <div data-testid="toolstack-mock">Toolstack</div>);
-jest.mock("../Particle", () => () => <div data-testid="particle-mock">Particle</div>);
 
 // Mock image import
 jest.mock("../../Assets/home-main.svg", () => "laptop-img-mock.svg");
@@ -28,11 +27,6 @@ describe('About Component Integration Tests', () => {
     expect(screen.getByText(/Know Who/i)).toBeInTheDocument();
     expect(screen.getByText("I'M")).toBeInTheDocument();
     expect(screen.getByText((content) => content.includes("...!"))).toBeInTheDocument();
-  });
-
-  test('renders background Particle visual effects wrapper', () => {
-    renderAbout();
-    expect(screen.getByTestId('particle-mock')).toBeInTheDocument();
   });
 
   test('renders the main Aboutcard section component', () => {

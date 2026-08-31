@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaTelegram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { useLanguage } from "../../context/LanguageContext";
-import Particle from "../Particle";
 import "./Contact.css";
 
 function Contact() {
@@ -58,7 +57,6 @@ function Contact() {
 
   return (
     <section className="contact-section position-relative text-white" id="contact">
-      <Particle />
       <Container className="position-relative" style={{ zIndex: 2 }}>
 
         {/* Heading */}

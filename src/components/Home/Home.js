@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import myImg from "../../Assets/me7.jpg";
-import Particle from "../Particle";
 import About from "../About/About";
 import Home2 from "./Home2";
 import Projects from "../Projects/Projects";
@@ -72,7 +71,6 @@ function Home() {
   return (
     <section>
       <Container fluid className="home-section" id="home">
-        <Particle />
         <Container fluid className="home-content-new">
           <Row className="align-items-center home-hero-row">
             {/* Image on the left */}

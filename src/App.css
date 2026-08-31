@@ -47,7 +47,8 @@ html {
 .about-section,
 .project-section,
 .resume-section,
-.blog-section {
+.blog-section,
+.contact-section {
   scroll-margin-top: 90px;
 }
 

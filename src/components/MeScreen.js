@@ -6,7 +6,7 @@ import * as THREE from "three";
 import gsap from "gsap";
 import { AiFillGithub, AiFillPhone } from "react-icons/ai";
 import { SiGitlab, SiTiktok } from "react-icons/si";
-import { FaLinkedin, FaTelegram, FaArrowRight } from "react-icons/fa";
+import { FaLinkedin, FaTelegram, FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
 import ukFlag from "../Assets/uk-flag.png";
 import taiwanFlag from "../Assets/taiwan.png";
@@ -14,21 +14,44 @@ import customLogo from "../Assets/logo.png";
 
 const PARTICLE_COUNT = 45000;
 
-// 1. បង្កើត Shapes (Brain -> Bulb -> Globe)
+// 1. បង្កើត Shapes (Solar System -> Earth+Moon -> Earth)
 function generateShapesAndColors(count) {
-  const brain = new Float32Array(count * 3);
-  const bulb = new Float32Array(count * 3);
-  const globe = new Float32Array(count * 3);
+  const solarSystem = new Float32Array(count * 3);
+  const earthMoon = new Float32Array(count * 3);
+  const earthOnly = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
 
   const palette = [
-    new THREE.Color("#facc15"),
-    new THREE.Color("#ec4899"),
-    new THREE.Color("#10b981"),
-    new THREE.Color("#ffffff"),
-    new THREE.Color("#8b5cf6"),
-    new THREE.Color("#f97316"),
+    new THREE.Color("#facc15"), // ថ្ងៃ - លឿង
+    new THREE.Color("#38bdf8"), // ផែនដី - ខៀវ
+    new THREE.Color("#22c55e"), // ដី - បៃតង
+    new THREE.Color("#f97316"), // ភពម៉ារស៍ - ទឹកក្រូច
+    new THREE.Color("#ffffff"), // ព្រះច័ន្ទ / ផ្កាយ - ស
+    new THREE.Color("#a1a1aa"), // ភពថ្ម - ប្រផេះ
   ];
+
+  const planets = [
+    { orbit: 0.9, size: 0.05 }, // Mercury
+    { orbit: 1.25, size: 0.09 }, // Venus
+    { orbit: 1.6, size: 0.10 }, // Earth
+    { orbit: 1.95, size: 0.08 }, // Mars
+    { orbit: 2.45, size: 0.22 }, // Jupiter
+    { orbit: 2.95, size: 0.19 }, // Saturn
+    { orbit: 3.3, size: 0.14 }, // Uranus
+    { orbit: 3.6, size: 0.13 }, // Neptune
+    { orbit: 3.85, size: 0.04 }, // Pluto
+  ];
+  const planetAngle = -0.35;
+
+  const sunFraction = 0.14;
+  const ringFraction = 0.38;
+  const planetFraction = 1 - sunFraction - ringFraction;
+
+  const earthRadius = 1.55;
+  const moonOrbitRadius = 2.6;
+  const moonSize = 0.32;
+  const emEarthFraction = 0.58;
+  const emRingFraction = 0.28;
 
   for (let i = 0; i < count; i++) {
     const i3 = i * 3;
@@ -36,38 +59,57 @@ function generateShapesAndColors(count) {
     const v = Math.random();
     const theta = u * 2.0 * Math.PI;
     const phi = Math.acos(2.0 * v - 1.0);
+    const progress = i / count;
 
-    // Shape 1: Brain
-    const rBrain = Math.cbrt(Math.random()) * 2.3;
-    const brainFolds = (Math.sin(theta * 8) * Math.cos(phi * 8)) * 0.12;
-    let bx = (rBrain + brainFolds) * Math.sin(phi) * Math.cos(theta) * 1.45;
-    let by = (rBrain + brainFolds) * Math.sin(phi) * Math.sin(theta) * 1.0;
-    let bz = (rBrain + brainFolds) * Math.cos(phi) * 1.25;
-    if (bx > 0) bx += 0.22;
-    if (bx < 0) bx -= 0.22;
-    brain[i3] = bx;
-    brain[i3 + 1] = by;
-    brain[i3 + 2] = bz;
-
-    // Shape 2: Lightbulb
-    if (i < count * 0.72) {
-      const rBulb = Math.cbrt(Math.random()) * 1.85;
-      bulb[i3] = rBulb * Math.sin(phi) * Math.cos(theta);
-      bulb[i3 + 1] = rBulb * Math.sin(phi) * Math.sin(theta) + 0.6;
-      bulb[i3 + 2] = rBulb * Math.cos(phi);
+    // ---------- Shape 1: Solar System ----------
+    if (progress < sunFraction) {
+      const rSun = Math.cbrt(Math.random()) * 0.45;
+      solarSystem[i3] = rSun * Math.sin(phi) * Math.cos(theta);
+      solarSystem[i3 + 1] = rSun * Math.sin(phi) * Math.sin(theta);
+      solarSystem[i3 + 2] = rSun * Math.cos(phi);
+    } else if (progress < sunFraction + ringFraction) {
+      const orbit = planets[Math.floor(Math.random() * planets.length)].orbit;
+      const ringAngle = Math.random() * Math.PI * 2;
+      solarSystem[i3] = Math.cos(ringAngle) * orbit;
+      solarSystem[i3 + 1] = (Math.random() - 0.5) * 0.05;
+      solarSystem[i3 + 2] = Math.sin(ringAngle) * orbit;
     } else {
-      const angle = Math.random() * Math.PI * 2;
-      const baseR = 0.5 + Math.random() * 0.2;
-      bulb[i3] = Math.cos(angle) * baseR;
-      bulb[i3 + 1] = -1.4 + Math.random() * 1.3;
-      bulb[i3 + 2] = Math.sin(angle) * baseR;
+      const remaining = (progress - sunFraction - ringFraction) / planetFraction;
+      const idx = Math.min(planets.length - 1, Math.floor(remaining * planets.length));
+      const p = planets[idx];
+      const rP = Math.cbrt(Math.random()) * p.size;
+      const localX = rP * Math.sin(phi) * Math.cos(theta);
+      const localY = rP * Math.sin(phi) * Math.sin(theta);
+      const localZ = rP * Math.cos(phi);
+      solarSystem[i3] = Math.cos(planetAngle) * p.orbit + localX;
+      solarSystem[i3 + 1] = localY;
+      solarSystem[i3 + 2] = Math.sin(planetAngle) * p.orbit + localZ;
     }
 
-    // Shape 3: Globe
+    // ---------- Shape 2: Earth + Moon Orbit ----------
+    if (progress < emEarthFraction) {
+      const rE = Math.cbrt(Math.random()) * earthRadius;
+      earthMoon[i3] = rE * Math.sin(phi) * Math.cos(theta);
+      earthMoon[i3 + 1] = rE * Math.sin(phi) * Math.sin(theta);
+      earthMoon[i3 + 2] = rE * Math.cos(phi);
+    } else if (progress < emEarthFraction + emRingFraction) {
+      const ringAngle = Math.random() * Math.PI * 2;
+      const dashOn = Math.floor(ringAngle / 0.35) % 2 === 0;
+      earthMoon[i3] = Math.cos(ringAngle) * moonOrbitRadius;
+      earthMoon[i3 + 1] = (Math.random() - 0.5) * 0.05;
+      earthMoon[i3 + 2] = dashOn ? Math.sin(ringAngle) * moonOrbitRadius : 999;
+    } else {
+      const rM = Math.cbrt(Math.random()) * moonSize;
+      earthMoon[i3] = moonOrbitRadius + rM * Math.sin(phi) * Math.cos(theta);
+      earthMoon[i3 + 1] = rM * Math.sin(phi) * Math.sin(theta);
+      earthMoon[i3 + 2] = rM * Math.cos(phi);
+    }
+
+    // ---------- Shape 3: Earth Only ----------
     const rGlobe = 2.25 + (Math.random() - 0.5) * 0.2;
-    globe[i3] = rGlobe * Math.sin(phi) * Math.cos(theta);
-    globe[i3 + 1] = rGlobe * Math.sin(phi) * Math.sin(theta);
-    globe[i3 + 2] = rGlobe * Math.cos(phi);
+    earthOnly[i3] = rGlobe * Math.sin(phi) * Math.cos(theta);
+    earthOnly[i3 + 1] = rGlobe * Math.sin(phi) * Math.sin(theta);
+    earthOnly[i3 + 2] = rGlobe * Math.cos(phi);
 
     const chosenColor = palette[Math.floor(Math.random() * palette.length)];
     colors[i3] = chosenColor.r;
@@ -75,50 +117,69 @@ function generateShapesAndColors(count) {
     colors[i3 + 2] = chosenColor.b;
   }
 
-  return { brain, bulb, globe, colors };
+  return { solarSystem, earthMoon, earthOnly, colors };
 }
 
-// 2. 3D Particle Scene + Smooth Mouse Parallax
+// 2. 3D Particle Scene + Smooth Mouse Parallax + Scatter Transition
 function ClickMorphParticleScene({ step }) {
   const pointsRef = useRef();
   const groupRef = useRef();
   const morphProgress = useRef({ val: 0 });
-  const { brain, bulb, globe, colors } = useMemo(() => generateShapesAndColors(PARTICLE_COUNT), []);
-  const currentPositions = useMemo(() => new Float32Array(brain), [brain]);
+  const { solarSystem, earthMoon, earthOnly, colors } = useMemo(
+    () => generateShapesAndColors(PARTICLE_COUNT),
+    []
+  );
+  const currentPositions = useMemo(() => new Float32Array(solarSystem), [solarSystem]);
+
+  const scatter = useMemo(() => {
+    const arr = new Float32Array(PARTICLE_COUNT * 3);
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const i3 = i * 3;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      const dist = 4 + Math.random() * 10;
+      arr[i3] = dist * Math.sin(phi) * Math.cos(theta);
+      arr[i3 + 1] = dist * Math.sin(phi) * Math.sin(theta);
+      arr[i3 + 2] = dist * Math.cos(phi);
+    }
+    return arr;
+  }, []);
 
   useEffect(() => {
     gsap.to(morphProgress.current, {
       val: step,
-      duration: 1.4,
-      ease: "power3.inOut",
+      duration: 1.6,
+      ease: "power2.inOut",
     });
   }, [step]);
 
   useFrame((state, delta) => {
-    // 1. Mouse Parallax (ផ្អៀងតាមកណ្ដុរ)
-    const targetX = (state.mouse.x * 0.5);
-    const targetY = (state.mouse.y * 0.5);
+    const targetX = state.mouse.x * 0.5;
+    const targetY = state.mouse.y * 0.5;
     if (groupRef.current) {
       groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetX, 0.05);
       groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -targetY, 0.05);
     }
 
-    // 2. Morph Geometry
     if (!pointsRef.current) return;
-    const m = morphProgress.current.val;
+    const m = THREE.MathUtils.clamp(morphProgress.current.val, 0, 2);
     const posAttr = pointsRef.current.geometry.attributes.position;
     const array = posAttr.array;
 
+    const segment = m <= 1 ? 0 : 1;
+    const t = m <= 1 ? m : m - 1;
+    const from = segment === 0 ? solarSystem : earthMoon;
+    const to = segment === 0 ? earthMoon : earthOnly;
+
+    const explodeFactor = Math.sin(Math.PI * t);
+    const explode = Math.pow(explodeFactor, 0.6);
+
     for (let i = 0; i < PARTICLE_COUNT * 3; i++) {
-      if (m <= 1) {
-        array[i] = THREE.MathUtils.lerp(brain[i], bulb[i], m);
-      } else {
-        array[i] = THREE.MathUtils.lerp(bulb[i], globe[i], m - 1);
-      }
+      const base = THREE.MathUtils.lerp(from[i], to[i], t);
+      array[i] = base + scatter[i] * explode;
     }
     posAttr.needsUpdate = true;
 
-    // 3. Constant slow rotation
     pointsRef.current.rotation.y += delta * 0.08;
   });
 
@@ -161,8 +222,7 @@ function FloatingDecorations() {
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
-    
-    // Parallax សម្រាប់ Triangles
+
     if (groupRef.current) {
       groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, state.mouse.x * 0.3, 0.05);
       groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, state.mouse.y * 0.3, 0.05);
@@ -227,11 +287,15 @@ function MeScreen() {
     }
   };
 
+  const handleCancel = () => {
+    setCurrentStep((prev) => Math.max(prev - 1, 0));
+  };
+
   return (
-    <div className="relative w-screen h-screen bg-[#060608] text-white font-sans selection:bg-[#7c3aed] selection:text-white overflow-hidden">
-      
+    <div className="relative w-screen h-screen bg-black text-white font-sans selection:bg-[#7c3aed] selection:text-white overflow-hidden">
+
       {/* 3D Canvas Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 5.2], fov: 55 }}>
           <ambientLight intensity={0.5} />
           <ClickMorphParticleScene step={currentStep} />
@@ -247,18 +311,16 @@ function MeScreen() {
 
       {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 lg:px-20 py-7 backdrop-blur-md bg-black/10 border-b border-white/[0.04]">
-        <div 
+        <div
           onClick={() => setCurrentStep(0)}
           className="flex items-center gap-3 cursor-pointer group"
         >
           <img
             src={customLogo}
             alt="Logo"
-            className="w-8 h-8 rounded-full object-contain shadow-[0_0_12px_rgba(124,58,237,0.6)] group-hover:scale-105 transition-transform duration-200"
+            className="img-fluid logo"
           />
-          <h2 className="text-xl font-bold tracking-tight text-white">
-            {t("meBrandName")} <span className="text-[#7c3aed]">.</span>
-          </h2>
+          <span className="brand-name">{t("meBrandName")}</span>
         </div>
 
         <nav className="flex items-center gap-6 sm:gap-8 text-[11px] uppercase tracking-[0.2em] text-[#9ca3af] font-semibold">
@@ -274,15 +336,13 @@ function MeScreen() {
             />
             <span className="uppercase">{language === "en" ? "EN" : "台"}</span>
           </button>
-
-    
         </nav>
       </header>
 
       {/* Main Content Area */}
       <main className="relative z-10 w-full h-full flex flex-col justify-center px-8 lg:px-24 max-w-2xl">
-        
-        {/* STEP 0: HERO / BRAIN */}
+
+        {/* STEP 0: HERO / SOLAR SYSTEM */}
         {currentStep === 0 && (
           <div className="space-y-6">
             <h1 className="text-6xl sm:text-7xl lg:text-[5.2rem] font-bold tracking-[-0.03em] text-white leading-[1.02]">
@@ -302,14 +362,14 @@ function MeScreen() {
             </div>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <button 
+              <button
                 type="button"
                 onClick={() => (window.location.href = "mailto:leng94570@gmail.com")}
                 className="bg-[#7c3aed] hover:bg-[#6d28d9] text-white px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition shadow-[0_0_25px_rgba(124,58,237,0.6)] hover:scale-105 active:scale-95"
               >
                 {t("meHireMe")}
               </button>
-              <button 
+              <button
                 type="button"
                 onClick={handleLearnMore}
                 className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/20 px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition hover:scale-105 active:scale-95"
@@ -336,7 +396,7 @@ function MeScreen() {
           </div>
         )}
 
-        {/* STEP 1: LIGHTBULB */}
+        {/* STEP 1: EARTH + MOON */}
         {currentStep === 1 && (
           <div className="space-y-6">
             <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
@@ -346,8 +406,17 @@ function MeScreen() {
             <p className="text-zinc-400 text-xs sm:text-sm tracking-wide leading-relaxed max-w-md">
               {t("meSpecialist")}
             </p>
-            <div className="pt-2">
-              <button 
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/20 px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition hover:scale-105 active:scale-95"
+              >
+                <FaArrowLeft className="text-[10px]" />
+                <span>{t("meCancel")}</span>
+              </button>
+
+              <button
                 type="button"
                 onClick={handleLearnMore}
                 className="inline-flex items-center gap-2 bg-[#7c3aed] hover:bg-[#6d28d9] text-white px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition shadow-[0_0_25px_rgba(124,58,237,0.6)] hover:scale-105 active:scale-95"
@@ -359,7 +428,7 @@ function MeScreen() {
           </div>
         )}
 
-        {/* STEP 2: GLOBE */}
+        {/* STEP 2: EARTH ONLY */}
         {currentStep === 2 && (
           <div className="space-y-6">
             <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
@@ -371,13 +440,22 @@ function MeScreen() {
             <p className="text-zinc-400 text-xs sm:text-sm tracking-wide leading-relaxed max-w-md">
               {t("meAvailableForHire")}
             </p>
-            <div className="pt-2">
-              <button 
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/20 px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition hover:scale-105 active:scale-95"
+              >
+                <FaArrowLeft className="text-[10px]" />
+                <span>{t("meCancel")}</span>
+              </button>
+
+              <button
                 type="button"
                 onClick={handleLearnMore}
                 className="inline-flex items-center gap-2 bg-[#7c3aed] hover:bg-[#6d28d9] text-white px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition shadow-[0_0_25px_rgba(124,58,237,0.6)] hover:scale-105 active:scale-95"
               >
-                <span>Go To Portfolio</span>
+                <span>{t("meGoToPortfolio")}</span>
                 <FaArrowRight className="text-[10px]" />
               </button>
             </div>

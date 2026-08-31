@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--section-background-color);
+  background: transparent;
   padding: 20px;
 }
 

@@ -6,7 +6,7 @@ function Home2() {
   // eslint-disable-next-line no-unused-vars
   const { t, language } = useLanguage();
   return (
-   <Container fluid className="home-about-section" id="about">
+   <Container fluid className="home-about-section">
   <Container>
     <Row className="justify-content-center">
       <Col md={9} lg={8} className="home-about-description">

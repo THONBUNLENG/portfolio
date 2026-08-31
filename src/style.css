@@ -1,15 +1,7 @@
 html {
-  --section-background-color: linear-gradient(
-    135deg,
-    #1e2a47 0%,
-    #0f1419 100%
-  );
+  --section-background-color: #000000;
 
-  --image-gradient: linear-gradient(
-    135deg,
-    #1e2a47 0%,
-    #0f1419 100%
-  );
+  --image-gradient: #000000;
 
   --imp-text-color: #ffc107;
 }
@@ -315,7 +307,7 @@ button:focus {
 .home-section {
   position: relative;
   z-index: 1;
-  background: linear-gradient(135deg, #1e2a47 0%, #0f1419 100%);
+  background: transparent;
   background-position: top center;
   background-repeat: no-repeat;
   padding-top: 80px !important;
@@ -963,7 +955,7 @@ button:focus {
   position: relative !important;
   padding-top: 150px !important;
   padding-bottom: 30px !important;
-  background-image: var(--section-background-color) !important;
+  background: transparent !important;
 }
 
 .project-heading {
@@ -1058,7 +1050,7 @@ button:focus {
   z-index: 1 !important;
   padding-top: 150px !important;
   padding-bottom: 30px !important;
-  background-image: var(--section-background-color) !important;
+  background: transparent !important;
 }
 
 .blog-card {
@@ -1485,7 +1477,7 @@ button:focus {
 
 .about-section {
   position: relative !important;
-  background: linear-gradient(135deg, #1e2a47 0%, #0f1419 100%);
+  background: transparent;
   background-position: top center;
   background-repeat: no-repeat;
   padding-top: 150px !important;
@@ -1608,7 +1600,7 @@ button:focus {
   position: relative !important;
   padding-top: 110px !important;
   padding-bottom: 30px !important;
-  background-image: var(--section-background-color) !important;
+  background: transparent !important;
   color: white !important;
 }
 
