@@ -15,6 +15,7 @@ function Home2() {
           <span className="purple">{t("homeIntroMiddle")}</span>{" "}
           {t("homeIntroSuffix")}
         </h1>
+        <p className="home-intro-role">{t("homeIntroRole")}</p>
         <p
           className="home-about-body"
           dangerouslySetInnerHTML={{ __html: t("homeIntroParagraph") }}
