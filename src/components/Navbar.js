@@ -17,15 +17,22 @@ import {
 
 import { useLanguage } from "../context/LanguageContext";
 import ukFlag from "../Assets/uk-flag.png";
-
 import taiwanFlag from "../Assets/taiwan-flag.png";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
-  const { language, t } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const toggleLanguage = () => {
+    if (setLanguage) {
+      setLanguage(language === "en" ? "nan" : "en");
+    } else {
+      navigate("/language");
+    }
+  };
 
   const goToSection = (id) => {
     updateExpanded(false);
@@ -33,7 +40,7 @@ function NavBar() {
       navigate("/home");
       setTimeout(() => {
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      }, 300);
+      }, 350);
     } else {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
@@ -45,7 +52,7 @@ function NavBar() {
       navigate("/home");
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 300);
+      }, 350);
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -64,70 +71,79 @@ function NavBar() {
 
   const LanguageButton = ({ className }) => (
     <Button
-      onClick={() => navigate("/language")}
+      onClick={toggleLanguage}
       className={className}
       style={{
-        background: "rgba(0, 0, 0, 0.4)",
-        border: "1px solid #e74c5e",
-        color: "#fbfbfb",
-        fontSize: "0.85rem",
-        padding: "4px 12px",
+        background: "rgba(255, 255, 255, 0.06)",
+        border: "1px solid rgba(255, 255, 255, 0.15)",
+        color: "#f8fafc",
+        fontSize: "0.8rem",
+        padding: "5px 12px",
         borderRadius: "20px",
         cursor: "pointer",
         display: "inline-flex",
         alignItems: "center",
-        gap: "8px",
-        transition: "all 0.3s ease",
+        gap: "6px",
+        backdropFilter: "blur(8px)",
+        transition: "all 0.25s ease",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "#a78bfa";
+        e.currentTarget.style.background = "rgba(124, 58, 237, 0.15)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
+        e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)";
       }}
     >
       <img
         src={language === "en" ? ukFlag : taiwanFlag}
         alt={language === "en" ? "English" : "台語"}
         style={{
-          height: "1.2em",
-          width: "1.2em",
+          height: "1.1em",
+          width: "1.1em",
           borderRadius: "50%",
-          objectFit: "contain",
+          objectFit: "cover",
         }}
       />
-      <span style={{ fontWeight: "500", textTransform: "uppercase" }}>
-        {language === "en" ? "EN" : "台語"}
+      <span style={{ fontWeight: "600", letterSpacing: "0.05em" }}>
+        {language === "en" ? "EN" : "台"}
       </span>
     </Button>
   );
 
-  // Matches the LanguageButton's visual language: dark translucent pill,
-  // thin accent border, consistent padding/gap so it no longer looks like
-  // a raw, unstyled box next to the language toggle.
   const ForkButton = () => (
     <Button
       href="https://github.com/THONBUNLENG/portfolio.git"
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        background: "rgba(0, 0, 0, 0.4)",
-        border: "1px solid #e74c5e",
-        color: "#fbfbfb",
+        background: "rgba(255, 255, 255, 0.06)",
+        border: "1px solid rgba(255, 255, 255, 0.15)",
+        color: "#f8fafc",
         padding: "6px 14px",
         borderRadius: "20px",
-        cursor: "pointer",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
         gap: "8px",
-        lineHeight: 1,
-        transition: "all 0.3s ease",
+        backdropFilter: "blur(8px)",
+        transition: "all 0.25s ease",
         textDecoration: "none",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = "rgba(231, 76, 94, 0.15)";
+        e.currentTarget.style.borderColor = "#a78bfa";
+        e.currentTarget.style.background = "rgba(124, 58, 237, 0.2)";
+        e.currentTarget.style.boxShadow = "0 0 12px rgba(124, 58, 237, 0.3)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = "rgba(0, 0, 0, 0.4)";
+        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
+        e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)";
+        e.currentTarget.style.boxShadow = "none";
       }}
     >
-      <CgGitFork style={{ fontSize: "1.3em", display: "block" }} />
-      <AiFillStar style={{ fontSize: "1.1em", display: "block" }} />
+      <CgGitFork style={{ fontSize: "1.2em" }} />
+      <AiFillStar style={{ fontSize: "1.05em", color: "#fbbf24" }} />
     </Button>
   );
 
@@ -136,7 +152,12 @@ function NavBar() {
       expanded={expand}
       fixed="top"
       expand="md"
-      className={navColour ? "sticky" : "navbar"}
+      className={navColour ? "sticky shadow-lg backdrop-blur-md" : "navbar"}
+      style={{
+        background: navColour ? "rgba(2, 6, 23, 0.85)" : "transparent",
+        borderBottom: navColour ? "1px solid rgba(255, 255, 255, 0.06)" : "none",
+        transition: "all 0.3s ease-in-out",
+      }}
     >
       <Container className="d-flex align-items-center justify-content-between">
         <Navbar.Brand
@@ -146,9 +167,10 @@ function NavBar() {
             goHome();
           }}
           className="d-flex align-items-center me-auto"
+          style={{ cursor: "pointer" }}
         >
-          <img src={logo} className="img-fluid logo" alt="brand" />
-          <span className="brand-name">THON BUNLENG</span>
+          <img src={logo} className="img-fluid logo me-2" alt="brand" style={{ maxHeight: "32px" }} />
+          <span className="brand-name font-bold tracking-wider text-white">THON BUNLENG</span>
         </Navbar.Brand>
 
         <div className="d-flex d-md-none align-items-center me-2">
@@ -157,9 +179,8 @@ function NavBar() {
 
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
-          onClick={() => {
-            updateExpanded(expand ? false : "expanded");
-          }}
+          onClick={() => updateExpanded(expand ? false : "expanded")}
+          style={{ border: "1px solid rgba(255, 255, 255, 0.15)" }}
         >
           <span></span>
           <span></span>
@@ -167,7 +188,7 @@ function NavBar() {
         </Navbar.Toggle>
 
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ms-auto align-items-md-center" defaultActiveKey="#home">
+          <Nav className="ms-auto align-items-md-center gap-1 gap-lg-2" defaultActiveKey="#home">
             <Nav.Item>
               <Nav.Link
                 href="#home"
@@ -176,7 +197,8 @@ function NavBar() {
                   goHome();
                 }}
               >
-                <AiOutlineHome style={{ marginBottom: "2px" }} /> {t("navbarHome") || "Home"}
+                <AiOutlineHome className="me-1" style={{ marginBottom: "2px" }} />{" "}
+                {t("navbarHome") || "Home"}
               </Nav.Link>
             </Nav.Item>
 
@@ -188,19 +210,20 @@ function NavBar() {
                   goToSection("about");
                 }}
               >
-                <AiOutlineUser style={{ marginBottom: "2px" }} /> {t("navbarAbout") || "About"}
+                <AiOutlineUser className="me-1" style={{ marginBottom: "2px" }} />{" "}
+                {t("navbarAbout") || "About"}
               </Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
               <Nav.Link
-                href="#project"
+                href="#projects"
                 onClick={(e) => {
                   e.preventDefault();
-                  goToSection("project");
+                  goToSection("projects");
                 }}
               >
-                <AiOutlineFundProjectionScreen style={{ marginBottom: "2px" }} />{" "}
+                <AiOutlineFundProjectionScreen className="me-1" style={{ marginBottom: "2px" }} />{" "}
                 {t("navbarProjects") || "Projects"}
               </Nav.Link>
             </Nav.Item>
@@ -213,11 +236,11 @@ function NavBar() {
                   goToSection("blogs");
                 }}
               >
-                <ImBlog style={{ marginBottom: "2px" }} /> {t("navbarBlogs") || "Blogs"}
+                <ImBlog className="me-1" style={{ marginBottom: "2px" }} />{" "}
+                {t("navbarBlogs") || "Blogs"}
               </Nav.Link>
             </Nav.Item>
 
-            {/* Contact Navigation Item */}
             <Nav.Item>
               <Nav.Link
                 href="#contact"
@@ -226,7 +249,8 @@ function NavBar() {
                   goToSection("contact");
                 }}
               >
-                <AiOutlineMail style={{ marginBottom: "2px" }} /> {t("navbarContact")}
+                <AiOutlineMail className="me-1" style={{ marginBottom: "2px" }} />{" "}
+                {t("navbarContact") || "Contact"}
               </Nav.Link>
             </Nav.Item>
 

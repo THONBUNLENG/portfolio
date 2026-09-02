@@ -11,10 +11,12 @@ import ukFlag from "../Assets/uk-flag.png";
 import taiwanFlag from "../Assets/taiwan.png";
 import customLogo from "../Assets/logo.png";
 
-// -------------------------------------------------------------
-// 1. Procedural Textures (Ultra High Definition 1024x512)
-// -------------------------------------------------------------
+// Cache textures globally to prevent recreating canvases on step change
+const textureCache = new Map();
+
 function createPlanetTexture(type) {
+  if (textureCache.has(type)) return textureCache.get(type);
+
   const canvas = document.createElement("canvas");
   canvas.width = 1024;
   canvas.height = 512;
@@ -123,12 +125,10 @@ function createPlanetTexture(type) {
   const texture = new THREE.CanvasTexture(canvas);
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.ClampToEdgeWrapping;
+  textureCache.set(type, texture);
   return texture;
 }
 
-// -------------------------------------------------------------
-// 2. High-End Visual Effects (Glow / Atmosphere / Orbits)
-// -------------------------------------------------------------
 function SunCoronaGlow({ size = 3.6 }) {
   const glowTexture = useMemo(() => {
     const canvas = document.createElement("canvas");
@@ -232,9 +232,6 @@ function MultiLayerStarfield() {
   );
 }
 
-// -------------------------------------------------------------
-// 3. SCENE 0: ប្រព័ន្ធព្រះអាទិត្យពេញ (Solar System)
-// -------------------------------------------------------------
 function SolarSystemScene() {
   const sceneRef = useRef();
   const sunMeshRef = useRef();
@@ -337,9 +334,6 @@ function SimpleOrbitingPlanet({ r, dist, speed, angle, name, hasRing, ring, isEa
   );
 }
 
-// -------------------------------------------------------------
-// 4. SCENE 1: ចលនាភពផែនដី ព្រះច័ន្ទ និងព្រះអាទិត្យ
-// -------------------------------------------------------------
 function EarthMoonSunScene() {
   const sceneRef = useRef();
   const earthRef = useRef();
@@ -384,7 +378,6 @@ function EarthMoonSunScene() {
     <group ref={sceneRef} position={[1.2, 0, 0]} rotation={[0.5, 0, 0]}>
       <MultiLayerStarfield />
 
-      {/* ផែនដីនៅចំកណ្ដាល */}
       <group rotation={[0.41, 0, 0]}>
         <mesh ref={earthRef}>
           <sphereGeometry args={[1.4, 64, 64]} />
@@ -399,7 +392,6 @@ function EarthMoonSunScene() {
         <EarthAtmosphere radius={1.4} />
       </group>
 
-      {/* គន្លង និងគ្រាប់ព្រះច័ន្ទ */}
       <OrbitLine xRadius={moonOrbitX} zRadius={moonOrbitZ} color="#e2e8f0" opacity={0.35} />
       <group ref={moonGroupRef}>
         <mesh>
@@ -408,7 +400,6 @@ function EarthMoonSunScene() {
         </mesh>
       </group>
 
-      {/* គន្លង និងគ្រាប់ព្រះអាទិត្យ */}
       <OrbitLine xRadius={sunOrbitX} zRadius={sunOrbitZ} color="#f59e0b" opacity={0.45} />
       <group ref={sunGroupRef}>
         <mesh>
@@ -422,9 +413,6 @@ function EarthMoonSunScene() {
   );
 }
 
-// -------------------------------------------------------------
-// 5. SCENE 2: ភពផែនដីទោល (Earth Solo Realistic)
-// -------------------------------------------------------------
 function EarthSoloScene() {
   const sceneRef = useRef();
   const earthRef = useRef();
@@ -461,7 +449,7 @@ function EarthSoloScene() {
 }
 
 // -------------------------------------------------------------
-// 6. Main MeScreen Component
+// Main MeScreen Component (Refined UX)
 // -------------------------------------------------------------
 function MeScreen() {
   const navigate = useNavigate();
@@ -502,24 +490,29 @@ function MeScreen() {
           {currentStep === 2 && <EarthSoloScene />}
 
           <EffectComposer>
-            <Bloom
-              luminanceThreshold={0.4}
-              luminanceSmoothing={0.9}
-              intensity={2.0}
-              mipmapBlur
-            />
+            <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.9} intensity={2.0} mipmapBlur />
           </EffectComposer>
         </Canvas>
       </div>
 
-      {/* Header */}
+      {/* Header with Direct Jump */}
       <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 lg:px-20 py-7 backdrop-blur-md bg-black/20 border-b border-white/[0.05]">
         <div onClick={() => setCurrentStep(0)} className="flex items-center gap-3 cursor-pointer group">
           <img src={customLogo} alt="Logo" className="img-fluid logo w-8 h-8 object-contain" />
           <span className="brand-name font-bold tracking-wider">{t("meBrandName")}</span>
         </div>
 
-        <nav className="flex items-center gap-6 sm:gap-8 text-[11px] uppercase tracking-[0.2em] text-[#9ca3af] font-semibold">
+        <nav className="flex items-center gap-4 sm:gap-6 text-[11px] uppercase tracking-[0.2em] font-semibold">
+          {/* Direct Link to Portfolio for Fast Access */}
+          <button
+            type="button"
+            onClick={() => navigate("/home")}
+            className="hidden sm:inline-flex items-center gap-1.5 text-zinc-300 hover:text-[#a78bfa] transition-colors"
+          >
+            <span>Portfolio</span>
+            <FaArrowRight className="text-[9px]" />
+          </button>
+
           <button
             type="button"
             onClick={() => setLanguage(language === "en" ? "nan" : "en")}
@@ -534,6 +527,21 @@ function MeScreen() {
           </button>
         </nav>
       </header>
+
+      {/* Step Indicators */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3">
+        {[0, 1, 2].map((step) => (
+          <button
+            key={step}
+            type="button"
+            aria-label={`Step ${step + 1}`}
+            onClick={() => setCurrentStep(step)}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              currentStep === step ? "bg-[#7c3aed] ring-4 ring-[#7c3aed]/30 scale-125" : "bg-white/30 hover:bg-white/60"
+            }`}
+          />
+        ))}
+      </div>
 
       {/* Main Content Area */}
       <main className="relative z-10 w-full h-full flex flex-col justify-center px-8 lg:px-24 max-w-2xl pointer-events-none">
@@ -572,6 +580,14 @@ function MeScreen() {
                 <span>{t("meLearnMore")}</span>
                 <FaArrowRight className="text-[10px]" />
               </button>
+              {/* Skip directly to portfolio content */}
+              <button
+                type="button"
+                onClick={() => navigate("/home")}
+                className="text-xs text-zinc-400 hover:text-zinc-200 underline underline-offset-4 tracking-wider uppercase transition px-2"
+              >
+                Skip intro →
+              </button>
             </div>
 
             <div className="flex gap-3 pt-4 text-zinc-400">
@@ -591,7 +607,7 @@ function MeScreen() {
           </div>
         )}
 
-        {/* STEP 1: Earth-Moon-Sun Motion */}
+        {/* STEP 1 */}
         {currentStep === 1 && (
           <div className="space-y-6 pointer-events-auto">
             <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
@@ -629,7 +645,7 @@ function MeScreen() {
           </div>
         )}
 
-        {/* STEP 2: Earth Solo with Comprehensive Details */}
+        {/* STEP 2 */}
         {currentStep === 2 && (
           <div className="space-y-6 pointer-events-auto">
             <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
@@ -661,7 +677,7 @@ function MeScreen() {
               </button>
               <button
                 type="button"
-                onClick={handleLearnMore}
+                onClick={() => navigate("/home")}
                 className="inline-flex items-center gap-2 bg-[#7c3aed] hover:bg-[#6d28d9] text-white px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition shadow-[0_0_25px_rgba(124,58,237,0.6)] hover:scale-105 active:scale-95"
               >
                 <span>{t("meGoToPortfolio")}</span>

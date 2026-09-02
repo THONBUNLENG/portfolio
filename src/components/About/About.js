@@ -11,33 +11,12 @@ function About() {
   const { t } = useLanguage();
 
   return (
-    <Container fluid className="about-section" id="about">
+    <Container fluid className="about-section py-5" id="about">
       <Container>
-        <Row
-          style={{
-            justifyContent: "center",
-            alignItems: "stretch",
-            padding: "10px",
-            position: "relative",
-          }}
-        >
-          <Col
-            md={7}
-            className="order-2 order-md-1"
-            style={{
-              justifyContent: "center",
-              paddingTop: "30px",
-              paddingBottom: "50px",
-              zIndex: 2,
-            }}
-          >
-            <h1
-              style={{
-                fontSize: "2.1em",
-                paddingBottom: "20px",
-                textAlign: "center",
-              }}
-            >
+        <Row className="align-items-center justify-content-center py-4">
+          {/* Text Content */}
+          <Col md={7} className="order-2 order-md-1 text-center text-md-start">
+            <h1 className="display-6 fw-bold pb-3">
               {t("aboutTitlePrefix")}{" "}
               <strong className="purple">{t("aboutTitleHighlight")}</strong>{" "}
               {t("aboutTitleSuffix")}
@@ -45,28 +24,39 @@ function About() {
             <Aboutcard />
           </Col>
 
-          {/* Image Wrapper Column */}
-          <Col md={5} className="order-1 order-md-2 about-img-full">
-            <img src={laptopImg} alt="about" />
+          {/* SVG Illustration */}
+          <Col md={5} className="order-1 order-md-2 text-center pb-4 pb-md-0">
+            <img 
+              src={laptopImg} 
+              alt="About illustration" 
+              className="img-fluid"
+              style={{ maxHeight: "420px" }}
+            />
           </Col>
         </Row>
 
-        {/* Professional Skillset Heading */}
-        <h1 className="project-heading">
-          {t("technicalSkillsTitle")}{" "}
-          <strong className="purple">{t("technicalSkillsHighlight")}</strong>
-        </h1>
+        {/* Professional Skillset */}
+        <div className="pt-4">
+          <h1 className="project-heading text-center mb-4">
+            {t("technicalSkillsTitle")}{" "}
+            <strong className="purple">{t("technicalSkillsHighlight")}</strong>
+          </h1>
+          <Techstack />
+        </div>
 
-        <Techstack />
+        {/* Tools Section */}
+        <div className="pt-4">
+          <h1 className="project-heading text-center mb-4">
+            <strong className="purple">{t("toolsTitlePrefix") || t("toolsTitle")}</strong>{" "}
+            {t("toolsTitleSuffix") || ""}
+          </h1>
+          <Toolstack />
+        </div>
 
-        {/* Tools Heading */}
-        <h1 className="project-heading">
-          <strong className="purple">{t("toolsTitlePrefix") || t("toolsTitle")}</strong>{" "}
-          {t("toolsTitleSuffix") || ""}
-        </h1>
-        <Toolstack />
-
-        <Github />
+        {/* GitHub Contribution Calendar */}
+        <div className="pt-4">
+          <Github />
+        </div>
       </Container>
     </Container>
   );

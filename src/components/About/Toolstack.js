@@ -1,16 +1,18 @@
 import React from "react";
 import macOs from "../../Assets/TechIcons/Apple MacOSX.svg";
-import chrome from "../../Assets/TechIcons/Google Chrome.svg";
 import vsCode from "../../Assets/TechIcons/vscode.svg";
 import intelliJ from "../../Assets/TechIcons/intellij-idea.svg";
 import androidStudio from "../../Assets/TechIcons/android-studio.png";
+import postman from "../../Assets/TechIcons/Postman.svg";
+import figma from "../../Assets/TechIcons/figma.png";
 
 const toolList = [
-  { icon: macOs, name: "Mac Os" },
-  { icon: chrome, name: "Google Chrome" },
-  { icon: vsCode, name: "Vs Code" },
+  { icon: vsCode, name: "VS Code" },
   { icon: androidStudio, name: "Android Studio" },
-  { icon: intelliJ, name: "IntelliJ" },
+  { icon: intelliJ, name: "IntelliJ IDEA" },
+  { icon: postman, name: "Postman" },
+  { icon: figma, name: "Figma" },
+  { icon: macOs, name: "macOS" },
 ];
 
 function ToolItem({ tool }) {
@@ -24,8 +26,9 @@ function ToolItem({ tool }) {
 
 function Toolstack() {
   return (
-    <div className="tech-marquee-wrapper">
-      <div className="tech-marquee-track" style={{ animationDuration: "22s" }}>
+    <div className="tech-marquee-wrapper overflow-hidden">
+      <div className="tech-marquee-track" style={{ animationDuration: "25s" }}>
+        {/* Loop ចំនួន ២ ជុំសម្រាប់ Smooth Infinite Marquee */}
         {toolList.map((tool, idx) => (
           <ToolItem tool={tool} key={`a-${idx}`} />
         ))}

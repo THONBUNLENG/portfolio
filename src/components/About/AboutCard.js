@@ -20,12 +20,17 @@ function AboutCard() {
         <blockquote className="blockquote mb-0">
           {language === "en" || language === "nan" ? (
             <p className="about-card-text">
-              {language === "nan" ? "大家好！我是 " : "Hi everyone! I&apos;m "}<span className="purple">{t("aboutCardName")}</span>{" "}
+              {language === "nan" ? "大家好！我是 " : "Hi everyone! I'm "}
+              <span className="purple">{t("aboutCardName")}</span>{" "}
               {language === "nan" ? "来自" : "from"} <span className="purple">{t("aboutCardCity")}</span>.
               <br />
-              {language === "nan" ? "我目前是一名" : "I&apos;m currently working as a"} <span className="purple">{t("aboutCardRole")}</span>.
+              {language === "nan" ? "我目前是一名" : "I'm currently working as a"}{" "}
+              <span className="purple">{t("aboutCardRole")}</span>.
               <br />
-              {language === "nan" ? "我拥有" : "I hold a Bachelor&apos;s Degree in"} <span className="purple">{t("aboutCardEducation")}</span> {language === "nan" ? "学位，毕业于" : "from"} <span className="purple">{t("aboutCardUniversity")}</span>.
+              {language === "nan" ? "我拥有" : "I hold a Bachelor's Degree in"}{" "}
+              <span className="purple">{t("aboutCardEducation")}</span>{" "}
+              {language === "nan" ? "学位，毕业于" : "from"}{" "}
+              <span className="purple">{t("aboutCardUniversity")}</span>.
             </p>
           ) : (
             <p className="about-card-text" dangerouslySetInnerHTML={{ __html: t("aboutCardParagraph") }} />

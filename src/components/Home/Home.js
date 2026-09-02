@@ -13,6 +13,7 @@ import {
   AiFillPhone,
   AiOutlineMail,
   AiOutlineFacebook,
+  AiOutlineArrowDown,
 } from "react-icons/ai";
 import { FaTelegram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { SiTiktok, SiGitlab } from "react-icons/si";
@@ -68,18 +69,30 @@ function Home() {
     { id: "phone-metfone", icon: <AiFillPhone />, href: "tel:+855883205515", label: t("socialLabels.phone") },
   ];
 
+  const scrollToProjects = () => {
+    const el = document.getElementById("projects");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section>
       <Container fluid className="home-section" id="home">
         <Container fluid className="home-content-new">
           <Row className="align-items-center home-hero-row">
-            {/* Image on the left */}
+            {/* Image on the left with blend styling */}
             <Col lg={5} className="home-img-left">
               <div className="home-img-wrapper">
                 <img
                   src={myImg}
-                  alt="home pic"
+                  alt="Thon Bunleng"
                   className="img-fluid home-hero-img"
+                  style={{
+                    borderRadius: "24px",
+                    boxShadow: "0 20px 50px rgba(0, 0, 0, 0.6)",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                  }}
                 />
 
                 {/* Tech Stack Badges */}
@@ -119,6 +132,7 @@ function Home() {
 
             {/* Content on the right */}
             <Col lg={7} className="home-header-right">
+              {/* Telegram QR float badge */}
               <a
                 href={telegramUrl}
                 target="_blank"
@@ -132,7 +146,9 @@ function Home() {
 
               {/* Main Content */}
               <div className="hero-content">
-                <span className="freelance-badge">{t("availableFreelance")}</span>
+                <div className="d-inline-flex align-items-center gap-2 mb-2">
+                  <span className="freelance-badge">{t("availableFreelance")}</span>
+                </div>
 
                 <h1 className="hero-title">
                   {t("homeHeroTitle")}{" "}
@@ -153,42 +169,63 @@ function Home() {
                   </ul>
                 </div>
 
-                {/* Contact Info */}
-                <div className="contact-info">
-                  <p className="phone-cellcard">
-                    <AiFillPhone style={{ marginRight: "8px" }} />
+                {/* Contact Info - Compact Flex Layout */}
+                <div className="contact-info d-flex flex-wrap gap-3 align-items-center mb-3">
+                  <a href="tel:+85511820595" className="contact-link phone-cellcard">
+                    <AiFillPhone style={{ marginRight: "6px" }} />
                     +855 11 820 595
-                  </p>
-                  <p className="phone-metfone">
-                    <AiFillPhone style={{ marginRight: "8px" }} />
+                  </a>
+                  <span className="text-zinc-600 d-none d-sm-inline">•</span>
+                  <a href="tel:+855883205515" className="contact-link phone-metfone">
+                    <AiFillPhone style={{ marginRight: "6px" }} />
                     +855 88 320 5515
-                  </p>
-                  <p className="contact-email">
-                    <AiOutlineMail style={{ marginRight: "8px" }} />
+                  </a>
+                  <span className="text-zinc-600 d-none d-sm-inline">•</span>
+                  <a href="mailto:leng94570@gmail.com" className="contact-link contact-email">
+                    <AiOutlineMail style={{ marginRight: "6px" }} />
                     {t("contactEmail")}
-                  </p>
+                  </a>
                 </div>
 
-                {/* Social Icons Row */}
-                <div className="hero-social-row">
-                  {heroSocialLinks.map((link) => (
-                    <a
-                      key={link.id}
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="hero-social-icon"
-                      aria-label={link.label}
-                    >
-                      {link.icon}
-                    </a>
-                  ))}
+                {/* CTA Action & Social Icons */}
+                <div className="d-flex flex-wrap align-items-center gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={scrollToProjects}
+                    className="btn btn-primary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2"
+                    style={{
+                      backgroundColor: "#7c3aed",
+                      borderColor: "#7c3aed",
+                      fontSize: "0.85rem",
+                      fontWeight: 600,
+                    }}
+                  >
+                    <span>View Projects</span>
+                    <AiOutlineArrowDown />
+                  </button>
+
+                  <div className="hero-social-row m-0">
+                    {heroSocialLinks.map((link) => (
+                      <a
+                        key={link.id}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="hero-social-icon"
+                        aria-label={link.label}
+                      >
+                        {link.icon}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </Col>
           </Row>
         </Container>
       </Container>
+
+      {/* Other Sections */}
       <Home2 />
       <About />
       <Projects />
