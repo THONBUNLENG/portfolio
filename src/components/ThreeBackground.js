@@ -1,125 +1,152 @@
-import React, { useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import * as THREE from "three";
+import React, { useEffect, useRef } from "react";
 
-const PARTICLE_COUNT = 3000;
+// រូបរាងចំណុចផ្កាយនៃតារានិករទាំង ១២ (គ្មានខ្សែបន្ទាត់)
+const CONSTELLATIONS = [
+  // Aries
+  { stars: [[0.1, 0.2], [0.35, 0.45], [0.75, 0.55], [0.95, 0.85]] },
+  // Taurus
+  { stars: [[0.1, 0.1], [0.3, 0.35], [0.55, 0.45], [0.9, 0.2], [0.5, 0.75], [0.25, 0.8]] },
+  // Gemini
+  { stars: [[0.2, 0.1], [0.8, 0.15], [0.25, 0.5], [0.75, 0.55], [0.3, 0.9], [0.7, 0.85]] },
+  // Cancer
+  { stars: [[0.5, 0.4], [0.15, 0.8], [0.85, 0.75], [0.55, 0.1]] },
+  // Leo
+  { stars: [[0.85, 0.2], [0.65, 0.05], [0.45, 0.15], [0.48, 0.45], [0.15, 0.65], [0.1, 0.9], [0.65, 0.8]] },
+  // Virgo
+  { stars: [[0.1, 0.15], [0.35, 0.3], [0.65, 0.4], [0.9, 0.25], [0.55, 0.7], [0.3, 0.9], [0.75, 0.95]] },
+  // Libra
+  { stars: [[0.5, 0.1], [0.15, 0.5], [0.85, 0.5], [0.3, 0.9], [0.7, 0.9]] },
+  // Scorpio
+  { stars: [[0.1, 0.1], [0.3, 0.25], [0.45, 0.45], [0.55, 0.65], [0.7, 0.9], [0.9, 0.85], [0.85, 0.65]] },
+  // Sagittarius
+  { stars: [[0.2, 0.5], [0.45, 0.6], [0.75, 0.45], [0.6, 0.2], [0.3, 0.25], [0.85, 0.1]] },
+  // Capricorn
+  { stars: [[0.15, 0.25], [0.5, 0.15], [0.85, 0.35], [0.65, 0.85], [0.35, 0.75]] },
+  // Aquarius
+  { stars: [[0.15, 0.2], [0.45, 0.15], [0.75, 0.3], [0.25, 0.6], [0.55, 0.55], [0.85, 0.7]] },
+  // Pisces
+  { stars: [[0.15, 0.15], [0.2, 0.5], [0.45, 0.8], [0.75, 0.85], [0.9, 0.5], [0.8, 0.2]] },
+];
 
-function generateParticles(count) {
-  const positions = new Float32Array(count * 3);
-  const colors = new Float32Array(count * 3);
+export default function SpaceBackground() {
+  const canvasRef = useRef(null);
 
-  const palette = [
-    new THREE.Color("#7c3aed"),
-    new THREE.Color("#a78bfa"),
-    new THREE.Color("#f59e0b"),
-    new THREE.Color("#ffffff"),
-  ];
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
 
-  for (let i = 0; i < count; i++) {
-    const i3 = i * 3;
-    const radius = 3 + Math.random() * 5;
-    const theta = Math.random() * Math.PI * 2;
-    const phi = Math.acos(2 * Math.random() - 1);
+    let animationFrameId;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
 
-    positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
-    positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-    positions[i3 + 2] = radius * Math.cos(phi);
+    // 1. គ្រាប់ផ្កាយតូចៗរាយប៉ាយនៅផ្ទៃខាងក្រោយ
+    const STAR_COUNT = 320;
+    const backgroundStars = Array.from({ length: STAR_COUNT }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 0.8 + 0.3,
+      alpha: Math.random() * 0.6 + 0.15,
+      speed: Math.random() * 0.008 + 0.003,
+    }));
 
-    const color = palette[Math.floor(Math.random() * palette.length)];
-    colors[i3] = color.r;
-    colors[i3 + 1] = color.g;
-    colors[i3 + 2] = color.b;
-  }
+    // 2. រៀបចំទីតាំងក្រុមផ្កាយតារានិករ
+    const placedConstellations = CONSTELLATIONS.map((c, i) => {
+      const col = i % 4;
+      const row = Math.floor(i / 4);
 
-  return { positions, colors };
-}
+      const cellW = width / 4;
+      const cellH = height / 3;
 
-function Particles() {
-  const pointsRef = useRef();
-  const { positions, colors } = useMemo(() => generateParticles(PARTICLE_COUNT), []);
+      const size = Math.min(cellW, cellH) * 0.55;
+      const originX = col * cellW + Math.random() * (cellW - size);
+      const originY = row * cellH + Math.random() * (cellH - size);
 
-  useFrame((state) => {
-    if (!pointsRef.current) return;
-    pointsRef.current.rotation.y += 0.0005;
-    pointsRef.current.rotation.x = THREE.MathUtils.lerp(
-      pointsRef.current.rotation.x,
-      state.mouse.y * 0.1,
-      0.05
-    );
-    pointsRef.current.rotation.y = THREE.MathUtils.lerp(
-      pointsRef.current.rotation.y,
-      state.mouse.x * 0.1,
-      0.05
-    );
-  });
+      return {
+        screenStars: c.stars.map(([sx, sy]) => ({
+          x: originX + sx * size,
+          y: originY + sy * size,
+          pulse: Math.random() * Math.PI * 2,
+        })),
+      };
+    });
+
+    let time = 0;
+
+    // 3. Render Loop
+    const render = () => {
+      time += 0.02;
+
+      // ផ្ទៃខាងក្រោយងងឹត (#020617)
+      ctx.fillStyle = "#020617";
+      ctx.fillRect(0, 0, width, height);
+
+      // --- គូសផ្កាយតូចៗផ្ទៃខាងក្រោយ ---
+      backgroundStars.forEach((star) => {
+        star.alpha += star.speed;
+        if (star.alpha > 0.75 || star.alpha < 0.15) {
+          star.speed = -star.speed;
+        }
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(star.alpha)})`;
+        ctx.fill();
+      });
+
+      // --- គូសគ្រាប់ផ្កាយតារានិករ (ពន្លឺ Glow ខៀវខ្ចីតូចៗ ដោយគ្មានខ្សែបន្ទាត់) ---
+      ctx.save();
+      ctx.globalCompositeOperation = "screen";
+
+      placedConstellations.forEach((c) => {
+        c.screenStars.forEach((p) => {
+          const pulseFactor = 0.85 + Math.sin(time + p.pulse) * 0.15;
+          const outerGlowRadius = 4.5 * pulseFactor;
+
+          // ពន្លឺ Glow ជុំវិញ
+          const halo = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, outerGlowRadius);
+          halo.addColorStop(0, "rgba(56, 189, 248, 0.75)");
+          halo.addColorStop(0.4, "rgba(14, 165, 233, 0.25)");
+          halo.addColorStop(1, "rgba(2, 132, 199, 0)");
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, outerGlowRadius, 0, Math.PI * 2);
+          ctx.fillStyle = halo;
+          ctx.fill();
+
+          // គ្រាប់ផ្កាយស្នូលចំកណ្ដាល
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
+          ctx.fillStyle = "#ffffff";
+          ctx.shadowColor = "#38bdf8";
+          ctx.shadowBlur = 4;
+          ctx.fill();
+        });
+      });
+
+      ctx.restore();
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    const handleResize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
-    <points ref={pointsRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={PARTICLE_COUNT}
-          array={positions}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          count={PARTICLE_COUNT}
-          array={colors}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.015}
-        vertexColors
-        transparent
-        opacity={0.7}
-        blending={THREE.AdditiveBlending}
-        depthWrite={false}
-      />
-    </points>
-  );
-}
-
-function FloatingGeometry() {
-  const meshRef = useRef();
-
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    meshRef.current.rotation.x += 0.001;
-    meshRef.current.rotation.y += 0.002;
-    meshRef.current.position.x = THREE.MathUtils.lerp(
-      meshRef.current.position.x,
-      state.mouse.x * 0.5,
-      0.05
-    );
-    meshRef.current.position.y = THREE.MathUtils.lerp(
-      meshRef.current.position.y,
-      state.mouse.y * 0.5,
-      0.05
-    );
-  });
-
-  return (
-    <mesh ref={meshRef} position={[3, 2, -2]}>
-      <octahedronGeometry args={[0.5, 0]} />
-      <meshBasicMaterial color="#7c3aed" wireframe transparent opacity={0.15} />
-    </mesh>
-  );
-}
-
-export default function ThreeBackground() {
-  return (
-    <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
-      <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
-        <color attach="background" args={["#000000"]} />
-        <Particles />
-        <FloatingGeometry />
-        <EffectComposer>
-          <Bloom luminanceThreshold={0.2} luminanceSmoothing={0.9} intensity={0.5} />
-        </EffectComposer>
-      </Canvas>
-    </div>
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 pointer-events-none"
+      style={{ zIndex: -1 }}
+    />
   );
 }

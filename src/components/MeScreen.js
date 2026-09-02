@@ -1,9 +1,8 @@
-import React, { useRef, useMemo, useState, useEffect } from "react";
+import React, { useRef, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
-import gsap from "gsap";
 import { AiFillGithub, AiFillPhone } from "react-icons/ai";
 import { SiGitlab, SiTiktok } from "react-icons/si";
 import { FaLinkedin, FaTelegram, FaArrowRight, FaArrowLeft } from "react-icons/fa";
@@ -12,257 +11,458 @@ import ukFlag from "../Assets/uk-flag.png";
 import taiwanFlag from "../Assets/taiwan.png";
 import customLogo from "../Assets/logo.png";
 
-const PARTICLE_COUNT = 45000;
+// -------------------------------------------------------------
+// 1. Procedural Textures (Ultra High Definition 1024x512)
+// -------------------------------------------------------------
+function createPlanetTexture(type) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1024;
+  canvas.height = 512;
+  const ctx = canvas.getContext("2d");
 
-// 1. បង្កើត Shapes (Solar System -> Earth+Moon -> Earth)
-function generateShapesAndColors(count) {
-  const solarSystem = new Float32Array(count * 3);
-  const earthMoon = new Float32Array(count * 3);
-  const earthOnly = new Float32Array(count * 3);
-  const colors = new Float32Array(count * 3);
+  if (type === "sun") {
+    const grad = ctx.createRadialGradient(512, 256, 30, 512, 256, 512);
+    grad.addColorStop(0, "#ffffff");
+    grad.addColorStop(0.15, "#fff37a");
+    grad.addColorStop(0.4, "#f59e0b");
+    grad.addColorStop(0.75, "#ea580c");
+    grad.addColorStop(1, "#7c2d12");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 1024, 512);
+  } else if (type === "moon") {
+    ctx.fillStyle = "#cbd5e1";
+    ctx.fillRect(0, 0, 1024, 512);
+    for (let i = 0; i < 300; i++) {
+      ctx.fillStyle = Math.random() > 0.5 ? "#94a3b8" : "#64748b";
+      ctx.beginPath();
+      ctx.arc(Math.random() * 1024, Math.random() * 512, Math.random() * 10, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  } else if (type === "earth") {
+    ctx.fillStyle = "#034694";
+    ctx.fillRect(0, 0, 1024, 512);
 
-  const palette = [
-    new THREE.Color("#facc15"), // ថ្ងៃ - លឿង
-    new THREE.Color("#38bdf8"), // ផែនដី - ខៀវ
-    new THREE.Color("#22c55e"), // ដី - បៃតង
-    new THREE.Color("#f97316"), // ភពម៉ារស៍ - ទឹកក្រូច
-    new THREE.Color("#ffffff"), // ព្រះច័ន្ទ / ផ្កាយ - ស
-    new THREE.Color("#a1a1aa"), // ភពថ្ម - ប្រផេះ
-  ];
-
-  const planets = [
-    { orbit: 0.9, size: 0.05 }, // Mercury
-    { orbit: 1.25, size: 0.09 }, // Venus
-    { orbit: 1.6, size: 0.10 }, // Earth
-    { orbit: 1.95, size: 0.08 }, // Mars
-    { orbit: 2.45, size: 0.22 }, // Jupiter
-    { orbit: 2.95, size: 0.19 }, // Saturn
-    { orbit: 3.3, size: 0.14 }, // Uranus
-    { orbit: 3.6, size: 0.13 }, // Neptune
-    { orbit: 3.85, size: 0.04 }, // Pluto
-  ];
-  const planetAngle = -0.35;
-
-  const sunFraction = 0.14;
-  const ringFraction = 0.38;
-  const planetFraction = 1 - sunFraction - ringFraction;
-
-  const earthRadius = 1.55;
-  const moonOrbitRadius = 2.6;
-  const moonSize = 0.32;
-  const emEarthFraction = 0.58;
-  const emRingFraction = 0.28;
-
-  for (let i = 0; i < count; i++) {
-    const i3 = i * 3;
-    const u = Math.random();
-    const v = Math.random();
-    const theta = u * 2.0 * Math.PI;
-    const phi = Math.acos(2.0 * v - 1.0);
-    const progress = i / count;
-
-    // ---------- Shape 1: Solar System ----------
-    if (progress < sunFraction) {
-      const rSun = Math.cbrt(Math.random()) * 0.45;
-      solarSystem[i3] = rSun * Math.sin(phi) * Math.cos(theta);
-      solarSystem[i3 + 1] = rSun * Math.sin(phi) * Math.sin(theta);
-      solarSystem[i3 + 2] = rSun * Math.cos(phi);
-    } else if (progress < sunFraction + ringFraction) {
-      const orbit = planets[Math.floor(Math.random() * planets.length)].orbit;
-      const ringAngle = Math.random() * Math.PI * 2;
-      solarSystem[i3] = Math.cos(ringAngle) * orbit;
-      solarSystem[i3 + 1] = (Math.random() - 0.5) * 0.05;
-      solarSystem[i3 + 2] = Math.sin(ringAngle) * orbit;
-    } else {
-      const remaining = (progress - sunFraction - ringFraction) / planetFraction;
-      const idx = Math.min(planets.length - 1, Math.floor(remaining * planets.length));
-      const p = planets[idx];
-      const rP = Math.cbrt(Math.random()) * p.size;
-      const localX = rP * Math.sin(phi) * Math.cos(theta);
-      const localY = rP * Math.sin(phi) * Math.sin(theta);
-      const localZ = rP * Math.cos(phi);
-      solarSystem[i3] = Math.cos(planetAngle) * p.orbit + localX;
-      solarSystem[i3 + 1] = localY;
-      solarSystem[i3 + 2] = Math.sin(planetAngle) * p.orbit + localZ;
+    ctx.fillStyle = "#0ea5e9";
+    for (let i = 0; i < 26; i++) {
+      ctx.beginPath();
+      ctx.arc(Math.random() * 1024, Math.random() * 512, 50 + Math.random() * 50, 0, Math.PI * 2);
+      ctx.fill();
     }
 
-    // ---------- Shape 2: Earth + Moon Orbit ----------
-    if (progress < emEarthFraction) {
-      const rE = Math.cbrt(Math.random()) * earthRadius;
-      earthMoon[i3] = rE * Math.sin(phi) * Math.cos(theta);
-      earthMoon[i3 + 1] = rE * Math.sin(phi) * Math.sin(theta);
-      earthMoon[i3 + 2] = rE * Math.cos(phi);
-    } else if (progress < emEarthFraction + emRingFraction) {
-      const ringAngle = Math.random() * Math.PI * 2;
-      const dashOn = Math.floor(ringAngle / 0.35) % 2 === 0;
-      earthMoon[i3] = Math.cos(ringAngle) * moonOrbitRadius;
-      earthMoon[i3 + 1] = (Math.random() - 0.5) * 0.05;
-      earthMoon[i3 + 2] = dashOn ? Math.sin(ringAngle) * moonOrbitRadius : 999;
-    } else {
-      const rM = Math.cbrt(Math.random()) * moonSize;
-      earthMoon[i3] = moonOrbitRadius + rM * Math.sin(phi) * Math.cos(theta);
-      earthMoon[i3 + 1] = rM * Math.sin(phi) * Math.sin(theta);
-      earthMoon[i3 + 2] = rM * Math.cos(phi);
+    ctx.fillStyle = "#16a34a";
+    const continents = [
+      { x: 280, y: 190, rx: 110, ry: 75 },
+      { x: 360, y: 340, rx: 70, ry: 90 },
+      { x: 620, y: 170, rx: 140, ry: 70 },
+      { x: 600, y: 300, rx: 80, ry: 90 },
+      { x: 820, y: 350, rx: 55, ry: 45 },
+    ];
+    continents.forEach(({ x, y, rx, ry }) => {
+      ctx.beginPath();
+      ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    ctx.fillStyle = "#d97706";
+    ctx.beginPath();
+    ctx.ellipse(590, 240, 55, 30, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, 1024, 30);
+    ctx.fillRect(0, 485, 1024, 27);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+    for (let i = 0; i < 35; i++) {
+      ctx.beginPath();
+      ctx.ellipse(
+        Math.random() * 1024,
+        Math.random() * 512,
+        40 + Math.random() * 60,
+        12 + Math.random() * 16,
+        0.25,
+        0,
+        Math.PI * 2
+      );
+      ctx.fill();
     }
-
-    // ---------- Shape 3: Earth Only ----------
-    const rGlobe = 2.25 + (Math.random() - 0.5) * 0.2;
-    earthOnly[i3] = rGlobe * Math.sin(phi) * Math.cos(theta);
-    earthOnly[i3 + 1] = rGlobe * Math.sin(phi) * Math.sin(theta);
-    earthOnly[i3 + 2] = rGlobe * Math.cos(phi);
-
-    const chosenColor = palette[Math.floor(Math.random() * palette.length)];
-    colors[i3] = chosenColor.r;
-    colors[i3 + 1] = chosenColor.g;
-    colors[i3 + 2] = chosenColor.b;
+  } else if (type === "mercury") {
+    ctx.fillStyle = "#a8a29e";
+    ctx.fillRect(0, 0, 1024, 512);
+  } else if (type === "venus") {
+    ctx.fillStyle = "#f59e0b";
+    ctx.fillRect(0, 0, 1024, 512);
+  } else if (type === "mars") {
+    ctx.fillStyle = "#dc2626";
+    ctx.fillRect(0, 0, 1024, 512);
+  } else if (type === "jupiter") {
+    for (let y = 0; y < 512; y += 8) {
+      ctx.fillStyle = y % 24 === 0 ? "#78350f" : y % 16 === 0 ? "#b45309" : "#fef3c7";
+      ctx.fillRect(0, y, 1024, 8);
+    }
+    ctx.fillStyle = "#b91c1c";
+    ctx.beginPath();
+    ctx.ellipse(680, 310, 45, 25, 0, 0, Math.PI * 2);
+    ctx.fill();
+  } else if (type === "saturn") {
+    for (let y = 0; y < 512; y += 8) {
+      ctx.fillStyle = y % 16 === 0 ? "#eab308" : "#fef08a";
+      ctx.fillRect(0, y, 1024, 8);
+    }
+  } else if (type === "uranus") {
+    ctx.fillStyle = "#38bdf8";
+    ctx.fillRect(0, 0, 1024, 512);
+  } else if (type === "neptune") {
+    ctx.fillStyle = "#2563eb";
+    ctx.fillRect(0, 0, 1024, 512);
+  } else if (type === "pluto") {
+    ctx.fillStyle = "#94a3b8";
+    ctx.fillRect(0, 0, 1024, 512);
   }
 
-  return { solarSystem, earthMoon, earthOnly, colors };
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  return texture;
 }
 
-// 2. 3D Particle Scene + Smooth Mouse Parallax + Scatter Transition
-function ClickMorphParticleScene({ step }) {
-  const pointsRef = useRef();
-  const groupRef = useRef();
-  const morphProgress = useRef({ val: 0 });
-  const { solarSystem, earthMoon, earthOnly, colors } = useMemo(
-    () => generateShapesAndColors(PARTICLE_COUNT),
-    []
-  );
-  const currentPositions = useMemo(() => new Float32Array(solarSystem), [solarSystem]);
-
-  const scatter = useMemo(() => {
-    const arr = new Float32Array(PARTICLE_COUNT * 3);
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      const i3 = i * 3;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      const dist = 4 + Math.random() * 10;
-      arr[i3] = dist * Math.sin(phi) * Math.cos(theta);
-      arr[i3 + 1] = dist * Math.sin(phi) * Math.sin(theta);
-      arr[i3 + 2] = dist * Math.cos(phi);
-    }
-    return arr;
+// -------------------------------------------------------------
+// 2. High-End Visual Effects (Glow / Atmosphere / Orbits)
+// -------------------------------------------------------------
+function SunCoronaGlow({ size = 3.6 }) {
+  const glowTexture = useMemo(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 512;
+    canvas.height = 512;
+    const ctx = canvas.getContext("2d");
+    const gradient = ctx.createRadialGradient(256, 256, 0, 256, 256, 256);
+    gradient.addColorStop(0, "rgba(255, 255, 230, 1)");
+    gradient.addColorStop(0.2, "rgba(255, 170, 40, 0.85)");
+    gradient.addColorStop(0.5, "rgba(249, 115, 22, 0.4)");
+    gradient.addColorStop(0.8, "rgba(185, 28, 28, 0.15)");
+    gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 512, 512);
+    return new THREE.CanvasTexture(canvas);
   }, []);
 
-  useEffect(() => {
-    gsap.to(morphProgress.current, {
-      val: step,
-      duration: 1.6,
-      ease: "power2.inOut",
-    });
-  }, [step]);
+  return (
+    <sprite scale={[size, size, 1]}>
+      <spriteMaterial
+        map={glowTexture}
+        transparent
+        blending={THREE.AdditiveBlending}
+        depthWrite={false}
+      />
+    </sprite>
+  );
+}
 
-  useFrame((state, delta) => {
-    const targetX = state.mouse.x * 0.5;
-    const targetY = state.mouse.y * 0.5;
-    if (groupRef.current) {
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetX, 0.05);
-      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -targetY, 0.05);
+function EarthAtmosphere({ radius }) {
+  return (
+    <mesh>
+      <sphereGeometry args={[radius * 1.07, 48, 48]} />
+      <meshBasicMaterial
+        color="#38bdf8"
+        transparent
+        opacity={0.35}
+        blending={THREE.AdditiveBlending}
+        side={THREE.BackSide}
+      />
+    </mesh>
+  );
+}
+
+function OrbitLine({ xRadius, zRadius, color = "#60a5fa", opacity = 0.4 }) {
+  const lineGeometry = useMemo(() => {
+    const points = [];
+    const segments = 180;
+    for (let i = 0; i <= segments; i++) {
+      const theta = (i / segments) * Math.PI * 2;
+      points.push(new THREE.Vector3(Math.cos(theta) * xRadius, 0, Math.sin(theta) * zRadius));
     }
-
-    if (!pointsRef.current) return;
-    const m = THREE.MathUtils.clamp(morphProgress.current.val, 0, 2);
-    const posAttr = pointsRef.current.geometry.attributes.position;
-    const array = posAttr.array;
-
-    const segment = m <= 1 ? 0 : 1;
-    const t = m <= 1 ? m : m - 1;
-    const from = segment === 0 ? solarSystem : earthMoon;
-    const to = segment === 0 ? earthMoon : earthOnly;
-
-    const explodeFactor = Math.sin(Math.PI * t);
-    const explode = Math.pow(explodeFactor, 0.6);
-
-    for (let i = 0; i < PARTICLE_COUNT * 3; i++) {
-      const base = THREE.MathUtils.lerp(from[i], to[i], t);
-      array[i] = base + scatter[i] * explode;
-    }
-    posAttr.needsUpdate = true;
-
-    pointsRef.current.rotation.y += delta * 0.08;
-  });
+    return new THREE.BufferGeometry().setFromPoints(points);
+  }, [xRadius, zRadius]);
 
   return (
-    <group ref={groupRef} position={[1.8, -0.1, 0]}>
-      <points ref={pointsRef}>
+    <line geometry={lineGeometry}>
+      <lineDashedMaterial
+        color={color}
+        opacity={opacity}
+        transparent
+        dashSize={0.22}
+        gapSize={0.14}
+      />
+    </line>
+  );
+}
+
+function MultiLayerStarfield() {
+  const { starsBright, starsDim } = useMemo(() => {
+    const bright = new Float32Array(1200 * 3);
+    const dimArray = new Float32Array(2500 * 3);
+    for (let i = 0; i < 1200 * 3; i += 3) {
+      bright[i] = (Math.random() - 0.5) * 60;
+      bright[i + 1] = (Math.random() - 0.5) * 60;
+      bright[i + 2] = (Math.random() - 0.5) * 40 - 5;
+    }
+    for (let i = 0; i < 2500 * 3; i += 3) {
+      dimArray[i] = (Math.random() - 0.5) * 70;
+      dimArray[i + 1] = (Math.random() - 0.5) * 70;
+      dimArray[i + 2] = (Math.random() - 0.5) * 45 - 10;
+    }
+    return { starsBright: bright, starsDim: dimArray };
+  }, []);
+
+  return (
+    <group>
+      <points>
         <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            count={PARTICLE_COUNT}
-            array={currentPositions}
-            itemSize={3}
-          />
-          <bufferAttribute
-            attach="attributes-color"
-            count={PARTICLE_COUNT}
-            array={colors}
-            itemSize={3}
-          />
+          <bufferAttribute attach="attributes-position" count={1200} array={starsBright} itemSize={3} />
         </bufferGeometry>
-        <pointsMaterial
-          size={0.007}
-          vertexColors
-          transparent
-          opacity={0.9}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
+        <pointsMaterial size={0.06} color="#ffffff" transparent opacity={0.9} />
+      </points>
+      <points>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" count={2500} array={starsDim} itemSize={3} />
+        </bufferGeometry>
+        <pointsMaterial size={0.03} color="#93c5fd" transparent opacity={0.5} />
       </points>
     </group>
   );
 }
 
-// 3. Floating Wireframe Objects with Parallax
-function FloatingDecorations() {
+// -------------------------------------------------------------
+// 3. SCENE 0: ប្រព័ន្ធព្រះអាទិត្យពេញ (Solar System)
+// -------------------------------------------------------------
+function SolarSystemScene() {
+  const sceneRef = useRef();
+  const sunMeshRef = useRef();
+  const sunTexture = useMemo(() => createPlanetTexture("sun"), []);
+
+  const planetsData = useMemo(
+    () => [
+      { name: "mercury", r: 0.11, dist: 1.7, speed: 0.45, angle: 0.2 },
+      { name: "venus", r: 0.16, dist: 2.3, speed: 0.35, angle: 1.1 },
+      { name: "earth", r: 0.2, dist: 3.0, speed: 0.28, angle: 2.3, isEarth: true },
+      { name: "mars", r: 0.14, dist: 3.8, speed: 0.22, angle: 3.5 },
+      { name: "jupiter", r: 0.42, dist: 4.8, speed: 0.16, angle: 4.2 },
+      {
+        name: "saturn",
+        r: 0.33,
+        dist: 5.9,
+        speed: 0.12,
+        angle: 5.1,
+        hasRing: true,
+        ring: { innerRadius: 0.39, outerRadius: 0.78, color: "#fef08a", opacity: 0.9, tilt: 0.3 },
+      },
+      {
+        name: "uranus",
+        r: 0.24,
+        dist: 6.9,
+        speed: 0.09,
+        angle: 0.8,
+        hasRing: true,
+        ring: { innerRadius: 0.29, outerRadius: 0.48, color: "#67e8f9", opacity: 0.75, tilt: -0.6 },
+      },
+      { name: "neptune", r: 0.23, dist: 7.8, speed: 0.07, angle: 2.9 },
+      { name: "pluto", r: 0.07, dist: 8.5, speed: 0.05, angle: 4.8 },
+    ],
+    []
+  );
+
+  useFrame((state, delta) => {
+    if (sunMeshRef.current) sunMeshRef.current.rotation.y += delta * 0.12;
+    if (sceneRef.current) {
+      sceneRef.current.rotation.y = THREE.MathUtils.lerp(sceneRef.current.rotation.y, state.mouse.x * 0.1, 0.05);
+      sceneRef.current.rotation.x = THREE.MathUtils.lerp(sceneRef.current.rotation.x, 0.55 - state.mouse.y * 0.08, 0.05);
+    }
+  });
+
+  return (
+    <group ref={sceneRef} position={[0, 0, 0]} rotation={[0.55, 0, 0]}>
+      <MultiLayerStarfield />
+
+      <mesh ref={sunMeshRef}>
+        <sphereGeometry args={[1.05, 48, 48]} />
+        <meshBasicMaterial map={sunTexture} />
+      </mesh>
+      <SunCoronaGlow size={3.8} />
+      <pointLight intensity={6.0} distance={40} color="#ff9500" decay={1.7} />
+
+      {planetsData.map((p) => (
+        <React.Fragment key={p.name}>
+          <OrbitLine xRadius={p.dist} zRadius={p.dist * 0.72} />
+          <SimpleOrbitingPlanet {...p} />
+        </React.Fragment>
+      ))}
+    </group>
+  );
+}
+
+function SimpleOrbitingPlanet({ r, dist, speed, angle, name, hasRing, ring, isEarth }) {
   const groupRef = useRef();
-  const t1 = useRef();
-  const t2 = useRef();
-  const t3 = useRef();
+  const curAngle = useRef(angle);
+  const texture = useMemo(() => createPlanetTexture(name), [name]);
 
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime();
-
+  useFrame((_, delta) => {
+    curAngle.current += delta * speed;
     if (groupRef.current) {
-      groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, state.mouse.x * 0.3, 0.05);
-      groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, state.mouse.y * 0.3, 0.05);
-    }
-
-    if (t1.current) {
-      t1.current.rotation.x = time * 0.2;
-      t1.current.rotation.y = time * 0.3;
-      t1.current.position.y = 1.6 + Math.sin(time * 0.8) * 0.1;
-    }
-    if (t2.current) {
-      t2.current.rotation.z = time * 0.25;
-      t2.current.rotation.x = -time * 0.2;
-    }
-    if (t3.current) {
-      t3.current.rotation.y = -time * 0.35;
-      t3.current.rotation.x = time * 0.15;
+      groupRef.current.position.x = Math.cos(curAngle.current) * dist;
+      groupRef.current.position.z = Math.sin(curAngle.current) * (dist * 0.72);
+      groupRef.current.rotation.y += delta * 0.5;
     }
   });
 
   return (
     <group ref={groupRef}>
-      <mesh ref={t1} position={[-2.4, 1.6, 0.2]}>
-        <tetrahedronGeometry args={[0.65, 0]} />
-        <meshBasicMaterial color="#10b981" wireframe />
+      <mesh>
+        <sphereGeometry args={[r, 36, 36]} />
+        <meshStandardMaterial
+          map={texture}
+          roughness={0.35}
+          metalness={0.1}
+          emissive={isEarth ? "#0ea5e9" : "#000000"}
+          emissiveIntensity={isEarth ? 0.12 : 0}
+        />
       </mesh>
-
-      <mesh ref={t2} position={[2.8, 2.0, -1]}>
-        <octahedronGeometry args={[0.55, 0]} />
-        <meshBasicMaterial color="#ec4899" wireframe />
-      </mesh>
-
-      <mesh ref={t3} position={[-0.8, -2.1, 0.5]}>
-        <tetrahedronGeometry args={[0.5, 0]} />
-        <meshBasicMaterial color="#facc15" wireframe />
-      </mesh>
+      {isEarth && <EarthAtmosphere radius={r} />}
+      {hasRing && (
+        <mesh rotation={[Math.PI / 2 + ring.tilt, 0.2, 0]}>
+          <ringGeometry args={[ring.innerRadius, ring.outerRadius, 64]} />
+          <meshBasicMaterial color={ring.color} side={THREE.DoubleSide} transparent opacity={ring.opacity} />
+        </mesh>
+      )}
     </group>
   );
 }
 
+// -------------------------------------------------------------
+// 4. SCENE 1: ចលនាភពផែនដី ព្រះច័ន្ទ និងព្រះអាទិត្យ
+// -------------------------------------------------------------
+function EarthMoonSunScene() {
+  const sceneRef = useRef();
+  const earthRef = useRef();
+  const sunGroupRef = useRef();
+  const moonGroupRef = useRef();
+
+  const earthTexture = useMemo(() => createPlanetTexture("earth"), []);
+  const sunTexture = useMemo(() => createPlanetTexture("sun"), []);
+  const moonTexture = useMemo(() => createPlanetTexture("moon"), []);
+
+  const sunAngle = useRef(2.4);
+  const moonAngle = useRef(0);
+
+  const sunOrbitX = 4.6;
+  const sunOrbitZ = 2.6;
+  const moonOrbitX = 2.2;
+  const moonOrbitZ = 1.3;
+
+  useFrame((state, delta) => {
+    if (earthRef.current) earthRef.current.rotation.y += delta * 0.4;
+
+    sunAngle.current += delta * 0.35;
+    if (sunGroupRef.current) {
+      sunGroupRef.current.position.x = Math.cos(sunAngle.current) * sunOrbitX;
+      sunGroupRef.current.position.z = Math.sin(sunAngle.current) * sunOrbitZ;
+    }
+
+    moonAngle.current += delta * 0.8;
+    if (moonGroupRef.current) {
+      moonGroupRef.current.position.x = Math.cos(moonAngle.current) * moonOrbitX;
+      moonGroupRef.current.position.z = Math.sin(moonAngle.current) * moonOrbitZ;
+      moonGroupRef.current.rotation.y += delta * 0.2;
+    }
+
+    if (sceneRef.current) {
+      sceneRef.current.rotation.y = THREE.MathUtils.lerp(sceneRef.current.rotation.y, state.mouse.x * 0.12, 0.05);
+      sceneRef.current.rotation.x = THREE.MathUtils.lerp(sceneRef.current.rotation.x, 0.5 - state.mouse.y * 0.1, 0.05);
+    }
+  });
+
+  return (
+    <group ref={sceneRef} position={[1.2, 0, 0]} rotation={[0.5, 0, 0]}>
+      <MultiLayerStarfield />
+
+      {/* ផែនដីនៅចំកណ្ដាល */}
+      <group rotation={[0.41, 0, 0]}>
+        <mesh ref={earthRef}>
+          <sphereGeometry args={[1.4, 64, 64]} />
+          <meshStandardMaterial
+            map={earthTexture}
+            roughness={0.35}
+            metalness={0.1}
+            emissive="#0284c7"
+            emissiveIntensity={0.15}
+          />
+        </mesh>
+        <EarthAtmosphere radius={1.4} />
+      </group>
+
+      {/* គន្លង និងគ្រាប់ព្រះច័ន្ទ */}
+      <OrbitLine xRadius={moonOrbitX} zRadius={moonOrbitZ} color="#e2e8f0" opacity={0.35} />
+      <group ref={moonGroupRef}>
+        <mesh>
+          <sphereGeometry args={[0.22, 32, 32]} />
+          <meshStandardMaterial map={moonTexture} roughness={0.7} />
+        </mesh>
+      </group>
+
+      {/* គន្លង និងគ្រាប់ព្រះអាទិត្យ */}
+      <OrbitLine xRadius={sunOrbitX} zRadius={sunOrbitZ} color="#f59e0b" opacity={0.45} />
+      <group ref={sunGroupRef}>
+        <mesh>
+          <sphereGeometry args={[0.55, 32, 32]} />
+          <meshBasicMaterial map={sunTexture} />
+        </mesh>
+        <SunCoronaGlow size={2.2} />
+        <pointLight intensity={5.5} distance={30} color="#ff9500" />
+      </group>
+    </group>
+  );
+}
+
+// -------------------------------------------------------------
+// 5. SCENE 2: ភពផែនដីទោល (Earth Solo Realistic)
+// -------------------------------------------------------------
+function EarthSoloScene() {
+  const sceneRef = useRef();
+  const earthRef = useRef();
+  const earthTexture = useMemo(() => createPlanetTexture("earth"), []);
+
+  useFrame((state, delta) => {
+    if (earthRef.current) earthRef.current.rotation.y += delta * 0.25;
+    if (sceneRef.current) {
+      sceneRef.current.rotation.y = THREE.MathUtils.lerp(sceneRef.current.rotation.y, state.mouse.x * 0.15, 0.05);
+      sceneRef.current.rotation.x = THREE.MathUtils.lerp(sceneRef.current.rotation.x, -state.mouse.y * 0.15, 0.05);
+    }
+  });
+
+  return (
+    <group ref={sceneRef} position={[1.4, 0, 0]}>
+      <MultiLayerStarfield />
+      <group rotation={[0.41, 0, 0]}>
+        <mesh ref={earthRef}>
+          <sphereGeometry args={[2.2, 64, 64]} />
+          <meshStandardMaterial
+            map={earthTexture}
+            roughness={0.3}
+            metalness={0.15}
+            emissive="#0284c7"
+            emissiveIntensity={0.16}
+          />
+        </mesh>
+        <EarthAtmosphere radius={2.2} />
+      </group>
+      <directionalLight position={[6, 4, 6]} intensity={2.5} color="#ffffff" />
+      <pointLight position={[-6, -4, -4]} intensity={0.5} color="#0369a1" />
+    </group>
+  );
+}
+
+// -------------------------------------------------------------
+// 6. Main MeScreen Component
+// -------------------------------------------------------------
 function MeScreen() {
   const navigate = useNavigate();
   const { language, setLanguage, t } = useLanguage();
@@ -278,10 +478,8 @@ function MeScreen() {
   ];
 
   const handleLearnMore = () => {
-    if (currentStep === 0) {
-      setCurrentStep(1);
-    } else if (currentStep === 1) {
-      setCurrentStep(2);
+    if (currentStep < 2) {
+      setCurrentStep((prev) => prev + 1);
     } else {
       navigate("/home");
     }
@@ -292,35 +490,33 @@ function MeScreen() {
   };
 
   return (
-    <div className="relative w-screen h-screen bg-black text-white font-sans selection:bg-[#7c3aed] selection:text-white overflow-hidden">
-
+    <div className="relative w-screen h-screen bg-[#020617] text-white font-sans selection:bg-[#7c3aed] selection:text-white overflow-hidden">
       {/* 3D Canvas Background */}
       <div className="fixed inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 5.2], fov: 55 }}>
-          <ambientLight intensity={0.5} />
-          <ClickMorphParticleScene step={currentStep} />
-          <FloatingDecorations />
+        <Canvas camera={{ position: [0, 5.5, 14.5], fov: 45 }}>
+          <ambientLight intensity={0.55} />
+          <directionalLight position={[12, 18, 10]} intensity={0.9} />
+
+          {currentStep === 0 && <SolarSystemScene />}
+          {currentStep === 1 && <EarthMoonSunScene />}
+          {currentStep === 2 && <EarthSoloScene />}
+
           <EffectComposer>
-            <Bloom luminanceThreshold={0.05} luminanceSmoothing={0.9} intensity={1.3} />
+            <Bloom
+              luminanceThreshold={0.4}
+              luminanceSmoothing={0.9}
+              intensity={2.0}
+              mipmapBlur
+            />
           </EffectComposer>
         </Canvas>
       </div>
 
-      <div className="fixed top-1/3 left-1/4 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="fixed bottom-1/4 right-1/4 w-[500px] h-[500px] bg-amber-600/10 rounded-full blur-[150px] pointer-events-none" />
-
       {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 lg:px-20 py-7 backdrop-blur-md bg-black/10 border-b border-white/[0.04]">
-        <div
-          onClick={() => setCurrentStep(0)}
-          className="flex items-center gap-3 cursor-pointer group"
-        >
-          <img
-            src={customLogo}
-            alt="Logo"
-            className="img-fluid logo"
-          />
-          <span className="brand-name">{t("meBrandName")}</span>
+      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 lg:px-20 py-7 backdrop-blur-md bg-black/20 border-b border-white/[0.05]">
+        <div onClick={() => setCurrentStep(0)} className="flex items-center gap-3 cursor-pointer group">
+          <img src={customLogo} alt="Logo" className="img-fluid logo w-8 h-8 object-contain" />
+          <span className="brand-name font-bold tracking-wider">{t("meBrandName")}</span>
         </div>
 
         <nav className="flex items-center gap-6 sm:gap-8 text-[11px] uppercase tracking-[0.2em] text-[#9ca3af] font-semibold">
@@ -340,12 +536,11 @@ function MeScreen() {
       </header>
 
       {/* Main Content Area */}
-      <main className="relative z-10 w-full h-full flex flex-col justify-center px-8 lg:px-24 max-w-2xl">
-
-        {/* STEP 0: HERO / SOLAR SYSTEM */}
+      <main className="relative z-10 w-full h-full flex flex-col justify-center px-8 lg:px-24 max-w-2xl pointer-events-none">
+        {/* STEP 0 */}
         {currentStep === 0 && (
-          <div className="space-y-6">
-            <h1 className="text-6xl sm:text-7xl lg:text-[5.2rem] font-bold tracking-[-0.03em] text-white leading-[1.02]">
+          <div className="space-y-6 pointer-events-auto">
+            <h1 className="text-6xl sm:text-7xl lg:text-[5.2rem] font-bold tracking-[-0.03em] text-white leading-[1.02] drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
               {t("homeHeroTitle")} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-amber-300">
                 {t("homeHeroTitleHighlight")}
@@ -356,7 +551,7 @@ function MeScreen() {
               <span className="inline-block text-[11px] font-bold text-zinc-300 tracking-[0.18em] uppercase">
                 {t("meWelcome")}
               </span>
-              <p className="text-zinc-400 text-xs sm:text-sm tracking-wide leading-relaxed max-w-md">
+              <p className="text-zinc-400 text-xs sm:text-sm tracking-wide leading-relaxed max-w-md drop-shadow">
                 {t("meHeroDescription")}
               </p>
             </div>
@@ -372,7 +567,7 @@ function MeScreen() {
               <button
                 type="button"
                 onClick={handleLearnMore}
-                className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/20 px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 backdrop-blur-md text-white border border-white/20 px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition hover:scale-105 active:scale-95"
               >
                 <span>{t("meLearnMore")}</span>
                 <FaArrowRight className="text-[10px]" />
@@ -387,7 +582,7 @@ function MeScreen() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={label}
-                  className="w-9 h-9 flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] hover:border-[#7c3aed] hover:text-white transition duration-200"
+                  className="w-9 h-9 flex items-center justify-center rounded-full border border-white/10 bg-black/50 backdrop-blur-sm hover:border-[#7c3aed] hover:text-white transition duration-200"
                 >
                   {icon}
                 </a>
@@ -396,26 +591,32 @@ function MeScreen() {
           </div>
         )}
 
-        {/* STEP 1: EARTH + MOON */}
+        {/* STEP 1: Earth-Moon-Sun Motion */}
         {currentStep === 1 && (
-          <div className="space-y-6">
-            <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
+          <div className="space-y-6 pointer-events-auto">
+            <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
               Make decisions <br />
               <span className="text-[#a78bfa]">with confidence.</span>
             </h2>
-            <p className="text-zinc-400 text-xs sm:text-sm tracking-wide leading-relaxed max-w-md">
-              {t("meSpecialist")}
-            </p>
+
+            <div className="space-y-2.5 max-w-lg">
+              <span className="inline-block text-xs font-bold uppercase tracking-wider text-purple-400 bg-purple-500/10 px-3 py-1 rounded-md border border-purple-500/20">
+                {t("meSpecialist") || "Full-Stack & Mobile App Specialist"}
+              </span>
+              <p className="text-zinc-300 text-xs sm:text-sm tracking-wide leading-relaxed drop-shadow-sm">
+                Specializing in building robust cross-platform mobile apps with Flutter and modern full-stack web solutions. Combining clean scalable architecture, seamless responsive UI/UX designs, and reliable API integrations to turn ambitious ideas into impactful digital products.
+              </p>
+            </div>
+
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
                 type="button"
                 onClick={handleCancel}
-                className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/20 px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 backdrop-blur-md text-white border border-white/20 px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition hover:scale-105 active:scale-95"
               >
                 <FaArrowLeft className="text-[10px]" />
                 <span>{t("meCancel")}</span>
               </button>
-
               <button
                 type="button"
                 onClick={handleLearnMore}
@@ -428,28 +629,36 @@ function MeScreen() {
           </div>
         )}
 
-        {/* STEP 2: EARTH ONLY */}
+        {/* STEP 2: Earth Solo with Comprehensive Details */}
         {currentStep === 2 && (
-          <div className="space-y-6">
-            <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
+          <div className="space-y-6 pointer-events-auto">
+            <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
               Build a better <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-pink-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-300 to-pink-400">
                 world of work.
               </span>
             </h2>
-            <p className="text-zinc-400 text-xs sm:text-sm tracking-wide leading-relaxed max-w-md">
-              {t("meAvailableForHire")}
-            </p>
+
+            <div className="space-y-3 max-w-lg">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>{t("meAvailableForHire") || "Available for Hire / Freelance"}</span>
+              </div>
+
+              <p className="text-zinc-300 text-xs sm:text-sm tracking-wide leading-relaxed drop-shadow-sm">
+                Passionate about crafting scalable, modern applications that solve real-world problems. Whether it is engineering responsive web platforms, architecting seamless cross-platform mobile experiences with Flutter, or building resilient backend APIs, I am ready to bring innovative ideas to life.
+              </p>
+            </div>
+
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
                 type="button"
                 onClick={handleCancel}
-                className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/20 px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 backdrop-blur-md text-white border border-white/20 px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition hover:scale-105 active:scale-95"
               >
                 <FaArrowLeft className="text-[10px]" />
                 <span>{t("meCancel")}</span>
               </button>
-
               <button
                 type="button"
                 onClick={handleLearnMore}
@@ -461,9 +670,7 @@ function MeScreen() {
             </div>
           </div>
         )}
-
       </main>
-
     </div>
   );
 }
