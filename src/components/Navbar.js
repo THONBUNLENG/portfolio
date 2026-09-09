@@ -107,7 +107,7 @@ function NavBar() {
         }}
       />
       <span style={{ fontWeight: "600", letterSpacing: "0.05em" }}>
-        {language === "en" ? "EN" : "台"}
+        {language === "en" ? "EN" : "台語"}
       </span>
     </Button>
   );
@@ -159,13 +159,13 @@ function NavBar() {
         transition: "all 0.3s ease-in-out",
       }}
     >
-      <Container className="d-flex align-items-center justify-content-between">
+      <Container className="d-flex align-items-center justify-content-between">  
         <Navbar.Brand
           href="/home"
           onClick={(e) => {
             e.preventDefault();
             goHome();
-          }}
+          }}     
           className="d-flex align-items-center me-auto"
           style={{ cursor: "pointer" }}
         >
