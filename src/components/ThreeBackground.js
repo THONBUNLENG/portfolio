@@ -76,12 +76,9 @@ export default function SpaceBackground() {
     // 3. Render Loop
     const render = () => {
       time += 0.02;
-
-      // ផ្ទៃខាងក្រោយងងឹត (#020617)
       ctx.fillStyle = "#020617";
       ctx.fillRect(0, 0, width, height);
 
-      // --- គូសផ្កាយតូចៗផ្ទៃខាងក្រោយ ---
       backgroundStars.forEach((star) => {
         star.alpha += star.speed;
         if (star.alpha > 0.75 || star.alpha < 0.15) {
@@ -93,7 +90,6 @@ export default function SpaceBackground() {
         ctx.fill();
       });
 
-      // --- គូសគ្រាប់ផ្កាយតារានិករ (ពន្លឺ Glow ខៀវខ្ចីតូចៗ ដោយគ្មានខ្សែបន្ទាត់) ---
       ctx.save();
       ctx.globalCompositeOperation = "screen";
 
@@ -102,7 +98,7 @@ export default function SpaceBackground() {
           const pulseFactor = 0.85 + Math.sin(time + p.pulse) * 0.15;
           const outerGlowRadius = 4.5 * pulseFactor;
 
-          // ពន្លឺ Glow ជុំវិញ
+
           const halo = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, outerGlowRadius);
           halo.addColorStop(0, "rgba(56, 189, 248, 0.75)");
           halo.addColorStop(0.4, "rgba(14, 165, 233, 0.25)");
@@ -113,7 +109,7 @@ export default function SpaceBackground() {
           ctx.fillStyle = halo;
           ctx.fill();
 
-          // គ្រាប់ផ្កាយស្នូលចំកណ្ដាល
+
           ctx.beginPath();
           ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
           ctx.fillStyle = "#ffffff";
