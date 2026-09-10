@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 
-// រូបរាងចំណុចផ្កាយនៃតារានិករទាំង ១២ (គ្មានខ្សែបន្ទាត់)
 const CONSTELLATIONS = [
   // Aries
   { stars: [[0.1, 0.2], [0.35, 0.45], [0.75, 0.55], [0.95, 0.85]] },
@@ -40,7 +39,6 @@ export default function SpaceBackground() {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // 1. គ្រាប់ផ្កាយតូចៗរាយប៉ាយនៅផ្ទៃខាងក្រោយ
     const STAR_COUNT = 320;
     const backgroundStars = Array.from({ length: STAR_COUNT }, () => ({
       x: Math.random() * width,
@@ -50,7 +48,6 @@ export default function SpaceBackground() {
       speed: Math.random() * 0.008 + 0.003,
     }));
 
-    // 2. រៀបចំទីតាំងក្រុមផ្កាយតារានិករ
     const placedConstellations = CONSTELLATIONS.map((c, i) => {
       const col = i % 4;
       const row = Math.floor(i / 4);
@@ -73,7 +70,6 @@ export default function SpaceBackground() {
 
     let time = 0;
 
-    // 3. Render Loop
     const render = () => {
       time += 0.02;
       ctx.fillStyle = "#020617";
@@ -97,7 +93,6 @@ export default function SpaceBackground() {
         c.screenStars.forEach((p) => {
           const pulseFactor = 0.85 + Math.sin(time + p.pulse) * 0.15;
           const outerGlowRadius = 4.5 * pulseFactor;
-
 
           const halo = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, outerGlowRadius);
           halo.addColorStop(0, "rgba(56, 189, 248, 0.75)");

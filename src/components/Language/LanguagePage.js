@@ -1,0 +1,54 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../context/LanguageContext";
+import ukFlag from "../../Assets/uk-flag.png";
+import taiwanFlag from "../../Assets/taiwan-flag.png";
+import "./LanguagePage.css";
+
+const LANGUAGES = [
+  { code: "en", label: "English", flag: ukFlag },
+  { code: "nan", label: "台語", flag: taiwanFlag },
+];
+
+function LanguagePage() {
+  const { language, setLanguage, t } = useLanguage();
+  const navigate = useNavigate();
+
+  const handleSelect = (code) => {
+    setLanguage(code);
+  };
+
+  const handleContinue = () => {
+    navigate("/home");
+  };
+
+  return (
+    <div className="language-page">
+      <div className="language-card">
+        <h1 className="language-title">{t("languagePageTitle")}</h1>
+        <p className="language-subtitle">{t("languagePageSubtitle")}</p>
+
+        <div className="language-options">
+          {LANGUAGES.map((lang) => (
+            <button
+              key={lang.code}
+              type="button"
+              className={`language-option ${language === lang.code ? "active" : ""}`}
+              onClick={() => handleSelect(lang.code)}
+            >
+              <img src={lang.flag} alt={lang.label} className="language-flag" />
+              <span className="language-label">{lang.label}</span>
+              {language === lang.code && <span className="language-check">✓</span>}
+            </button>
+          ))}
+        </div>
+
+        <button type="button" className="language-continue" onClick={handleContinue}>
+          {t("languagePageContinue")}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default LanguagePage;

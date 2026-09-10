@@ -28,7 +28,6 @@ function Toolstack() {
   return (
     <div className="tech-marquee-wrapper overflow-hidden">
       <div className="tech-marquee-track" style={{ animationDuration: "25s" }}>
-        {/* Loop ចំនួន ២ ជុំសម្រាប់ Smooth Infinite Marquee */}
         {toolList.map((tool, idx) => (
           <ToolItem tool={tool} key={`a-${idx}`} />
         ))}
