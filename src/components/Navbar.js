@@ -26,7 +26,7 @@ function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const toggleLanguage = () => {
+  const toggleLanguage = () => {  
     if (setLanguage) {
       setLanguage(language === "en" ? "nan" : "en");
     } else {
@@ -108,7 +108,7 @@ function NavBar() {
       />
       <span style={{ fontWeight: "600", letterSpacing: "0.05em" }}>
         {language === "en" ? "EN" : "台語"}
-      </span>
+      </span> 
     </Button>
   );
 
