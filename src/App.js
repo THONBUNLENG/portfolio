@@ -19,7 +19,6 @@ import Footer from "./components/Footer";
 import ThreeBackground from "./components/ThreeBackground";
 
 // 3. Lazy Load Pages (បង្កើនល្បឿន Load Website)
-const SplashScreen = lazy(() => import("./components/MeScreen"));
 const Home = lazy(() => import("./components/Home/Home"));
 const BlogPage = lazy(() => import("./components/Blogs/BlogPage"));
 const LanguagePage = lazy(() => import("./components/Language/LanguagePage"));
@@ -59,7 +58,7 @@ function AnimatedRoutes() {
     <div key={location.pathname} className="page-transition-container flex-grow-1">
       <Suspense fallback={<PageLoader />}>
         <Routes location={location}>
-          <Route path="/" element={<SplashScreen />} />
+          <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
           <Route path="/language" element={<LanguagePage />} />
           <Route path="/blogs/:blogId" element={<BlogPage />} />
