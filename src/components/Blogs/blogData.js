@@ -1,4 +1,3 @@
-import blogImage from "../../Assets/Projects/blog.png";
 import bloc from "../../Assets/bloc.png";
 import bloc2 from "../../Assets/bloc2.png";
 import bloc3 from "../../Assets/bloc3.png";
@@ -456,7 +455,7 @@ buildTypes {
       <p>Assets PNG និង JPEG ជាហេតុផលធំបំផុតក្នុង APK ភាគច្រើន។ ការបំប្លែងទៅ WebP ជាធម្មតាសន្សំ 25–35% ក្នុងមួយរូបភាព ដោយគ្មានការបាត់បង់គុណភាព។ ក្នុង Android Studio: ចុចខាងស្តាំ folder drawable ណាមួយ → <em>Convert to WebP</em>។ សម្រាប់ assets Flutter ប្រើ <code>cwebp</code> ពី command line។</p>
       <pre><code># បំប្លែង folder assets ទាំងមូលទៅ WebP (lossless)
 for f in assets/images/*.png; do
-  cwebp -lossless "$f" -o "${blogImage}.webp"
+  cwebp -lossless "$f" -o "\${f%.*}.webp"
 done</code></pre>
 
       <h2>៣. ប្រើ App Bundles ជំនួស APKs</h2>
@@ -490,7 +489,7 @@ buildTypes {
       <p>PNG 和 JPEG 资源是大多数 APK 中最大的问题。转换为 WebP 通常每张图像可节省 25-35%，且没有明显的质量损失。在 Android Studio 中：右键点击任意 drawable 文件夹 → <em>转换为 WebP</em>。对于 Flutter 资源，请使用命令行中的 <code>cwebp</code>。</p>
       <pre><code># 将整个 assets 文件夹转换为 WebP（无损）
 for f in assets/images/*.png; do
-  cwebp -lossless "$f" -o "${blogImage}.webp"
+  cwebp -lossless "$f" -o "\${f%.*}.webp"
 done</code></pre>
 
       <h2>3. 使用 App Bundles 代替 APK</h2>

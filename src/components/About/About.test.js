@@ -68,3 +68,5 @@ describe('About Component Integration Tests', () => {
     expect(screen.getByTestId('github-mock')).toBeInTheDocument();
   });
 });
+
+

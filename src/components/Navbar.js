@@ -239,7 +239,7 @@ function NavBar() {
                 <ImBlog className="me-1" style={{ marginBottom: "2px" }} />{" "}
                 {t("navbarBlogs") || "Blogs"}
               </Nav.Link>
-            </Nav.Item>
+            </Nav.Item> 
 
             <Nav.Item>
               <Nav.Link
@@ -268,4 +268,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default NavBar;  

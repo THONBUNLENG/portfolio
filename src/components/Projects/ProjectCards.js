@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
@@ -8,87 +8,128 @@ import PhoneMockup from "./PhoneMockup";
 
 function ProjectCards(props) {
   const { t } = useLanguage();
+  const [imageError, setImageError] = useState(false);
 
   return (
     <Card 
-      className="project-card-view h-100 d-flex flex-column border-0 text-white overflow-hidden transition-all duration-300"
+      className="project-card-view h-100 d-flex flex-column text-white overflow-hidden border-0"
       style={{
-        background: "rgba(15, 23, 42, 0.65)",
+        background: "rgba(15, 23, 42, 0.75)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
         border: "1px solid rgba(255, 255, 255, 0.08)",
-        borderRadius: "18px",
-        boxShadow: "0 10px 30px rgba(0, 0, 0, 0.35)",
+        borderRadius: "16px",
+        transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "translateY(-4px)";
+        e.currentTarget.style.borderColor = "rgba(167, 139, 250, 0.4)";
+        e.currentTarget.style.boxShadow = "0 12px 30px rgba(0, 0, 0, 0.45)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "translateY(0)";
+        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+        e.currentTarget.style.boxShadow = "none";
       }}
     >
-      {/* Media / Thumbnail Container */}
-      {props.themeDemo ? (
-        <div className="project-card-media p-3 d-flex align-items-center justify-content-center bg-black/20">
-          <PhoneMockup />
-        </div>
-      ) : (
+      {/* 1. Image Thumbnail Container - បង្ហាញរូបភាពពេញលេញ (See Full Image) */}
+      <div 
+        className="w-100 p-3 pb-0 position-relative" 
+        style={{ height: "220px", flexShrink: 0 }}
+      >
         <div 
-          className="position-relative overflow-hidden w-100 bg-slate-950/60"
-          style={{ height: "200px" }}
+          className="w-100 h-100 position-relative overflow-hidden d-flex align-items-center justify-content-center p-2"
+          style={{
+            borderRadius: "12px",
+            backgroundColor: "#030712",
+            border: "1px solid rgba(255, 255, 255, 0.08)",
+          }}
         >
-          <Card.Img
-            variant="top"
-            src={props.imgPath}
-            alt={props.title || "Project preview"}
-            className="w-100 h-100 transition-transform duration-500 hover:scale-105"
-            style={{
-              objectFit: "cover",
-              objectPosition: "top center",
-            }}
-            loading="lazy"
-          />
-          <div 
-            className="position-absolute bottom-0 start-0 w-100 h-50 pointer-events-none"
-            style={{
-              background: "linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent)",
-            }}
-          />
+          {props.themeDemo ? (
+            <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+              <PhoneMockup />
+            </div>
+          ) : props.imgPath && !imageError ? (
+            <Card.Img
+              variant="top"
+              src={props.imgPath}
+              alt={props.title || "Project preview"}
+              className="w-100 h-100 transition-transform duration-300 hover:scale-105"
+              style={{
+                objectFit: "contain",
+                objectPosition: "center",
+              }}
+              loading="lazy"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div
+              className="w-100 h-100 d-flex flex-column align-items-center justify-content-center text-center px-3"
+              role="img"
+              aria-label={`${props.title || "Project"} preview unavailable`}
+              style={{
+                color: "#c4b5fd",
+                background: "radial-gradient(circle at top, rgba(124, 58, 237, 0.22), transparent 65%)",
+              }}
+            >
+              <span aria-hidden="true" style={{ fontSize: "2rem", lineHeight: 1 }}>▧</span>
+              <span className="mt-2 small">{props.title || "Project preview"}</span>
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
-      {/* Card Body */}
-      <Card.Body className="d-flex flex-column justify-content-between p-4 flex-grow-1">
+      {/* 2. Card Body */}
+      <Card.Body className="d-flex flex-column p-4 flex-grow-1">
         <div>
+          {/* Title */}
           <Card.Title 
-            className="text-center font-bold mb-2 text-slate-100"
-            style={{ fontSize: "1.15rem", letterSpacing: "0.01em" }}
+            className="text-start font-bold mb-2 text-slate-100"
+            style={{ fontSize: "1.1rem", lineHeight: "1.4" }}
           >
             {props.title}
           </Card.Title>
 
-          {/* Tech Stack Tags */}
-          {props.technologies && props.technologies.length > 0 && (
-            <div className="d-flex flex-wrap justify-content-center gap-1.5 mb-3">
-              {props.technologies.map((tech, idx) => (
+          {/* Tech Badges */}
+          <div className="d-flex flex-wrap gap-1.5 mb-3" style={{ minHeight: "26px" }}>
+            {props.technologies && props.technologies.length > 0 ? (
+              props.technologies.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="badge px-2.5 py-1 text-slate-300 font-medium"
+                  className="badge px-2 py-1 text-purple-300 font-medium"
                   style={{
-                    fontSize: "0.7rem",
-                    backgroundColor: "rgba(124, 58, 237, 0.12)",
+                    fontSize: "0.68rem",
+                    backgroundColor: "rgba(124, 58, 237, 0.15)",
                     border: "1px solid rgba(167, 139, 250, 0.25)",
                     borderRadius: "6px",
                   }}
                 >
                   {tech}
                 </span>
-              ))}
-            </div>
-          )}
+              ))
+            ) : (
+              <span
+                className="badge px-2 py-1 text-slate-400 font-medium"
+                style={{
+                  fontSize: "0.68rem",
+                  backgroundColor: "rgba(255, 255, 255, 0.05)",
+                  borderRadius: "6px",
+                }}
+              >
+                App & Web
+              </span>
+            )}
+          </div>
 
-          {/* Description with Line Clamping for neat uniform grid heights */}
+          {/* Description with Uniform Height */}
           <Card.Text 
-            className="text-center text-slate-400 text-xs sm:text-sm leading-relaxed mb-4"
+            className="text-start text-slate-400 text-xs sm:text-sm leading-relaxed mb-4"
             style={{
               display: "-webkit-box",
               WebkitLineClamp: 3,
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
+              lineHeight: "1.55",
               minHeight: "4rem",
             }}
           >
@@ -96,30 +137,31 @@ function ProjectCards(props) {
           </Card.Text>
         </div>
 
-        {/* Action Buttons */}
-        <div className="d-flex justify-content-center align-items-center gap-2.5 pt-2 mt-auto">
+        {/* 3. Action Buttons - ជាប់បាតស្មើជួរគ្រប់ Card ទាំងអស់ */}
+        <div className="d-flex align-items-center gap-2 pt-3 mt-auto border-top border-slate-800">
           {props.ghLink && (
             <Button
               variant="custom"
               href={props.ghLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="d-inline-flex align-items-center justify-content-center text-xs font-semibold px-3.5 py-2 rounded-lg transition-all duration-200"
+              className="flex-fill d-inline-flex align-items-center justify-content-center text-xs font-semibold py-2 rounded-lg"
               style={{
-                backgroundColor: "rgba(255, 255, 255, 0.08)",
-                border: "1px solid rgba(255, 255, 255, 0.15)",
+                backgroundColor: "rgba(255, 255, 255, 0.06)",
+                border: "1px solid rgba(255, 255, 255, 0.14)",
                 color: "#e2e8f0",
+                transition: "all 0.2s ease",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.35)";
+                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.12)";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.25)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
+                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.06)";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.14)";
               }}
             >
-              <BsGithub className="me-1.5 text-sm" />
+              <BsGithub className="me-1.5" style={{ fontSize: "0.85rem" }} />
               {t("githubButton") || "GitHub"}
             </Button>
           )}
@@ -130,22 +172,16 @@ function ProjectCards(props) {
               href={props.demoLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="d-inline-flex align-items-center justify-content-center text-xs font-semibold px-3.5 py-2 rounded-lg transition-all duration-200 text-white"
+              className="flex-fill d-inline-flex align-items-center justify-content-center text-xs font-semibold py-2 rounded-lg text-white"
               style={{
                 backgroundColor: "#7c3aed",
                 border: "1px solid #8b5cf6",
-                boxShadow: "0 0 15px rgba(124, 58, 237, 0.35)",
+                transition: "background-color 0.2s ease",
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#6d28d9";
-                e.currentTarget.style.transform = "translateY(-1px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#7c3aed";
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#6d28d9")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#7c3aed")}
             >
-              <CgWebsite className="me-1.5 text-sm" />
+              <CgWebsite className="me-1.5" style={{ fontSize: "0.85rem" }} />
               {t("demoButton") || "Demo"}
             </Button>
           )}

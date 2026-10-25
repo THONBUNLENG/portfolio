@@ -36,13 +36,8 @@ const translations = {
     aboutTitlePrefix: "Know Who ",
     aboutTitleHighlight: "I'M",
     aboutTitleSuffix: "...!",
-    aboutCardName: "THON BUNLENG",
-    aboutCardCity: "Phnom Penh, Cambodia",
-    aboutCardRole: "Software Developer",
     aboutCardParagraph:
       "Hi everyone! I'm Thon Bunleng from Phnom Penh, Cambodia. I'm a Software Developer passionate about building scalable mobile and web applications with clean architecture and modern tools.",
-    aboutCardEducation: "Computer Science",
-    aboutCardUniversity: "BELTEI International University",
     aboutCardActivitiesPrefix:
       "Outside of coding, I love engaging in activities that keep me creative and inspired",
     aboutCardActivities: {
@@ -245,13 +240,8 @@ const translations = {
     aboutTitlePrefix: "了解",
     aboutTitleHighlight: "我",
     aboutTitleSuffix: "...！",
-    aboutCardName: "何文霖",
-    aboutCardCity: "柬埔寨金邊",
-    aboutCardRole: "軟體開發人員",
     aboutCardParagraph:
       "大家好！我是何文霖，來自柬埔寨金邊。我是一名充滿熱情的軟體開發人員，致力於使用簡潔架構與現代工具打造可擴充的行動與網頁應用程式。",
-    aboutCardEducation: "電腦科學",
-    aboutCardUniversity: "BELTEI國際大學",
     aboutCardActivitiesPrefix:
       "除了寫程式，我喜歡做一些能讓我保持創造力與靈感的活動",
     aboutCardActivities: {
@@ -443,20 +433,6 @@ export const LanguageProvider = ({ children }) => {
     localStorage.setItem("language", language);
   }, [language]);
 
-  // --- Cross-instance sync -------------------------------------------
-  // If <LanguageProvider> ends up mounted more than once in the tree
-  // (e.g. wrapped around a single route instead of once at the app root),
-  // each instance holds its OWN `language` state — selecting a language
-  // in one updates localStorage but the other instance never re-renders,
-  // so parts of the UI (like the navbar flag) look stuck on English.
-  //
-  // The native "storage" event only fires in OTHER tabs/windows, not the
-  // same one, so we dispatch a custom event locally whenever this
-  // instance changes the language, and every instance (including this
-  // one) listens for it and stays in sync. This makes the symptom
-  // disappear even if the duplicate-provider issue in the component tree
-  // isn't fixed yet — though fixing the tree structure is still the
-  // correct long-term solution (see the App.js note below).
   useEffect(() => {
     function handleSync(e) {
       const next = e.detail;

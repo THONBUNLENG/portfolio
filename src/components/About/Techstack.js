@@ -31,31 +31,22 @@ const primarySkills = [
 function Techstack() {
   return (
     <Row className="g-3 g-md-4 justify-content-center pb-4">
-      {primarySkills.map((tech, idx) => (
-        <Col xs={4} sm={4} md={3} lg={2} key={idx} className="d-flex">
+      {primarySkills.map((tech) => (
+        <Col xs={4} sm={4} md={3} lg={2} key={tech.name} className="d-flex">
           <div
-            className="w-100 d-flex flex-column align-items-center justify-content-center p-3 p-md-4 rounded-2xl bg-[#0e121e]/80 border border-purple-500/30 shadow-lg hover:border-[#e74c5e] hover:shadow-[#e74c5e]/20 hover:-translate-y-1 transition-all duration-300"
-            style={{
-              aspectRatio: "1 / 1",
-              minHeight: "110px",
-              backdropFilter: "blur(6px)",
-            }}
+            className="flex w-full flex-col items-center justify-center rounded-2xl border border-purple-500/30 bg-[#0e121e]/80 p-3 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#e74c5e] hover:shadow-[#e74c5e]/20 sm:p-4"
+            style={{ aspectRatio: "1 / 1", minHeight: "110px" }}
           >
-            <div className="d-flex align-items-center justify-content-center mb-2" style={{ height: "45px" }}>
+            <div className="mb-2 flex h-[45px] items-center justify-center">
               <img
                 src={tech.icon}
-                alt={tech.name}
-                className="w-auto h-auto transition-transform duration-300 hover:scale-110"
-                style={{
-                  maxHeight: "42px",
-                  maxWidth: "42px",
-                  objectFit: "contain",
-                }}
+                alt=""
+                className="h-auto w-auto max-h-[42px] max-w-[42px] object-contain transition-transform duration-300 hover:scale-110"
                 loading="lazy"
               />
             </div>
-            
-            <span className="text-xs sm:text-sm text-slate-200 font-semibold tracking-wide text-center truncate w-100 mt-1">
+
+            <span className="mt-1 w-full truncate text-center text-xs font-semibold tracking-wide text-slate-200 sm:text-sm">
               {tech.name}
             </span>
           </div>

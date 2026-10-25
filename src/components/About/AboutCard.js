@@ -5,46 +5,32 @@ import { HiOutlinePencilAlt } from "react-icons/hi";
 import { FaPlane } from "react-icons/fa";
 import { useLanguage } from "../../context/LanguageContext";
 
-function AboutCard() {
-  const { t, language } = useLanguage();
+const activities = [
+  { id: "games", Icon: GiConsoleController },
+  { id: "blogs", Icon: HiOutlinePencilAlt },
+  { id: "travel", Icon: FaPlane },
+];
 
-  const activities = [
-    { icon: <GiConsoleController />, text: t("aboutCardActivities.games") },
-    { icon: <HiOutlinePencilAlt />, text: t("aboutCardActivities.blogs") },
-    { icon: <FaPlane />, text: t("aboutCardActivities.travel") },
-  ];
+function AboutCard() {
+  const { t } = useLanguage();
 
   return (
     <Card className="quote-card-view about-glass-card">
       <Card.Body>
         <blockquote className="blockquote mb-0">
-          {language === "en" || language === "nan" ? (
-            <p className="about-card-text">
-              {language === "nan" ? "大家好！我是 " : "Hi everyone! I'm "}
-              <span className="purple">{t("aboutCardName")}</span>{" "}
-              {language === "nan" ? "来自" : "from"} <span className="purple">{t("aboutCardCity")}</span>.
-              <br />
-              {language === "nan" ? "我目前是一名" : "I'm currently working as a"}{" "}
-              <span className="purple">{t("aboutCardRole")}</span>.
-              <br />
-              {language === "nan" ? "我拥有" : "I hold a Bachelor's Degree in"}{" "}
-              <span className="purple">{t("aboutCardEducation")}</span>{" "}
-              {language === "nan" ? "学位，毕业于" : "from"}{" "}
-              <span className="purple">{t("aboutCardUniversity")}</span>.
-            </p>
-          ) : (
-            <p className="about-card-text" dangerouslySetInnerHTML={{ __html: t("aboutCardParagraph") }} />
-          )}
+          <p className="about-card-text">{t("aboutCardParagraph")}</p>
 
           <p className="about-activities-intro">
             {t("aboutCardActivitiesPrefix")}
           </p>
 
           <ul className="about-activity-list">
-            {activities.map((item, idx) => (
-              <li key={idx} className="about-activity-pill">
-                <span className="about-activity-icon">{item.icon}</span>
-                {item.text}
+            {activities.map(({ id, Icon }) => (
+              <li key={id} className="about-activity-pill">
+                <span className="about-activity-icon" aria-hidden="true">
+                  <Icon />
+                </span>
+                {t(`aboutCardActivities.${id}`)}
               </li>
             ))}
           </ul>
