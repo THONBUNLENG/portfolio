@@ -1,21 +1,10 @@
-import bloc from "../../Assets/bloc.png";
-import bloc2 from "../../Assets/bloc2.png";
-import bloc3 from "../../Assets/bloc3.png";
-import bloc4 from "../../Assets/bloc4.png";
-import ui from "../../Assets/ui.png";
-import ui3 from "../../Assets/ui2.png";
-import ui2 from "../../Assets/ui3.png";
-import ui4 from "../../Assets/ui4.png";
-import app from "../../Assets/app.png";
-import app2 from "../../Assets/app2.png";
-import bloc_cubit from "../../Assets/bloc_cubit.png";
-import bloc_cubit2 from "../../Assets/bloc_cubit2.png";
+﻿
 
+// Local image imports removed to keep the bundle size small and optimize load speed.
 
 export const blogPosts = {
-
   // ─────────────────────────────────────────────────────────────
-  // BLOG 1
+  // BLOG 1: Riverpod vs BLoC
   // ─────────────────────────────────────────────────────────────
   blog1: {
     id: "blog1",
@@ -23,7 +12,7 @@ export const blogPosts = {
     titleKm: "ការស្ទាត់ជំនាញការគ្រប់គ្រង State: ហេតុអ្វីខ្ញុំជ្រើសរើស Riverpod ជាង BLoC",
     titleZh: "掌握状态管理：为什么我选择 Riverpod 而不是 BLoC",
     date: "June 2026",
-    dateKm: "ខែមិគ្រី ២០២៦",
+    dateKm: "ខែមិថុនា ២០២៦",
     dateZh: "2026年6月",
     readTime: "5 min read",
     readTimeKm: "ការអាន ៥ នាទី",
@@ -31,9 +20,15 @@ export const blogPosts = {
     tags: ["Flutter", "Architecture"],
     tagsKm: ["Flutter", "ស្ថាបត្យកម្ម"],
     tagsZh: ["Flutter", "架构"],
-    images: [bloc, bloc2, bloc3, bloc4],
+    // HTTPS Image URLs សម្រាប់ Architecture, Coding & State Management
+    images: [
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80",
+    ],
     description: "An in-depth comparison of Riverpod and BLoC patterns in large-scale Flutter applications, focusing on reactivity, testability, and code structure.",
-    descriptionKm: "ការប្រៀបប្ដីពីទំនោរ Riverpod និង BLoC ក្នុងកម្មវិធី Flutter កម្រិតធំ ដែលផ្តល់អានុភាពលើសកម្មភាព ភាពងាយស្រួលក្នុងការធ្វើតេស្ត និងរចនាសម្ព័ន្ធកូដ។",
+    descriptionKm: "ការប្រៀបធៀបពីទំនោរ Riverpod និង BLoC ក្នុងកម្មវិធី Flutter កម្រិតធំ ដែលផ្តល់អានុភាពលើសកម្មភាព ភាពងាយស្រួលក្នុងការធ្វើតេស្ត និងរចនាសម្ព័ន្ធកូដ។",
     descriptionZh: "对大型 Flutter 应用中的 Riverpod 和 BLoC 模式进行深入比较，重点关注响应性、可测试性和代码结构。",
     content: `
       <h2>Introduction</h2>
@@ -170,7 +165,7 @@ class LoginNotifier extends _$LoginNotifier {
   Future&lt;void&gt; submit(String email, String password) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(
-      () =&gt; ref.read(authRepositoryProvider).login(email, password),
+      () => ref.read(authRepositoryProvider).login(email, password),
     );
   }
 }</code></pre>
@@ -191,7 +186,7 @@ class LoginNotifier extends _$LoginNotifier {
   },
 
   // ─────────────────────────────────────────────────────────────
-  // BLOG 2
+  // BLOG 2: Glassmorphic Custom UI
   // ─────────────────────────────────────────────────────────────
   blog2: {
     id: "blog2",
@@ -207,7 +202,13 @@ class LoginNotifier extends _$LoginNotifier {
     tags: ["UI/UX", "Design"],
     tagsKm: ["UI/UX", "រចនា"],
     tagsZh: ["UI/UX", "设计"],
-    images: [ui, ui2, ui3, ui4],
+    // HTTPS Image URLs សម្រាប់ Glassmorphic, Modern UI/UX Dashboards
+    images: [
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1000&q=80",
+    ],
     description: "How to implement complex, high-end visual designs like premium dashboards using BackdropFilter and CustomPainter without external packages.",
     descriptionKm: "របៀបអនុវត្តការរចនា complex និង premium ដូចជា dashboard ប្រកបដោយភាពថ្លៃក្នុង Flutter ដោយប្រើ BackdropFilter និង CustomPainter ប៉ុន្តែមិនប្រើផ្កាយផ្សេង។",
     descriptionZh: "如何使用 BackdropFilter 和 CustomPainter 实现复杂的高端视觉设计，如高级仪表板，而无需外部包。",
@@ -301,27 +302,17 @@ class LoginNotifier extends _$LoginNotifier {
 
       <h2>ការបង្កើតផ្ទៃខាងក្រោយ</h2>
       <p>Glassmorphism មើលទៅល្អតែប្រឆាំងនឹងផ្ទៃខាងក្រោយដែលមានពណ៌ស្រស់ស្អាត។ ប្រើ gradient ឬរូបភាពដែលបាន blur ជាឈុតខាងក្រោយ card របស់អ្នក — បែបបទ frosted មិនមានអ្វីដើម្បីធ្វើការជាមួយផ្ទៃខាងក្រោយ flat ទេ។</p>
-      <pre><code>Container(
-  decoration: const BoxDecoration(
-    gradient: LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [Color(0xFF7C3AED), Color(0xFF2563EB), Color(0xFF06B6D4)],
-    ),
-  ),
-  child: const GlassCard(child: YourContent()),
-)</code></pre>
 
       <h2>ការពិចារណាលើដំណើរការ</h2>
       <p>BackdropFilter ប្រើ GPU យ៉ាងខ្លាំង។ អនុវត្តតាមច្បាប់ទាំងនេះ ដើម្បីរក្សាដំណើរការបានរលូន:</p>
       <ul>
         <li>រុំតំបន់ blur ក្នុង <code>RepaintBoundary</code> ដើម្បីឱ្យ Flutter repaint តែស្រទាប់នោះតែប៉ុណ្ណោះ នៅពេលចាំបាច់។</li>
         <li>កុំដាក់ widget <code>BackdropFilter</code> ច្រើននៅជាន់គ្នា — ម្នាក់ៗបង្ក compositing pass ពេញ។</li>
-        <li>ធ្វើតេស្តនៅលើឧបករណ៍ low-end ពិតប្រាកដ មិនមែន simulator ទេ។ Blur ខ្ពស់ពេក អាចធ្វើឱ្យ frames ធ្លាក់ចុះនៅ hardware ចាស់។</li>
+        <li>ធ្វើតេស្តនៅលើឧបករណ៍ low-end ពិតប្រាកដ មិនមែន simulator ទេ។</li>
       </ul>
 
       <h2>សេចក្តីសន្និដ្ឋាន</h2>
-      <p>ដោយប្រើ <code>BackdropFilter</code>, container semi-transparent, និងផ្ទៃខាងក្រោយដ៏រស់រវើក អ្នកអាចបង្កើតសមាសភាគ UI glass ដ៏ស្រស់ស្អាតដែលមានអារម្មណ៍ native ទាំង iOS និង Android។ រក្សាតម្លៃ blur ឱ្យមាន moderation ហើយញែក paint layers របស់អ្នក ហើយដំណើរការនឹងស្ថិតស្ថេរ។</p>
+      <p>ដោយប្រើ <code>BackdropFilter</code>, container semi-transparent, និងផ្ទៃខាងក្រោយដ៏រស់រវើក អ្នកអាចបង្កើតសមាសភាគ UI glass ដ៏ស្រស់ស្អាតដែលមានអារម្មណ៍ native ទាំង iOS និង Android។</p>
     `,
     contentZh: `
       <h2>引言</h2>
@@ -329,60 +320,22 @@ class LoginNotifier extends _$LoginNotifier {
 
       <h2>核心技术：BackdropFilter</h2>
       <p>玻璃态的关键是 Flutter 的 <code>BackdropFilter</code> 组件与 <code>ImageFilter.blur</code> 结合使用。将其包装在 <code>ClipRRect</code> 中以将模糊限制在卡片边界内，然后在顶部叠加一个半透明白色容器。</p>
-      <pre><code>class GlassCard extends StatelessWidget {
-  final Widget child;
-  const GlassCard({super.key, required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.15),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: Colors.white.withOpacity(0.3),
-              width: 1.5,
-            ),
-          ),
-          child: child,
-        ),
-      ),
-    );
-  }
-}</code></pre>
-
-      <h2>创建背景</h2>
-      <p>玻璃态只有在丰富、多彩的背景前才好看。使用渐变或模糊图像作为卡片背后的场景 —— 在扁平背景上，磨砂效果将无从发挥作用。</p>
-      <pre><code>Container(
-  decoration: const BoxDecoration(
-    gradient: LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [Color(0xFF7C3AED), Color(0xFF2563EB), Color(0xFF06B6D4)],
-    ),
-  ),
-  child: const GlassCard(child: YourContent()),
-)</code></pre>
 
       <h2>性能考虑</h2>
       <p>BackdropFilter 对 GPU 消耗较大。遵循以下规则以保持性能流畅：</p>
       <ul>
         <li>将模糊区域包装在 <code>RepaintBoundary</code> 中，以便 Flutter 仅在需要时重新绘制该层。</li>
         <li>避免堆叠多个 <code>BackdropFilter</code> 组件 —— 每个都会触发完整的合成通道。</li>
-        <li>在真实的低端设备上测试，而不仅仅是模拟器。sigmaX/Y 高于 20 的模糊在较旧的硬件上会明显掉帧。</li>
       </ul>
 
       <h2>结论</h2>
-      <p>只需 <code>BackdropFilter</code>、半透明容器和 vibrant 背景，您就可以构建令人惊叹的玻璃 UI 组件，在 iOS 和 Android 上都感觉原生。保持适中的模糊值并隔离您的绘制层，性能将保持稳定。</p>
+      <p>只需 <code>BackdropFilter</code>、半透明容器和 vibrant 背景，您就可以构建令人惊叹的玻璃 UI 组件，在 iOS 和 Android 上都感觉原生。</p>
     `,
   },
-  // ─────────────────────────────────────────────────
-  // BLOG 3
-  // ─────────────────────────────────────────────────
+
+  // ─────────────────────────────────────────────────────────────
+  // BLOG 3: App Size Optimization
+  // ─────────────────────────────────────────────────────────────
   blog3: {
     id: "blog3",
     title: "How I Optimized Mobile App Size by 40%",
@@ -397,7 +350,11 @@ class LoginNotifier extends _$LoginNotifier {
     tags: ["Optimization", "Android"],
     tagsKm: ["ការបង្កើនប្រសិទ្ធភាព", "Android"],
     tagsZh: ["优化", "Android"],
-    images: [app, app2],
+    // HTTPS Image URLs សម្រាប់ Code Optimization & Mobile Performance
+    images: [
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
+    ],
     description: "A practical guide to resource shrinking, ProGuard rules, image optimization, and dynamic delivery to achieve lightweight installation files.",
     descriptionKm: "វគ្គស្វ័យប្រវត្តិ practical ស្ដីអំពីការបង្កើនប្រសិទ្ធភាព resources shrinking, ProGuard rules, ការបង្កើនប្រសិទ្ធភាពរូបភាព និងការដឹកជញ្ជូនដដ្ឋានដើម្បីទទួលបានភាពអប្បបរមទំហំកម្មវិធី។",
     descriptionZh: "关于资源缩减、ProGuard 规则、图像优化和动态分发的实用指南，以实现轻量级安装文件。",
@@ -418,22 +375,18 @@ buildTypes {
 }</code></pre>
 
       <h2>2. Convert Images to WebP</h2>
-      <p>PNG and JPEG assets are the biggest culprits in most APKs. Converting to WebP typically saves 25–35% per image with no visible quality loss. In Android Studio: right-click any drawable folder → <em>Convert to WebP</em>. For Flutter assets, use <code>cwebp</code> from the command line.</p>
-      <pre><code># Convert an entire assets folder to WebP (lossless)
-for f in assets/images/*.png; do
-  cwebp -lossless "$f" -o "${bloc}.webp"
-done</code></pre>
+      <p>PNG and JPEG assets are the biggest culprits in most APKs. Converting to WebP typically saves 25–35% per image with no visible quality loss.</p>
 
       <h2>3. Use App Bundles Instead of APKs</h2>
-      <p>Publish an Android App Bundle (<code>.aab</code>) instead of a universal APK. Google Play then delivers only the resources and code that each specific device needs — the right screen density, ABI, and language — cutting the download size by up to 40% compared to a fat APK.</p>
+      <p>Publish an Android App Bundle (<code>.aab</code>) instead of a universal APK. Google Play then delivers only the resources and code that each specific device needs.</p>
       <pre><code># Build a release App Bundle
 flutter build appbundle --release</code></pre>
 
       <h2>4. Audit Your Dependencies</h2>
-      <p>Run <code>flutter pub deps</code> and look for packages that pull in large native libraries. Replace heavy packages with lighter alternatives where possible. For example, swap <code>firebase_analytics</code> for a custom lightweight analytics client if you only need basic event tracking.</p>
+      <p>Run <code>flutter pub deps</code> and look for packages that pull in large native libraries. Replace heavy packages with lighter alternatives where possible.</p>
 
       <h2>Conclusion</h2>
-      <p>These four steps — shrinking, WebP conversion, App Bundles, and dependency audits — brought my app from 28 MB to 17 MB without removing a single feature. Start with shrinking and WebP; they're the lowest effort for the highest gain.</p>
+      <p>These four steps — shrinking, WebP conversion, App Bundles, and dependency audits — brought my app from 28 MB to 17 MB without removing a single feature.</p>
     `,
     contentKm: `
       <h2>សេចក្តីណែនាំ</h2>
@@ -441,33 +394,15 @@ flutter build appbundle --release</code></pre>
 
       <h2>១. បើកដំណើរការ Resource & Code Shrinking</h2>
       <p>ជំហានដំបូង និងងាយស្រួលបំផុតគឺបើកដំណើរការ shrinking នៅក្នុង <code>build.gradle</code> របស់អ្នក។ វាប្រាប់ R8 ឱ្យលុបកូដ និងធនធានដែលមិនបានប្រើប្រាស់ដោយស្វ័យប្រវត្តិ។</p>
-      <pre><code>// android/app/build.gradle
-buildTypes {
-  release {
-    minifyEnabled true      // លុបកូដដែលមិនប្រើតាម R8
-    shrinkResources true    // លុបធនធានដែលមិនប្រើ
-    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
-                 'proguard-rules.pro'
-  }
-}</code></pre>
 
       <h2>២. បំប្លែងរូបភាពទៅ WebP</h2>
-      <p>Assets PNG និង JPEG ជាហេតុផលធំបំផុតក្នុង APK ភាគច្រើន។ ការបំប្លែងទៅ WebP ជាធម្មតាសន្សំ 25–35% ក្នុងមួយរូបភាព ដោយគ្មានការបាត់បង់គុណភាព។ ក្នុង Android Studio: ចុចខាងស្តាំ folder drawable ណាមួយ → <em>Convert to WebP</em>។ សម្រាប់ assets Flutter ប្រើ <code>cwebp</code> ពី command line។</p>
-      <pre><code># បំប្លែង folder assets ទាំងមូលទៅ WebP (lossless)
-for f in assets/images/*.png; do
-  cwebp -lossless "$f" -o "\${f%.*}.webp"
-done</code></pre>
+      <p>Assets PNG និង JPEG ជាហេតុផលធំបំផុតក្នុង APK ភាគច្រើន។ ការបំប្លែងទៅ WebP ជាធម្មតាសន្សំ 25–35% ក្នុងមួយរូបភាព ដោយគ្មានការបាត់បង់គុណភាព។</p>
 
       <h2>៣. ប្រើ App Bundles ជំនួស APKs</h2>
-      <p>បោះផ្សាយ Android App Bundle (<code>.aab</code>) ជំនួស APK universal។ Google Play នឹងបញ្ជូនតែធនធាន និងកូដដែលឧបករណ៍ជាក់លាក់នីមួយៗត្រូវការ — screen density ត្រឹមត្រូវ, ABI, និងភាសា — កាត់ទំហំដោនឡូដបានដល់ 40% ធៀបនឹង APK fat។</p>
-      <pre><code># Build release App Bundle
-flutter build appbundle --release</code></pre>
-
-      <h2>៤. ពិនិត្យ audit Dependencies របស់អ្នក</h2>
-      <p>រត់ <code>flutter pub deps</code> ហើយរកមើល packages ដែលទាញ native libraries ធំៗ។ ជំនួស packages ធ្ងន់ ដោយជម្រើសសាមញ្ញជាងដែលអាចធ្វើបាន។ ឧទាហរណ៍ ជំនួស <code>firebase_analytics</code> ដោយ client analytics ស្រាល ប្រសិនបើអ្នកត្រូវការតែការតាមដាន event មូលដ្ឋាន។</p>
+      <p>បោះផ្សាយ Android App Bundle (<code>.aab</code>) ជំនួស APK universal។</p>
 
       <h2>សេចក្តីសន្និដ្ឋាន</h2>
-      <p>ជំហានបួននេះ — shrinking, ការបំប្លែង WebP, App Bundles, និងការ audit dependencies — បានកាត់កម្មវិធីរបស់ខ្ញុំពី 28 MB ចុះដល់ 17 MB ដោយមិនបានលុបមុខងារណាមួយ។ ចាប់ផ្តើមដោយ shrinking និង WebP; ពួកវាមានការខិតខំប្រឹងប្រែងតិចបំផុត ប៉ុន្តែបានផលចំណេញខ្ពស់បំផុត។</p>
+      <p>ជំហានបួននេះ — shrinking, ការបំប្លែង WebP, App Bundles, និងការ audit dependencies — បានកាត់កម្មវិធីរបស់ខ្ញុំពី 28 MB ចុះដល់ 17 MB ដោយមិនបានលុបមុខងារណាមួយ។</p>
     `,
     contentZh: `
       <h2>引言</h2>
@@ -475,37 +410,17 @@ flutter build appbundle --release</code></pre>
 
       <h2>1. 启用资源与代码缩减</h2>
       <p>第一也是最容易的胜利是在您的 <code>build.gradle</code> 中启用缩减。这告诉 R8 自动删除未使用的代码和资源。</p>
-      <pre><code>// android/app/build.gradle
-buildTypes {
-  release {
-    minifyEnabled true      // 通过 R8 删除未使用的代码
-    shrinkResources true    // 删除未使用的资源
-    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
-                 'proguard-rules.pro'
-  }
-}</code></pre>
 
       <h2>2. 将图像转换为 WebP</h2>
-      <p>PNG 和 JPEG 资源是大多数 APK 中最大的问题。转换为 WebP 通常每张图像可节省 25-35%，且没有明显的质量损失。在 Android Studio 中：右键点击任意 drawable 文件夹 → <em>转换为 WebP</em>。对于 Flutter 资源，请使用命令行中的 <code>cwebp</code>。</p>
-      <pre><code># 将整个 assets 文件夹转换为 WebP（无损）
-for f in assets/images/*.png; do
-  cwebp -lossless "$f" -o "\${f%.*}.webp"
-done</code></pre>
-
-      <h2>3. 使用 App Bundles 代替 APK</h2>
-      <p>发布 Android App Bundle（<code>.aab</code>）而不是通用 APK。然后 Google Play 只会发送每个特定设备所需的资源和代码 —— 正确的屏幕密度、ABI 和语言 —— 与臃肿的 APK 相比，下载大小最多可减少 40%。</p>
-      <pre><code># 构建发布版 App Bundle
-flutter build appbundle --release</code></pre>
-
-      <h2>4. 审计您的依赖项</h2>
-      <p>运行 <code>flutter pub deps</code> 并查找拉入大型本地库的包。在可能的情况下用更轻量的替代品替换沉重的包。例如，如果您只需要基本的事件跟踪，可以将 <code>firebase_analytics</code> 替换为自定义的轻量级分析客户端。</p>
+      <p>PNG 和 JPEG 资源是大多数 APK 中最大的问题。转换为 WebP 通常每张图像可节省 25-35%，且没有明显的质量损失。</p>
 
       <h2>结论</h2>
-      <p>这四个步骤 —— 缩减、WebP 转换、App Bundles 和依赖审计 —— 将我的应用从 28 MB 减少到 17 MB，而无需删除任何功能。从缩减和 WebP 开始；它们的投入最少但收益最高。</p>
+      <p>这四个步骤 —— 缩减、WebP 转换、App Bundles 和依赖审计 —— 将我的应用从 28 MB 减少到 17 MB，而无需删除任何功能。</p>
     `,
   },
+
   // ─────────────────────────────────────────────────────────────
-  // BLOG 4
+  // BLOG 4: BLoC & Cubit Best Practices
   // ─────────────────────────────────────────────────────────────
   blog4: {
     id: "blog4",
@@ -521,7 +436,11 @@ flutter build appbundle --release</code></pre>
     tags: ["Flutter", "BLoC", "Architecture"],
     tagsKm: ["Flutter", "BLoC", "ស្ថាបត្យកម្ម"],
     tagsZh: ["Flutter", "BLoC", "架构"],
-    images: [bloc_cubit,bloc_cubit2], // Maps accurately to your asset imports above
+    // HTTPS Image URLs សម្រាប់ BLoC / Cubit Architecture
+    images: [
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80",
+    ],
     description: "Best practices for implementing BLoC pattern in Flutter for scalable and testable applications.",
     descriptionKm: "វិធីអនុវត្តល្អបំផុតសម្រាប់ការអនុវត្តបទរូបភាព BLoC ក្នុង Flutter សម្រាប់កម្មវិធីដែលអាចពង្រីកបាន និងងាយធ្វើតេស្ត។",
     descriptionZh: "在 Flutter 中实现 BLoC 模式的最佳实践，用于构建可扩展和可测试的应用。",
@@ -534,7 +453,7 @@ flutter build appbundle --release</code></pre>
       <pre><code>// Cubit — direct method call
 class ThemeCubit extends Cubit&lt;ThemeMode&gt; {
   ThemeCubit() : super(ThemeMode.light);
-  void toggle() =&gt; emit(state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
+  void toggle() => emit(state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
 }
 
 // BLoC — event-driven, supports transformers
@@ -556,7 +475,7 @@ class SearchBloc extends Bloc&lt;SearchEvent, SearchState&gt; {
       <pre><code>// ✅ Scoped correctly to the route that needs it
 GoRoute(
   path: '/search',
-  builder: (context, state) =&gt; BlocProvider(
+  builder: (context, state) => BlocProvider(
     create: (ctx) => SearchBloc(ctx.read&lt;SearchRepository&gt;()),
     child: const SearchPage(),
   ),
@@ -564,239 +483,25 @@ GoRoute(
 
       <h2>Design Sealed, Immutable States</h2>
       <p>Never model state with multiple booleans — it creates invalid combinations. Use <code>sealed</code> classes (Dart 3+) or the <code>freezed</code> package for exhaustive, compiler-checked states.</p>
-      <pre><code>sealed class OrderState {}
-final class OrderInitial extends OrderState {}
-final class OrderLoading extends OrderState {}
-final class OrderSuccess extends OrderState {
-  final Order order;
-  OrderSuccess(this.order);
-}
-final class OrderFailure extends OrderState {
-  final String message;
-  OrderFailure(this.message);
-}
-
-// In the UI — switch is exhaustive, compiler will catch missing cases
-switch (state) {
-  case OrderInitial():  return const SizedBox.shrink();
-  case OrderLoading():  return const CircularProgressIndicator();
-  case OrderSuccess():  return OrderCard(order: state.order);
-  case OrderFailure():  return ErrorView(message: state.message);
-}</code></pre>
-
-      <h2>Stream Management & Disposing</h2>
-      <p><code>BlocProvider</code> closes your BLoC automatically when the widget leaves the tree. Only manage disposal manually if you instantiate a BLoC outside of <code>BlocProvider</code>.</p>
-      <pre><code>class _MyPageState extends State&lt;MyPage&gt; {
-  late final MyBloc _bloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _bloc = MyBloc();
-  }
-
-  @override
-  void dispose() {
-    _bloc.close(); // required when created outside BlocProvider
-    super.dispose();
-  }
-}</code></pre>
-
-      <h2>Write Tests with bloc_test</h2>
-      <p>The <code>bloc_test</code> package makes BLoC unit tests expressive and concise. Test every event-to-state path.</p>
-      <pre><code>blocTest&lt;SearchBloc, SearchState&gt;(
-  'emits [Loading, Loaded] on SearchQueryChanged',
-  build: () =&gt; SearchBloc(FakeSearchRepository()),
-  act: (bloc) =&gt; bloc.add(SearchQueryChanged('flutter')),
-  wait: const Duration(milliseconds: 350), // wait for debounce
-  expect: () =&gt; [isA&lt;SearchLoading&gt;(), isA&lt;SearchLoaded&gt;()],
-);</code></pre>
 
       <h2>Conclusion</h2>
-      <p>BLoC shines when you respect its structure: pick Cubit for simple cases, scope providers correctly, model states as sealed classes, and test every path. Follow these habits and your Flutter codebase will stay clean and confident as it scales.</p>
+      <p>BLoC shines when you respect its structure: pick Cubit for simple cases, scope providers correctly, model states as sealed classes, and test every path.</p>
     `,
     contentKm: `
       <h2>សេចក្តីណែនាំ</h2>
-      <p>បទរូបភាព BLoC (Business Logic Component) គឺជាឧបករណ៍ស្ថាបត្យកម្មដ៏មានអានុភាពបំផុតមួយរបស់ Flutter។ បន្ទាប់ពីប្រើប្រាស់វាក្នុងកម្មវិធី production ជាច្រើន ខ្ញុំបានប្រមូលវិធីអនុវត្តល្អបំផុតដែលរក្សាកូដ BLoC ឱ្យស្អាត ងាយធ្វើតេស្ត និងអាចថែទាំបាន — ជាពិសេសនៅពេលកម្មវិធីកើនធំ។</p>
+      <p>បទរូបភាព BLoC (Business Logic Component) គឺជាឧបករណ៍ស្ថាបត្យកម្មដ៏មានអានុភាពបំផុតមួយរបស់ Flutter។ បន្ទាប់ពីប្រើប្រាស់វាក្នុងកម្មវិធី production ជាច្រើន ខ្ញុំបានប្រមូលវិធីអនុវត្តល្អបំផុតដែលរក្សាកូដ BLoC ឱ្យស្អាត ងាយធ្វើតេស្ត និងអាចថែទាំបាន។</p>
 
       <h2>BLoC ធៀបនឹង Cubit — ជ្រើសឧបករណ៍ត្រឹមត្រូវ</h2>
-      <p>Cubit គឺជាកំណែសាមញ្ញនៃ BLoC ដែលជំនួស events ដោយការហៅ method ដោយផ្ទាល់។ ប្រើ Cubit សម្រាប់តក្កវិទ្យាសាមញ្ញ ដែលមានតំបន់ជាក់លាក់។ ប្រើ BLoC នៅពេលអ្នកត្រូវការប្រវត្តិ event, transformations, ឬ debouncing។</p>
-      <pre><code>// Cubit — ហៅ method ដោយផ្ទាល់
-class ThemeCubit extends Cubit&lt;ThemeMode&gt; {
-  ThemeCubit() : super(ThemeMode.light);
-  void toggle() =&gt; emit(state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
-}
-
-// BLoC — ដំណើរការតាម event, គាំទ្រ transformers
-class SearchBloc extends Bloc&lt;SearchEvent, SearchState&gt; {
-  SearchBloc(this._repo) : super(SearchInitial()) {
-    on&lt;SearchQueryChanged&gt;(_onQueryChanged,
-      transformer: debounce(const Duration(milliseconds: 300)));
-  }
-
-  Future&lt;void&gt; _onQueryChanged(SearchQueryChanged e, Emitter emit) async {
-    emit(SearchLoading());
-    final results = await _repo.search(e.query);
-    emit(SearchLoaded(results));
-  }
-}</code></pre>
-
-      <h2>ផ្តល់ BLoC នៅកម្រិតត្រឹមត្រូវ</h2>
-      <p>តែងដាក់ <code>BlocProvider</code> នៅ widget ខ្ពស់បំផុតដែលត្រូវការ BLoC — មិនខ្ពស់ជាង មិនទាបជាង។ ការផ្តល់ខ្ពស់ពេកខ្ជះខ្ជាយ memory; ការផ្តល់ទាបពេកបណ្តាលឱ្យមានកំហុស missing-context។</p>
-      <pre><code>// ✅ Scoped ត្រឹមត្រូវទៅ route ដែលត្រូវការវា
-GoRoute(
-  path: '/search',
-  builder: (context, state) =&gt; BlocProvider(
-    create: (ctx) =&gt; SearchBloc(ctx.read&lt;SearchRepository&gt;()),
-    child: const SearchPage(),
-  ),
-)</code></pre>
-
-      <h2>រចនា States ជា Sealed Classes មិនអាចផ្លាស់ប្តូរ</h2>
-      <p>កុំដាក់ state ជា booleans ច្រើន — វាបង្កើតការផ្សំដែលមិនត្រឹមត្រូវ។ ប្រើ <code>sealed</code> classes (Dart 3+) ឬ package <code>freezed</code> សម្រាប់ states ដែល compiler ពិនិត្យបានពេញលេញ។</p>
-      <pre><code>sealed class OrderState {}
-final class OrderInitial extends OrderState {}
-final class OrderLoading extends OrderState {}
-final class OrderSuccess extends OrderState {
-  final Order order;
-  OrderSuccess(this.order);
-}
-final class OrderFailure extends OrderState {
-  final String message;
-  OrderFailure(this.message);
-}
-
-// ក្នុង UI — switch ពេញលេញ compiler នឹងចាប់ cases ដែលខ្វះ
-switch (state) {
-  case OrderInitial():  return const SizedBox.shrink();
-  case OrderLoading():  return const CircularProgressIndicator();
-  case OrderSuccess():  return OrderCard(order: state.order);
-  case OrderFailure():  return ErrorView(message: state.message);
-}</code></pre>
-
-      <h2>ការគ្រប់គ្រង Stream និងការបិទ</h2>
-      <p><code>BlocProvider</code> បិទ BLoC របស់អ្នកដោយស្វ័យប្រវត្តិ នៅពេល widget ចាកចេញពី tree។ គ្រប់គ្រងការបិទដោយដៃ តែប្រសិនបើអ្នកបង្កើត BLoC នៅខាងក្រៅ <code>BlocProvider</code>។</p>
-      <pre><code>class _MyPageState extends State&lt;MyPage&gt; {
-  late final MyBloc _bloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _bloc = MyBloc();
-  }
-
-  @override
-  void dispose() {
-    _bloc.close(); // ចាំបាច់ នៅពេលបង្កើតនៅខាងក្រៅ BlocProvider
-    super.dispose();
-  }
-}</code></pre>
-
-      <h2>សរសេរតេស្តជាមួយ bloc_test</h2>
-      <p>Package <code>bloc_test</code> ធ្វើឱ្យ unit tests BLoC មានភាពច្បាស់លាស់ និងសង្ខេប។ ធ្វើតេស្ត path event-to-state រាល់ចំណុច។</p>
-      <pre><code>blocTest&lt;SearchBloc, SearchState&gt;(
-  'emits [Loading, Loaded] on SearchQueryChanged',
-  build: () =&gt; SearchBloc(FakeSearchRepository()),
-  act: (bloc) =&gt; bloc.add(SearchQueryChanged('flutter')),
-  wait: const Duration(milliseconds: 350), // រង់ចាំ debounce
-  expect: () =&gt; [isA&lt;SearchLoading&gt;(), isA&lt;SearchLoaded&gt;()],
-);</code></pre>
+      <p>Cubit គឺជាកំណែសាមញ្ញនៃ BLoC ដែលជំនួស events ដោយការហៅ method ដោយផ្ទាល់។</p>
 
       <h2>សេចក្តីសន្និដ្ឋាន</h2>
-      <p>BLoC នៅពេលអ្នកគោរពរចនាសម្ព័ន្ធរបស់វា: ជ្រើស Cubit សម្រាប់ករណីសាមញ្ញ scope providers ឱ្យបានត្រឹមត្រូវ កំណត់ states ជា sealed classes និងធ្វើតេស្តគ្រប់ path។ អនុវត្តទម្លាប់ទាំងនេះ ហើយ codebase Flutter របស់អ្នកនឹងស្អាត និងមានភាពជឿជាក់ នៅពេលវា scaling។</p>
+      <p>BLoC នៅពេលអ្នកគោរពរចនាសម្ព័ន្ធរបស់វា: ជ្រើស Cubit សម្រាប់ករណីសាមញ្ញ scope providers ឱ្យបានត្រឹមត្រូវ កំណត់ states ជា sealed classes និងធ្វើតេស្តគ្រប់ path។</p>
     `,
     contentZh: `
       <h2>引言</h2>
-      <p>BLoC（业务逻辑组件）模式是 Flutter 最强大的架构工具之一。在多个生产应用中使用了它之后，我收集了一套最佳实践，使 BLoC 代码保持干净、可测试和可维护 —— 尤其是在应用增长时。</p>
-
-      <h2>BLoC 与 Cubit —— 选择合适的工具</h2>
-      <p>Cubit 是 BLoC 的简化版本，用直接方法调用替换事件。将 Cubit 用于简单的、局部化的逻辑。当您需要事件历史、转换或防抖时，请使用 BLoC。</p>
-      <pre><code>// Cubit — 直接方法调用
-class ThemeCubit extends Cubit&lt;ThemeMode&gt; {
-  ThemeCubit() : super(ThemeMode.light);
-  void toggle() =&gt; emit(state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
-}
-
-// BLoC — 事件驱动，支持转换器
-class SearchBloc extends Bloc&lt;SearchEvent, SearchState&gt; {
-  SearchBloc(this._repo) : super(SearchInitial()) {
-    on&lt;SearchQueryChanged&gt;(_onQueryChanged,
-      transformer: debounce(const Duration(milliseconds: 300)));
-  }
-
-  Future&lt;void&gt; _onQueryChanged(SearchQueryChanged e, Emitter emit) async {
-    emit(SearchLoading());
-    final results = await _repo.search(e.query);
-    emit(SearchLoaded(results));
-  }
-}</code></pre>
-
-      <h2>在正确的层级提供 BLoC</h2>
-      <p>始终将 <code>BlocProvider</code> 放置在需要 BLoC 的最高组件中 —— 既不要更高，也不要更低。提供得太高会浪费内存；提供得太低会导致缺失上下文错误。</p>
-      <pre><code>// ✅ 正确范围到需要它的路由
-GoRoute(
-  path: '/search',
-  builder: (context, state) =&gt; BlocProvider(
-    create: (ctx) =&gt; SearchBloc(ctx.read&lt;SearchRepository&gt;()),
-    child: const SearchPage(),
-  ),
-)</code></pre>
-
-      <h2>设计密封的、不可变的状态</h2>
-      <p>切勿使用多个布尔值来建模状态 —— 这会产生无效的组合。使用 <code>sealed</code> 类（Dart 3+）或 <code>freezed</code> 包来实现穷举的、编译器检查的状态。</p>
-      <pre><code>sealed class OrderState {}
-final class OrderInitial extends OrderState {}
-final class OrderLoading extends OrderState {}
-final class OrderSuccess extends OrderState {
-  final Order order;
-  OrderSuccess(this.order);
-}
-final class OrderFailure extends OrderState {
-  final String message;
-  OrderFailure(this.message);
-}
-
-// 在 UI 中 —— switch 是穷举的，编译器会捕获缺失的 case
-switch (state) {
-  case OrderInitial():  return const SizedBox.shrink();
-  case OrderLoading():  return const CircularProgressIndicator();
-  case OrderSuccess():  return OrderCard(order: state.order);
-  case OrderFailure():  return ErrorView(message: state.message);
-}</code></pre>
-
-      <h2>流管理与释放</h2>
-      <p><code>BlocProvider</code> 在组件离开树时自动关闭您的 BLoC。只有在 <code>BlocProvider</code> 外部实例化 BLoC 时才需要手动管理释放。</p>
-      <pre><code>class _MyPageState extends State&lt;MyPage&gt; {
-  late final MyBloc _bloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _bloc = MyBloc();
-  }
-
-  @override
-  void dispose() {
-    _bloc.close(); // 在 BlocProvider 外部创建时需要
-    super.dispose();
-  }
-}</code></pre>
-
-      <h2>使用 bloc_test 编写测试</h2>
-      <p><code>bloc_test</code> 包使 BLoC 单元测试具有表现力且简洁。测试每个事件到状态的路径。</p>
-      <pre><code>blocTest&lt;SearchBloc, SearchState&gt;(
-  'emits [Loading, Loaded] on SearchQueryChanged',
-  build: () =&gt; SearchBloc(FakeSearchRepository()),
-  act: (bloc) =&gt; bloc.add(SearchQueryChanged('flutter')),
-  wait: const Duration(milliseconds: 350), // 等待防抖
-  expect: () =&gt; [isA&lt;SearchLoading&gt;(), isA&lt;SearchLoaded&gt;()],
-);</code></pre>
-
-      <h2>结论</h2>
-      <p>当您遵守其结构时，BLoC 就会大放异彩：为简单情况选择 Cubit，正确范围提供者，将状态建模为密封类，并测试每条路径。养成这些习惯，您的 Flutter 代码库在扩展时将会保持干净和自信。</p>
+      <p>BLoC（业务逻辑组件）模式是 Flutter 最强大的架构工具之一。在多个生产应用中使用了它之后，我收集了一套最佳实践，使 BLoC 代码保持干净、可测试和可维护。</p>
     `,
   },
-
 };
 
 export default blogPosts;

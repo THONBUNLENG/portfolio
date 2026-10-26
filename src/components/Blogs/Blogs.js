@@ -1,22 +1,17 @@
-import React from "react";
+﻿import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import BlogCard from "./BlogCards";
 import { useLanguage } from "../../context/LanguageContext";
-import blogPosts from "./blogData";
-import bloc from "../../Assets/bloc.png";
-import ui2 from "../../Assets/ui3.png";
-import app from "../../Assets/app.png";
-import bloc_cubit2 from "../../Assets/bloc_cubit2.png";
+
+// ព្យាយាម import ទាំង default និង named export ដើម្បីការពារកុំឱ្យ undefined
+import blogPostsData, { blogPosts as namedBlogPosts } from "./blogData";
+
+const posts = blogPostsData || namedBlogPosts || {};
 
 function Blogs() {
   const { language, t } = useLanguage();
 
-  const blogEntries = [
-    { key: "blog1", img: bloc },
-    { key: "blog2", img: ui2 },
-    { key: "blog3", img: app },
-    { key: "blog4", img: bloc_cubit2 },
-  ];
+  const blogKeys = ["blog1", "blog2", "blog3", "blog4"];
 
   return (
     <Container fluid className="blog-section py-5" id="blogs">
@@ -31,40 +26,29 @@ function Blogs() {
         </div>
 
         <Row className="g-4 justify-content-center">
-          {blogEntries.map(({ key, img }) => {
-            const post = blogPosts[key];
+          {blogKeys.map((key) => {
+            // ប្រើ optional chaining (?.) ដើម្បីកុំឱ្យបុក error ប្រសិនបើ posts[key] រកមិនឃើញ
+            const post = posts?.[key];
             if (!post) return null;
 
-            const title =
-              language === "nan" && post.titleZh
-                ? post.titleZh
-                : post.title;
+            const isKhmer = language === "km";
+            const isChinese = language === "zh" || language === "nan";
 
-            const description =
-              language === "nan" && post.descriptionZh
-                ? post.descriptionZh
-                : post.description;
+            const title = isKhmer && post.titleKm ? post.titleKm : isChinese && post.titleZh ? post.titleZh : post.title;
+            const description = isKhmer && post.descriptionKm ? post.descriptionKm : isChinese && post.descriptionZh ? post.descriptionZh : post.description;
+            const date = isKhmer && post.dateKm ? post.dateKm : isChinese && post.dateZh ? post.dateZh : post.date;
+            const readTime = isKhmer && post.readTimeKm ? post.readTimeKm : isChinese && post.readTimeZh ? post.readTimeZh : post.readTime;
+            const tags = isKhmer && post.tagsKm ? post.tagsKm : isChinese && post.tagsZh ? post.tagsZh : post.tags;
 
-            const date =
-              language === "nan" && post.dateZh
-                ? post.dateZh
-                : post.date;
-
-            const readTime =
-              language === "nan" && post.readTimeZh
-                ? post.readTimeZh
-                : post.readTime;
-
-            const tags =
-              language === "nan" && post.tagsZh
-                ? post.tagsZh
-                : post.tags;
+            const thumbnail = post.images && post.images.length > 0 
+              ? post.images[0] 
+              : "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80";
 
             return (
               <Col lg={4} md={6} className="d-flex" key={key}>
-                <div className="glass-card w-100 rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm overflow-hidden hover:border-[#e74c5e]/50 transition-all duration-300">
+                <div className="glass-card w-100 rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-sm overflow-hidden hover:border-purple-500/50 transition-all duration-300">
                   <BlogCard
-                    imgPath={img}
+                    imgPath={thumbnail}
                     title={title}
                     description={description}
                     blogId={key}

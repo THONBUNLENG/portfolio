@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
@@ -14,12 +14,15 @@ function BlogDetail({ blog }) {
     }, 300);
   };
 
+  if (!blog) return null;
+
   return (
     <Container fluid className="blog-section position-relative py-5 min-h-screen text-white">
       <Container className="position-relative" style={{ zIndex: 2 }}>
+        {/* Back Button */}
         <div className="mb-4">
           <Button
-            className="btn-back-blog inline-flex items-center gap-2 border border-white/20 bg-black/50 hover:bg-white/10 text-slate-200 px-4 py-2 rounded-xl text-sm transition-all"
+            className="btn-back-blog inline-flex items-center gap-2 border border-white/20 bg-slate-900/80 hover:bg-slate-800 text-slate-200 px-4 py-2 rounded-xl text-sm transition-all"
             onClick={handleBack}
           >
             &larr; {t("backToBlogs") || "Back to Blogs"}
@@ -28,24 +31,32 @@ function BlogDetail({ blog }) {
 
         <Row className="justify-content-center">
           <Col lg={9} md={11}>
-            <article className="glass-card blog-article p-4 p-md-5 rounded-3xl border border-white/10 bg-black/60 backdrop-blur-md shadow-2xl">
+            <article className="glass-card blog-article p-4 p-md-5 rounded-3xl border border-white/10 bg-slate-900/70 backdrop-blur-md shadow-2xl">
+              {/* Blog Title */}
               <h1 className="blog-article-title text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-3">
                 {blog.title}
               </h1>
 
-              <div className="blog-article-meta text-sm text-slate-400 mb-3 flex items-center gap-2">
+              {/* Meta Info */}
+              <div className="blog-article-meta text-sm text-slate-400 mb-3 d-flex align-items-center gap-2">
                 <span>{blog.date}</span>
                 <span>•</span>
                 <span>{blog.readTime}</span>
               </div>
 
+              {/* Tags */}
               {blog.tags && blog.tags.length > 0 && (
                 <div className="blog-article-tags d-flex flex-wrap gap-2 mb-4">
                   {blog.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="badge bg-black/50 text-[#e74c5e] border border-[#e74c5e]/30 px-2.5 py-1"
-                      style={{ fontSize: "0.78rem" }}
+                      className="badge px-2.5 py-1 text-purple-300 font-medium"
+                      style={{
+                        fontSize: "0.78rem",
+                        backgroundColor: "rgba(124, 58, 237, 0.15)",
+                        border: "1px solid rgba(167, 139, 250, 0.3)",
+                        borderRadius: "6px",
+                      }}
                     >
                       #{tag}
                     </span>
@@ -53,19 +64,22 @@ function BlogDetail({ blog }) {
                 </div>
               )}
 
-              {/* Gallery with Clean Grid */}
+              {/* Image Gallery (បង្ហាញរូបពេញ 100% ស្មើគ្នា) */}
               {blog.images && blog.images.length > 0 && (
-                <div className="row g-3 mb-4">
+                <div className="row g-3 mb-5">
                   {blog.images.map((image, index) => (
                     <div
                       key={index}
-                      className={blog.images.length === 1 ? "col-12" : "col-6 col-md-4"}
+                      className={blog.images.length === 1 ? "col-12" : "col-12 col-md-6"}
                     >
-                      <div className="rounded-xl overflow-hidden bg-black/40 border border-white/10 p-2 d-flex align-items-center justify-content-center" style={{ minHeight: "160px" }}>
+                      <div 
+                        className="rounded-2xl overflow-hidden bg-[#030712] border border-white/10 p-2 d-flex align-items-center justify-content-center shadow-inner"
+                        style={{ height: "240px" }}
+                      >
                         <img
                           src={image}
-                          alt={`${blog.title} - ${index + 1}`}
-                          className="w-100 h-auto rounded-lg object-contain"
+                          alt={`${blog.title} - View ${index + 1}`}
+                          className="w-100 h-100 rounded-xl object-contain transition-transform duration-300 hover:scale-105"
                           loading="lazy"
                         />
                       </div>
@@ -76,7 +90,7 @@ function BlogDetail({ blog }) {
 
               {/* Blog HTML Content */}
               <div
-                className="blog-article-text text-slate-200 leading-relaxed space-y-4"
+                className="blog-article-text text-slate-200 leading-relaxed"
                 style={{ fontSize: "1.05rem" }}
                 dangerouslySetInnerHTML={{ __html: blog.content }}
               />
