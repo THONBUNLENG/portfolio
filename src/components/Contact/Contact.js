@@ -51,7 +51,7 @@ function Contact() {
   const socialLinks = [
     { icon: <FaGithub />, name: "GitHub", href: "https://github.com/THONBUNLENG" },
     { icon: <FaLinkedin />, name: "LinkedIn", href: "https://kh.linkedin.com/in/thon-bunleng-dev" },
-    { icon: <FaTelegram />, name: "Telegram", href: "https://t.me/bunleng_dev" },
+    { icon: <FaTelegram />, name: "Telegram", href: "https://t.me/bunleng520" },
     
   ];
 

@@ -62,7 +62,7 @@ function Home() {
     { id: "github", icon: <AiFillGithub />, href: "https://github.com/THONBUNLENG", label: t("socialLabels.github") },
     { id: "gitlab", icon: <SiGitlab />, href: "https://gitlab.com/leng94570", label: t("socialLabels.gitlab") },
     { id: "linkedin", icon: <FaLinkedin />, href: "https://kh.linkedin.com/in/thon-bunleng-dev", label: t("socialLabels.linkedin") },
-    { id: "telegram", icon: <FaTelegram />, href: "https://t.me/bunleng_dev", label: t("socialLabels.telegram") },
+    { id: "telegram", icon: <FaTelegram />, href: "https://t.me/bunleng520", label: t("socialLabels.telegram") },
     { id: "facebook", icon: <AiOutlineFacebook />, href: "https://www.facebook.com/wen.linji.i", label: t("socialLabels.facebook") },
     { id: "youtube", icon: <FaYoutube />, href: "https://www.youtube.com/", label: t("socialLabels.youtube") },
     { id: "tiktok", icon: <SiTiktok />, href: "https://www.tiktok.com/@wen_lin1314", label: t("socialLabels.tiktok") },
