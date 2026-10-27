@@ -1623,3 +1623,38 @@ button:focus {
 .lang-btn img {
   display: block;
 }
+
+/* Give the two-column hero more presence on desktop displays. */
+@media (min-width: 992px) {
+  .home-hero-img {
+    display: block;
+    width: min(100%, 640px);
+    max-height: 76vh;
+    object-fit: cover;
+  }
+
+  .home-header-right {
+    padding-right: clamp(3rem, 6vw, 8rem) !important;
+    padding-left: clamp(2rem, 4vw, 5rem) !important;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 820px;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 3.5vw, 5rem) !important;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1.1rem, 1.25vw, 1.5rem) !important;
+  }
+
+  .freelance-badge,
+  .services-title,
+  .service-item,
+  .contact-link {
+    font-size: clamp(0.95rem, 1vw, 1.15rem) !important;
+  }
+}
