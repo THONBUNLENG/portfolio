@@ -31,7 +31,7 @@ import apple from "../../Assets/TechIcons/apple.png";
 
 function Home() {
   const { t } = useLanguage();
-  const telegramUrl = "https://t.me/bunleng_dev";
+  const telegramUrl = "https://t.me/bunleng520";
   const telegramQrUrl =
     "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Ft.me%2Fbunleng_dev";
 
@@ -236,4 +236,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Home;     

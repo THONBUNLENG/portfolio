@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import { useLanguage } from "../../context/LanguageContext";

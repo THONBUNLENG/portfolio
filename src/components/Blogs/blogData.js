@@ -1,4 +1,3 @@
-﻿
 
 // Local image imports removed to keep the bundle size small and optimize load speed.
 

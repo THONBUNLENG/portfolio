@@ -170,7 +170,9 @@ function NavBar() {
           style={{ cursor: "pointer" }}
         >
           <img src={logo} className="img-fluid logo me-2" alt="brand" style={{ maxHeight: "32px" }} />
-          <span className="brand-name font-bold tracking-wider text-white">THON BUNLENG</span>
+          <span className="brand-name font-bold tracking-wider text-white">
+            {language === "en" ? "THON BUNLENG" : "何文霖"}
+          </span>
         </Navbar.Brand>
 
         <div className="d-flex d-md-none align-items-center me-2">

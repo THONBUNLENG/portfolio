@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import BlogCard from "./BlogCards";
 import { useLanguage } from "../../context/LanguageContext";

@@ -1,10 +1,8 @@
-﻿export const projects = {
+export const projects = {
   project1: {
     title: "Pink House E-commerce App",
-    titleKm: "áž€áž˜áŸ’áž˜ážœáž·áž’áž¸ E-commerce Pink House",
-    titleZh: "Pink House ç”µå•†åº”ç”¨",
-    // ážšáž¼áž”áž—áž¶áž–áž‘áž·áž‰áž‘áŸ†áž“áž·áž‰áž‚áŸ’ážšáž¿áž„áž‘áŸážŸ / Mobile Shopping Mockup
-    imgPath: "https://scontent.fpnh19-1.fna.fbcdn.net/v/t39.30808-6/479550944_947850187485170_7014920399470712208_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x960&ctp=s960x960&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeFV5ZBcyb76GGLhPyRnJ8Zuut0qCrF-_6663SoKsX7_rtbhQ5UN9Zt7D4yvrLjk8EPO3Pq2fk_uGGEpBcWH1W4R&_nc_ohc=f5PciXTcg3EQ7kNvwGntn9T&_nc_oc=AdoB_MoeQFkjKCySCIWdr3tSJVL4PDR-WPiwxAl6fFQ5Gu_LCu3o904NUx_IjgieqqU&_nc_zt=23&_nc_ht=scontent.fpnh19-1.fna&_nc_gid=nG9igACXLM5qAAzB8i2PgA&_nc_ss=7b2a8&oh=00_AQMmgDxG090_3PhM65yCeHir2n0TX4JBMMJn2wLjlDG53w&oe=6AE3F983",
+    titleZh: "Pink House 電商應用程式",
+    imgPath: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPM4nnezQRlhjPRQ46CDf4aOv8ilO_ivEnTMc6eGTAOw&s=10",
     technologies: ["Flutter", "Dart", "Clean Architecture", "REST API"],
     description: "A high-performance Flutter mobile e-commerce application designed for online grocery mart businesses with scalable state management.",
     ghLink: "https://github.com/THONBUNLENG/pink_house-Ecommerce-App.git",
@@ -12,9 +10,7 @@
   },
   project2: {
     title: "Pontoon Club App",
-    titleKm: "áž€áž˜áŸ’áž˜ážœáž·áž’áž¸ážŸáž áž‚áž˜áž“áŸ Pontoon",
-    titleZh: "Pontoon Club åº”ç”¨",
-    // ážšáž¼áž”áž—áž¶áž–áž€áž˜áŸ’áž˜ážœáž·áž’áž¸ážšáž¶ážáŸ’ážšáž¸ážŸáž˜áŸ„ážŸážš / Club & Events Nightlife
+    titleZh: "Pontoon Club 應用程式",
     imgPath: "https://cdn.pontoonclub.com/wp-content/uploads/2023/02/330961546_738757707682230_746711483210858010_n.jpeg",
     technologies: ["Flutter", "Dart", "Firebase", "State Management"],
     description: "A modern Flutter-based mobile application designed for the Pontoon Club, offering intuitive access to club info, events, and services.",
@@ -23,9 +19,7 @@
   },
   project3: {
     title: "MJQ AIS and AII School App",
-    titleKm: "áž€áž˜áŸ’áž˜ážœáž·áž’áž¸ážŸáž¶áž›áž¶áž¢áž”áŸ‹ážšáŸ† MJQ AIS áž“áž·áž„ AII",
-    titleZh: "MJQ AIS ä¸Ž AII å­¦æ ¡åº”ç”¨",
-    // ážšáž¼áž”áž—áž¶áž–áž”áž…áŸ’áž…áŸáž€ážœáž·áž‘áŸ’áž™áž¶áž¢áž”áŸ‹ážšáŸ† / EdTech School App
+    titleZh: "MJQ AIS 與 AII 學校應用程式",
     imgPath: "https://phnompenhpost.com/wp-content/uploads/2026/06/ais.jpg",
     technologies: ["Flutter", "Mobile UI", "API Integration"],
     description: "A centralized platform for MJQ school community, enabling students, parents, and teachers to access academic information effortlessly.",
@@ -34,9 +28,7 @@
   },
   project4: {
     title: "Beltei University App",
-    titleKm: "áž€áž˜áŸ’áž˜ážœáž·áž’áž¸ážŸáž¶áž€áž›ážœáž·áž‘áŸ’áž™áž¶áž›áŸáž™ áž”áŸŠáŸ‚áž›áž’áž¸",
-    titleZh: "Beltei å¤§å­¦åº”ç”¨",
-    // ážšáž¼áž”áž—áž¶áž–áž”ážšáž·ážœáŸážŽážŸáž¶áž€áž›ážœáž·áž‘áŸ’áž™áž¶áž›áŸáž™ áž“áž·áž„áž€áž¶ážšážŸáž·áž€áŸ’ážŸáž¶ / University Campus
+    titleZh: "貝爾蒂大學應用程式",
     imgPath: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR06zozC_ITSIeOkwpfj_2861xp6_X1YnMSoB6JvHWxv6kHjMUkZdjqDz8&s=10",
     technologies: ["Flutter", "Dart", "REST API", "UI/UX"],
     description: "The BIU University App centralizes essential university services and records, improving accessibility and communication for students.",
@@ -45,9 +37,7 @@
   },
   project5: {
     title: "WISC School App",
-    titleKm: "áž€áž˜áŸ’áž˜ážœáž·áž’áž¸ážŸáž¶áž›áž¶áž¢áž”áŸ‹ážšáŸ† WISC",
-    titleZh: "WISC å­¦æ ¡åº”ç”¨",
-    // ážšáž¼áž”áž—áž¶áž–ážáŸ’áž“áž¶áž€áŸ‹ážšáŸ€áž“ áž“áž·áž„áž€áž¶ážšážšáŸ€áž“ážáž¶áž˜áž¢áž“áž¡áž¶áž‰ / Digital Classroom
+    titleZh: "WISC 學校應用程式",
     imgPath: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWr2aSzUzX3DdJtATaP-nXw5AnWBBFQYGwlvjrofF68w&s=10",
     technologies: ["Flutter", "Dart", "Firebase"],
     description: "A mobile application providing students, parents, and educators with intuitive tools for school schedules and academic updates.",
@@ -56,9 +46,7 @@
   },
   project6: {
     title: "School Management App",
-    titleKm: "áž€áž˜áŸ’áž˜ážœáž·áž’áž¸áž‚áŸ’ážšáž”áŸ‹áž‚áŸ’ážšáž„ážŸáž¶áž›áž¶ážšáŸ€áž“",
-    titleZh: "å­¦æ ¡ç®¡ç†åº”ç”¨",
-    // ážšáž¼áž”áž—áž¶áž–áž”áŸ’ážšáž–áŸáž“áŸ’áž’áž‚áŸ’ážšáž”áŸ‹áž‚áŸ’ážšáž„ážŸáž¶áž›áž¶ / Student Management System
+    titleZh: "學校管理系統",
     imgPath: "https://www.zohowebstatic.com/sites/zweb/images/creator/app-deck/school-management-system-software-ss3.png",
     technologies: ["Flutter", "Dart", "REST API"],
     description: "A dedicated mobile platform designed for Beltei International School to monitor academic progress and streamline communication.",
@@ -67,9 +55,7 @@
   },
   project7: {
     title: "LOOMA Ecommerce App",
-    titleKm: "áž€áž˜áŸ’áž˜ážœáž·áž’áž¸áž‘áž·áž‰áž‘áŸ†áž“áž·áž‰ážáž¶áž˜áž¢áž“áž¡áž¶áž‰ LOOMA",
-    titleZh: "LOOMA ç”µå•†åº”ç”¨",
-    // ážšáž¼áž”áž—áž¶áž–áž€áž˜áŸ’áž˜ážœáž·áž’áž¸áž‘áž·áž‰ážŸáž˜áŸ’áž›áŸ€áž€áž”áŸ†áž–áž¶áž€áŸ‹áž‘áž¶áž“áŸ‹ážŸáž˜áŸáž™ / Fashion Store Mobile
+    titleZh: "LOOMA 電商應用程式",
     imgPath: "https://cdn.dribbble.com/userupload/47565817/file/8438735b7e4bf675c4bf8b4d9979682e.png?resize=1600x1200",
     technologies: ["Flutter", "Dart", "Figma UI", "State Management"],
     description: "A premium cross-platform e-commerce application featuring dynamic product catalogs, seamless navigation, and personal wishlists.",
@@ -78,9 +64,7 @@
   },
   project8: {
     title: "Light & Dark Theme System",
-    titleKm: "áž”áŸ’ážšáž–áŸáž“áŸ’áž’ Light & Dark Mode",
-    titleZh: "æµ…è‰²æ·±è‰²ä¸»é¢˜ç³»ç»Ÿ",
-    // ážšáž¼áž”áž—áž¶áž–áž”áž„áŸ’áž áž¶áž‰ UI Theme Switcher / Dark & Light Mode Code
+    titleZh: "淺色與深色主題系統",
     imgPath: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
     technologies: ["Flutter", "ThemeData", "Clean Code"],
     description: "A reusable Flutter theme architecture supporting dynamic Light and Dark modes with clean component-level consistency.",
@@ -89,9 +73,7 @@
   },
   project9: {
     title: "E-Commerce Web Storefront",
-    titleKm: "ážœáŸáž”ážŸáž¶áž™áž–áž¶ážŽáž·áž‡áŸ’áž‡áž€áž˜áŸ’áž˜áž¢áž“áŸ’ážážšáž‡áž¶ážáž·",
-    titleZh: "ç”µå•†ç½‘ç«™",
-    // ážšáž¼áž”áž—áž¶áž–áž‚áŸáž áž‘áŸ†áž–áŸážš Online Shop / Modern Web Storefront
+    titleZh: "電商網站商店",
     imgPath: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
     technologies: ["Laravel", "Node.js", "MySQL", "Tailwind CSS"],
     description: "A full-featured e-commerce storefront backed by robust backend APIs, secure order workflows, and administrative management.",
@@ -100,9 +82,7 @@
   },
   project10: {
     title: "Coffee Shop POS System",
-    titleKm: "áž”áŸ’ážšáž–áŸáž“áŸ’áž’áž‚áŸ’ážšáž”áŸ‹áž‚áŸ’ážšáž„áž áž¶áž„áž€áž¶áž áŸ’ážœáŸ",
-    titleZh: "å’–å•¡åº—ç®¡ç†ç³»ç»Ÿ",
-    // ážšáž¼áž”áž—áž¶áž–áž”áž‰áŸ’áž‡ážšáž‚áž·ážáž›áž»áž™áž áž¶áž„áž€áž¶áž áŸ’ážœáŸ / Coffee Shop Counter POS
+    titleZh: "咖啡店 POS 系統",
     imgPath: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80",
     technologies: ["C#", "Windows Forms", "SQL Server"],
     description: "A desktop application that integrates point-of-sale transactions, inventory control, and real-time sales reporting for coffee shops.",
@@ -111,9 +91,7 @@
   },
   project11: {
     title: "Role-Based Admin Dashboard",
-    titleKm: "áž•áŸ’áž‘áž¶áŸ†áž„áž‚áŸ’ážšáž”áŸ‹áž‚áŸ’ážšáž„áž‡áž¶áž¢áŸ’áž“áž€áž‚áŸ’ážšáž”áŸ‹áž‚áŸ’ážšáž„",
-    titleZh: "ç®¡ç†ä»ªè¡¨æ¿",
-    // ážšáž¼áž”áž—áž¶áž–áž•áŸ’áž‘áž¶áŸ†áž„ážŸáŸ’ážáž·ážáž· áž“áž·áž„áž€áŸ’ážšáž¶áž áŸ’ážœáž·áž€ / Modern Analytics Dashboard
+    titleZh: "角色權限管理儀表板",
     imgPath: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
     technologies: ["Laravel", "Blade", "MySQL", "Auth RBAC"],
     description: "A role-based administrative control panel featuring granular permissions, user management, and dynamic reporting tools.",
@@ -122,9 +100,7 @@
   },
   project12: {
     title: "AI Selenium Web Automation",
-    titleKm: "ážŸáŸ’ážœáŸáž™áž”áŸ’ážšážœážáŸ’ážáž·áž€áž˜áŸ’áž˜ AI Selenium",
-    titleZh: "AI Selenium ç½‘é¡µè‡ªåŠ¨åŒ–",
-    // ážšáž¼áž”áž—áž¶áž– Artificial Intelligence & Code Automation
+    titleZh: "AI Selenium 網頁自動化",
     imgPath: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
     technologies: ["Python", "Selenium", "Machine Learning"],
     description: "An AI-enhanced automation engine using machine learning algorithms to interact intelligently with complex web pages and testing flows.",
@@ -133,9 +109,7 @@
   },
   project13: {
     title: "Point of Sale (POS) Engine",
-    titleKm: "áž”áŸ’ážšáž–áŸáž“áŸ’áž’áž›áž€áŸ‹áž‘áŸ†áž“áž·áž‰ POS",
-    titleZh: "POS ç³»ç»Ÿ",
-    // ážšáž¼áž”áž—áž¶áž–áž˜áŸ‰áž¶ážŸáŸŠáž¸áž“áž†áž¼ážáž€áž¶áž áž“áž·áž„áž”áŸ’ážšážáž·áž”ážáŸ’ážáž·áž€áž¶ážš POS / Retail Checkout POS
+    titleZh: "POS 系統",
     imgPath: "https://www.poszeo.com/wp-content/uploads/2026/01/What-Is-an-Electronic-Point-of-Sale-A-B2B-Guide-to-POS-Components-Integration-and-Deployment-1.webp",
     technologies: ["Desktop App", "Database", "Reporting"],
     description: "A full-featured retail POS application designed to handle checkout workflows, track store stock, and produce instant ledger summaries.",
@@ -144,13 +118,11 @@
   },
   project14: {
     title: "Loan & Gamification System",
-    titleKm: "áž”áŸ’ážšáž–áŸáž“áŸ’áž’áž‚áŸ’ážšáž”áŸ‹áž‚áŸ’ážšáž„áž”áŸ’ážšáž¶áž€áŸ‹áž€áž˜áŸ’áž…áž¸",
-    titleZh: "è´·æ¬¾ç®¡ç†ç³»ç»Ÿ",
-    // ážšáž¼áž”áž—áž¶áž–áž áž·ážšáž‰áŸ’áž‰ážœážáŸ’ážáž» áž“áž·áž„ážŸáŸ’ážáž·ážáž· / Finance & Analytics
+    titleZh: "貸款與遊戲化系統",
     imgPath: "https://media.licdn.com/dms/image/v2/D5612AQGk0fXDc9NCDQ/article-cover_image-shrink_720_1280/B56Z1mmAeAKYAI-/0/1775542737782?e=2147483647&v=beta&t=sniUtpi8g3r05TyUiK1QBSI6Z25geg_NvES7_YF-pxg",
     technologies: ["C#", ".NET", "SQL Server"],
     description: "A desktop platform integrating educational loan workflows, participant analytics, and incentive tracking inside an all-in-one console.",
     ghLink: "https://github.com/THONBUNLENG/loan_and_game.git",
     demoLink: "",
   },
-};  
+};
