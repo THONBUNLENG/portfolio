@@ -32,7 +32,7 @@ export default function SpaceBackground() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) return;   
     const ctx = canvas.getContext("2d");
 
     let animationFrameId;
@@ -117,7 +117,7 @@ export default function SpaceBackground() {
       ctx.restore();
 
       animationFrameId = requestAnimationFrame(render);
-    };
+    }; 
 
     render();
 

@@ -66,8 +66,9 @@ const translations = {
           company: "Wintech Software Development Cambodia Co. Ltd",
           period: "2025 – 2026",
           details: [
-            "Developed and maintained a complete Coffee Shop Management System (Wintech Software Development Cambodia Co. Ltd) as a production-ready mobile application.",
+            "Developed and maintained a production-ready mobile Coffee Shop Management System for Wintech Software Development Cambodia Co. Ltd.",
             "Built core features including POS, inventory management, sales reporting, and user authentication using Flutter/Dart.",
+            "Developed school management and e-commerce mobile applications using Flutter/Dart.",
             "Collaborated with backend and QA teams to integrate APIs and ensure smooth deployment in a live business environment.",
           ],
         },
@@ -270,8 +271,9 @@ const translations = {
           company: "Wintech Software Development Cambodia Co. Ltd",
           period: "2025 – 2026",
           details: [
-            "為 Wintech Software Development Cambodia Co. Ltd 開發並維護一套完整的咖啡店管理系統（行動應用程式）。",
+            "為 Wintech Software Development Cambodia Co. Ltd 開發並維護可投入正式營運的咖啡店管理行動應用程式。",
             "使用 Flutter/Dart 建置核心功能，包括 POS、庫存管理、銷售報表與使用者驗證。",
+            "使用 Flutter/Dart 開發學校管理與電子商務行動應用程式。",
             "與後端及 QA 團隊合作，整合 API，並確保在實際商業環境中順利部署。",
           ],
         },

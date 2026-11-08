@@ -23,27 +23,13 @@ function BlogCards(props) {
 
   return (
     <Card className="blog-card-view h-100 d-flex flex-column border-0 bg-transparent">
-      {/* Image Container with Contain Fit */}
-      <div
-        className="d-flex align-items-center justify-content-center bg-black/40 overflow-hidden"
-        style={{
-          height: "200px",
-          borderTopLeftRadius: "calc(0.375rem - 1px)",
-          borderTopRightRadius: "calc(0.375rem - 1px)",
-        }}
-      >
+      {/* Consistent image crop keeps the card grid aligned. */}
+      <div className="blog-image-wrap">
         <Card.Img
           variant="top"
           src={props.imgPath}
           alt={props.title}
           className="blog-img"
-          style={{
-            maxHeight: "100%",
-            maxWidth: "100%",
-            width: "auto",
-            height: "auto",
-            objectFit: "contain",
-          }}
           loading="lazy"
         />
       </div>
