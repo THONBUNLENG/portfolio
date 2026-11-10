@@ -15,6 +15,7 @@ function Projects() {
     { key: "mobile", label: "Mobile Apps (Flutter)" },
     { key: "web", label: "Full-Stack Web" },
     { key: "other", label: "Desktop & Tools" },
+    { key: "design", label: "UX UI Design" },
   ];
 
   const getProjectTitle = (projectId) => {
@@ -37,6 +38,9 @@ function Projects() {
     return entries.filter(([_, item]) => {
       // ផ្ទៀងផ្ទាត់ជាមួយ category ឬ tags ក្នុង projectData
       if (item.category) return item.category.toLowerCase() === selectedCategory;
+      if (selectedCategory === "design") {
+        return item.technologies?.some((tech) => /ui\/?ux|ux\/?ui|figma|design/i.test(tech));
+      }
       if (selectedCategory === "mobile") {
         return (
           item.title?.toLowerCase().includes("app") ||
